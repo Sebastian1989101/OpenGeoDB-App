@@ -34,12 +34,9 @@
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
     <AndroidLinkSkip />
-    <BundleAssemblies>False</BundleAssemblies>
-    <AndroidCreatePackagePerAbi>False</AndroidCreatePackagePerAbi>
     <AndroidSupportedAbis />
     <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
-    <AndroidEnableMultiDex>False</AndroidEnableMultiDex>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -224,7 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenGeoDB.Core\OpenGeoDB.Core.csproj">
-      <Project>{74043e51-ef7b-4ce1-af3f-7612ed1d05b6}</Project>
+      <Project>{9A64FC4D-B5C0-4116-A4A1-CA6456EA65F0}</Project>
       <Name>OpenGeoDB.Core</Name>
     </ProjectReference>
   </ItemGroup>

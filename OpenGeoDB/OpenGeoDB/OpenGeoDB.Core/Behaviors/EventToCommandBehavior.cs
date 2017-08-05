@@ -7,7 +7,7 @@ namespace OpenGeoDB.Core.Behaviors
 {
     public class EventToCommandBehavior : BehaviorBase<View>
     {
-        Delegate eventHandler;
+        private Delegate _eventHandler;
 
         public static readonly BindableProperty EventNameProperty = BindableProperty.Create("EventName", typeof(string), typeof(EventToCommandBehavior), null, propertyChanged: OnEventNameChanged);
         public static readonly BindableProperty CommandProperty = BindableProperty.Create("Command", typeof(ICommand), typeof(EventToCommandBehavior), null);
@@ -50,12 +50,10 @@ namespace OpenGeoDB.Core.Behaviors
             base.OnDetachingFrom(bindable);
         }
 
-        void RegisterEvent(string name)
+        private void RegisterEvent(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-            {
                 return;
-            }
 
             EventInfo eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
             if (eventInfo == null)
@@ -63,64 +61,48 @@ namespace OpenGeoDB.Core.Behaviors
                 throw new ArgumentException(string.Format("EventToCommandBehavior: Can't register the '{0}' event.", EventName));
             }
             MethodInfo methodInfo = typeof(EventToCommandBehavior).GetTypeInfo().GetDeclaredMethod("OnEvent");
-            eventHandler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
-            eventInfo.AddEventHandler(AssociatedObject, eventHandler);
+            _eventHandler = methodInfo.CreateDelegate(eventInfo.EventHandlerType, this);
+            eventInfo.AddEventHandler(AssociatedObject, _eventHandler);
         }
 
-        void DeregisterEvent(string name)
+        private void DeregisterEvent(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-            {
                 return;
-            }
 
-            if (eventHandler == null)
-            {
+            if (_eventHandler == null)
                 return;
-            }
+            
             EventInfo eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
             if (eventInfo == null)
-            {
                 throw new ArgumentException(string.Format("EventToCommandBehavior: Can't de-register the '{0}' event.", EventName));
-            }
-            eventInfo.RemoveEventHandler(AssociatedObject, eventHandler);
-            eventHandler = null;
+            
+            eventInfo.RemoveEventHandler(AssociatedObject, _eventHandler);
+            _eventHandler = null;
         }
 
-        void OnEvent(object sender, object eventArgs)
+        private void OnEvent(object sender, object eventArgs)
         {
             if (Command == null)
-            {
                 return;
-            }
 
             object resolvedParameter;
             if (CommandParameter != null)
-            {
                 resolvedParameter = CommandParameter;
-            }
             else if (Converter != null)
-            {
                 resolvedParameter = Converter.Convert(eventArgs, typeof(object), null, null);
-            }
             else
-            {
                 resolvedParameter = eventArgs;
-            }
 
             if (Command.CanExecute(resolvedParameter))
-            {
                 Command.Execute(resolvedParameter);
-            }
         }
 
-        static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void OnEventNameChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var behavior = (EventToCommandBehavior)bindable;
             if (behavior.AssociatedObject == null)
-            {
                 return;
-            }
 
             string oldEventName = (string)oldValue;
             string newEventName = (string)newValue;
