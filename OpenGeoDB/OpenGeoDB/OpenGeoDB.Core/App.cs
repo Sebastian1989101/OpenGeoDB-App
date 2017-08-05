@@ -4,6 +4,8 @@ using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
 using MvvmCross.Platform.Platform;
 using MvvmCross.Plugins.Json;
+using OpenGeoDB.Core.DependencyServices;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -13,6 +15,8 @@ namespace OpenGeoDB.Core
     {
         public override void Initialize()
         {
+            Mvx.RegisterSingleton(DependencyService.Get<IDataFileService>());
+
             CreatableTypes()
                 .EndingWith("Service")
                 .AsInterfaces()

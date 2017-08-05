@@ -2,6 +2,6 @@
 {
     public interface IAppSettings
     {
-        int SuperNumber { get; set; }
+        bool OrderByZipCode { get; set; }
     }
 }

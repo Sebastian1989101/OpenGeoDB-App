@@ -17,7 +17,7 @@ namespace OpenGeoDB.Core.Repository
             _fileService = fileService;
         }
 
-        public async Task<IEnumerable<Location>> GetAllAsync()
+        public async Task<Location[]> GetAllAsync()
         {
             string content = await _fileService.LoadFileContentAsync();
 			if (string.IsNullOrEmpty(content))
@@ -46,7 +46,7 @@ namespace OpenGeoDB.Core.Repository
                 }
             }
 
-            return locations;
+            return locations.ToArray();
         }
     }
 }

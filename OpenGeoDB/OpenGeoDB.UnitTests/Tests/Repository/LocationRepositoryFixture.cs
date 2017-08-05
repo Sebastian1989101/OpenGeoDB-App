@@ -8,6 +8,7 @@ using NUnit.Framework;
 using OpenGeoDB.Core.DependencyServices;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
+using OpenGeoDB.UnitTests.Mocks;
 
 namespace OpenGeoDB.UnitTests.Tests.Repository
 {
@@ -18,14 +19,15 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
         public async Task Usage()
         {
             // Arrange
-            LocationRepository repository = new LocationRepository(new FakeDataFileService());
+            IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
+            LocationRepository repository = new LocationRepository(dataFileService);
 
             // Act
             Location[] response = (await repository.GetAllAsync()).ToArray();
 
             // Assert
             Assert.IsNotNull(response);
-            Assert.AreEqual(3, response.Length);
+            Assert.AreEqual(5, response.Length);
 
             Assert.AreEqual(7073, response[0].ID);
             Assert.AreEqual("31582", response[0].ZipCode);
@@ -44,20 +46,33 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
             Assert.AreEqual("München", response[2].Village);
             Assert.AreEqual(48.1432006878012, response[2].Latitude);
             Assert.AreEqual(11.5059093215982, response[2].Longitude);
+
+            Assert.AreEqual(10672, response[3].ID);
+            Assert.AreEqual("80796", response[3].ZipCode);
+            Assert.AreEqual("München", response[3].Village);
+            Assert.AreEqual(48.1646490940644, response[3].Latitude);
+            Assert.AreEqual(11.5694707183568, response[3].Longitude);
+
+            Assert.AreEqual(10674, response[4].ID);
+            Assert.AreEqual("80798", response[4].ZipCode);
+            Assert.AreEqual("München", response[4].Village);
+            Assert.AreEqual(48.1571679755151, response[4].Latitude);
+            Assert.AreEqual(11.5656418013965, response[4].Longitude);
         }
 
         [Test]
         public async Task ContainsFailureData()
         {
 			// Arrange
-			LocationRepository repository = new LocationRepository(new FakeDataFileService(true));
+			IDataFileService dataFileService = ServiceMocks.GetMockDataFileService(true);
+			LocationRepository repository = new LocationRepository(dataFileService);
 
             // Act
             Location[] response = (await repository.GetAllAsync()).ToArray();
 
             // Assert
             Assert.IsNotNull(response);
-            Assert.AreEqual(3, response.Length);
+            Assert.AreEqual(5, response.Length);
 
             Assert.AreEqual(7073, response[0].ID);
             Assert.AreEqual("31582", response[0].ZipCode);
@@ -75,7 +90,19 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
             Assert.AreEqual("80687", response[2].ZipCode);
             Assert.AreEqual("München", response[2].Village);
             Assert.AreEqual(48.1432006878012, response[2].Latitude);
-            Assert.AreEqual(11.5059093215982, response[2].Longitude);
+			Assert.AreEqual(11.5059093215982, response[2].Longitude);
+
+			Assert.AreEqual(10672, response[3].ID);
+			Assert.AreEqual("80796", response[3].ZipCode);
+			Assert.AreEqual("München", response[3].Village);
+			Assert.AreEqual(48.1646490940644, response[3].Latitude);
+			Assert.AreEqual(11.5694707183568, response[3].Longitude);
+
+			Assert.AreEqual(10674, response[4].ID);
+			Assert.AreEqual("80798", response[4].ZipCode);
+			Assert.AreEqual("München", response[4].Village);
+			Assert.AreEqual(48.1571679755151, response[4].Latitude);
+			Assert.AreEqual(11.5656418013965, response[4].Longitude);
         }
 
         [Test]
@@ -126,32 +153,5 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 			Assert.IsNotNull(exception);
             Assert.AreEqual("Process failed", exception.Message);
         }
-
-        private class FakeDataFileService : IDataFileService
-        {
-            private readonly bool _addFailureLine;
-
-            public FakeDataFileService(bool addFailureLine = false)
-            {
-                _addFailureLine = addFailureLine;
-            }
-
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-            public async Task<string> LoadFileContentAsync()
-            {
-                StringBuilder builder = new StringBuilder();
-                builder.AppendLine("#loc_id\tplz\tlon\tlat\tOrt");
-                builder.AppendLine("7073\t31582\t9.23150063371375\t52.6407898946597\tNienburg (Weser)");
-                builder.AppendLine("7076\t31600\t8.87567370960235\t52.5192716743236\tUchte");
-
-                if(_addFailureLine)
-                    builder.AppendLine("10670\t80X687\t11.50X59093215982\t48.1432006878X012\tMünchen");
-
-                builder.AppendLine("10670\t80687\t11.5059093215982\t48.1432006878012\tMünchen");
-
-                return builder.ToString();
-			}
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
-		}
     }
 }

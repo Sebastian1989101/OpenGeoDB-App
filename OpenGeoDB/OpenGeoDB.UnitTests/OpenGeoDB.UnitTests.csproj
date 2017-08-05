@@ -36,6 +36,27 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\packages\MvvmCross.Platform.5.1.1\lib\net45\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.Wpf">
+      <HintPath>..\packages\MvvmCross.Platform.5.1.1\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\packages\MvvmCross.Core.5.1.1\lib\net45\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Wpf">
+      <HintPath>..\packages\MvvmCross.Core.5.1.1\lib\net45\MvvmCross.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding">
+      <HintPath>..\packages\MvvmCross.Binding.5.1.1\lib\net45\MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding.Wpf">
+      <HintPath>..\packages\MvvmCross.Binding.5.1.1\lib\net45\MvvmCross.Binding.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.Binding.5.1.1\lib\net45\MvvmCross.Localization.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -44,9 +65,12 @@
     <Folder Include="Mocks\" />
     <Folder Include="Tests\" />
     <Folder Include="Tests\Repository\" />
+    <Folder Include="Tests\ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tests\Repository\LocationRepositoryFixture.cs" />
+    <Compile Include="Mocks\ServiceMocks.cs" />
+    <Compile Include="Tests\ViewModels\MainViewModelFixture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenGeoDB\OpenGeoDB.Core\OpenGeoDB.Core.csproj">

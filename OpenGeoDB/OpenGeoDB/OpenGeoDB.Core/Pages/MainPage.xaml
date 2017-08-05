@@ -1,27 +1,39 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OpenGeoDB.Core.Pages.MainPage"
-             xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
-             xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms">
-  <Grid>
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    <Grid.RowDefinitions>
-        <RowDefinition Height="*"/>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="*"/>
-    </Grid.RowDefinitions>
-    <StackLayout Grid.Row="1" Grid.Column="1">
-      <Label Text="{res:Translate MainPageTitle}" 
-             VerticalOptions="Center"
-             HorizontalOptions="Center" 
-             StyleId="MainPageTitleLbl" />
-      <Button Text="{Binding ButtonText}" Command="{Binding PressMeCommand}" />
-      <Button Text="{res:Translate GoToSecondPageText}" Command="{Binding GoToSecondPageCommand}" />
-    </StackLayout>
-  </Grid>
+<?xml version="1.0" encoding="utf-8"?>
+<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="OpenGeoDB.Core.Pages.MainPage" 
+    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms" 
+    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls"
+    xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
+    Title="{res:TranslateExtension MainPage_Title}" x:Name="Page">
+
+    <mvx:MvxContentPage.Resources>
+        <ResourceDictionary>
+            <converters:LocationGroupingToZipCodeTextConverter x:Key="ZipCodeTextConverter" />
+        </ResourceDictionary>
+    </mvx:MvxContentPage.Resources>
+    
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <SearchBar Grid.Row="0" Text="{Binding Filter}" SearchCommand="{Binding FilterLocationsCommand}" />
+
+        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:CommandViewCell Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Page}}" 
+                                              CommandParameter="{Binding Key}" x:TypeArguments="x:String">
+                        <StackLayout Orientation="Vertical" VerticalOptions="Center" Spacing="0" Padding="15,5">
+                            <Label Text="{Binding Key}" LineBreakMode="TailTruncation" FontAttributes="Bold" />
+                            <Label Text="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}" LineBreakMode="TailTruncation" FontSize="12" />
+                        </StackLayout>
+                    </controls:CommandViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </mvx:MvxContentPage>

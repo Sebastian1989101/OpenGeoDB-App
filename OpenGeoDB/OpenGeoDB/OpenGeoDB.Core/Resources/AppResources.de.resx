@@ -117,13 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="MainPageButton" xml:space="preserve">
-    <value>Drück mich</value>
-  </data>
-  <data name="MainPageButtonPressed" xml:space="preserve">
-    <value>Danke!</value>
-  </data>
-  <data name="MainPageTitle" xml:space="preserve">
-    <value>Hallo Xamarin!</value>
+  <data name="LocationGroupingToZipCodeTextConverter_And" xml:space="preserve">
+    <value> und</value>
   </data>
 </root>
