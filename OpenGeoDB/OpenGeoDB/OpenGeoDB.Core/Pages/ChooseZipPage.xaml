@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="OpenGeoDB.Core.Pages.ChooseZipPage" 
+    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms" 
+    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls"
+    Title="{res:TranslateExtension ChooseZipPage_Title}" x:Name="Page">
+
+   <ListView ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <controls:CommandViewCell Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Page}}" 
+                                          CommandParameter="{Binding ZipCode}" x:TypeArguments="x:String">
+                    <Grid VerticalOptions="Center" Padding="15,5">
+                        <Label Text="{Binding ZipCode}" LineBreakMode="NoWrap" FontAttributes="Bold" />
+                    </Grid>
+                </controls:CommandViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</mvx:MvxContentPage>

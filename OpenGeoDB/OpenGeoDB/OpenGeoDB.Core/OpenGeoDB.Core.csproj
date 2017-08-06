@@ -74,6 +74,10 @@
     <Compile Include="DependencyServices\IDataFileService.cs" />
     <Compile Include="Controls\CommandViewCell.cs" />
     <Compile Include="Converters\LocationGroupingToZipCodeTextConverter.cs" />
+    <Compile Include="Pages\ChooseZipPage.xaml.cs">
+      <DependentUpon>ChooseZipPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\ChooseZipViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -157,6 +161,9 @@
     <EmbeddedResource Include="Pages\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\ChooseZipPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -59,13 +59,9 @@ namespace OpenGeoDB.Core.ViewModels
 		{
             var result = Data.First(data => data.Key == key).Select(grp => grp).ToArray();
             if (result.Length == 1)
-            {
                 ShowViewModel<DetailViewModel, Location>(result.First());
-            }
             else 
-            {
-                // Show ZipCode selection
-            }
+                ShowViewModel<ChooseZipViewModel, Location[]>(result);
 		}
 
 		private bool CanExecuteShowDetailsCommand(string key)

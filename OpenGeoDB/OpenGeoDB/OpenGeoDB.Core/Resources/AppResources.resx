@@ -126,4 +126,7 @@
   <data name="MainPage_Title" xml:space="preserve">
     <value>Locations</value>
   </data>
+  <data name="ChooseZipPage_Title" xml:space="preserve">
+    <value>Choose zip</value>
+  </data>
 </root>
