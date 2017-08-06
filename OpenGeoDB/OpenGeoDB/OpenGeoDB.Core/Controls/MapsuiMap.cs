@@ -36,8 +36,6 @@ namespace OpenGeoDB.Core.Controls
                 NativeMap.BackColor = Color.White;
 
             var mapLayer = OpenStreetMap.CreateTileLayer();
-            mapLayer.Attribution.Text = mapLayer.Attribution.Url = null;
-
             NativeMap.Layers.Add(mapLayer);
         }
 

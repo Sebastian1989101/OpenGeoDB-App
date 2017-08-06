@@ -2,14 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleDisplayName</key>
-	<string>MvxForms.iOS</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.companyname.MvxForms.iOS</string>
+	<string>com.SoftwareNotion.ZipFinder</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
@@ -44,9 +40,11 @@
 	</array>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Media.xcassets/LaunchImages.launchimage</string>
-	<key>CFBundleName</key>
-	<string>MvxForms.iOS</string>
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
+	<key>CFBundleName</key>
+	<string>PLZ Finder</string>
+	<key>CFBundleVersion</key>
+	<string>17218</string>
 </dict>
 </plist>
