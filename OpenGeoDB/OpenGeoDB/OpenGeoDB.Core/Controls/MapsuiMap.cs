@@ -1,8 +1,8 @@
 ﻿using Mapsui;
+using Mapsui.Projection;
 using Mapsui.Utilities;
 using Xamarin.Forms;
 using Color = Mapsui.Styles.Color;
-using Point = Mapsui.Geometries.Point;
 
 namespace OpenGeoDB.Core.Controls
 {
@@ -46,7 +46,7 @@ namespace OpenGeoDB.Core.Controls
             MapsuiMap mapsuiMap = bindable as MapsuiMap;
             if (mapsuiMap != null)
             {
-                mapsuiMap.NativeMap.NavigateTo(new Point(mapsuiMap.FocusLongitude * 111318.30465862, mapsuiMap.FocusLatitude * 131396.69852677));
+                mapsuiMap.NativeMap.NavigateTo(SphericalMercator.FromLonLat(mapsuiMap.FocusLongitude, mapsuiMap.FocusLatitude));
                 mapsuiMap.NativeMap.NavigateTo(100);
             }
         }
