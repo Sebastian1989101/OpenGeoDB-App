@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using OpenGeoDB.Core.Repository;
@@ -12,7 +13,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
     public class MainViewModelFixture
     {
         [Test]
-        public void LoadingDataUsage()
+        public async Task LoadingDataUsage()
         {
             // Arrange
             LocationRepository locationRepository = new LocationRepository(ServiceMocks.GetMockDataFileService());
@@ -23,7 +24,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
             MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object);
 
             // Act
-            viewModel.Start();
+            await viewModel.Initialize();
 
             // Assert
             Assert.IsNotNull(viewModel.Data);
@@ -64,7 +65,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
         }
 
         [Test]
-        public void FilterUsage()
+        public async Task FilterUsage()
         {
 			// Arrange
 			LocationRepository locationRepository = new LocationRepository(ServiceMocks.GetMockDataFileService());
@@ -74,8 +75,8 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
 
 			MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object);
 
-			// Act
-			viewModel.Start();
+            // Act
+            await viewModel.Initialize();
 
             viewModel.Filter = "80796";
             viewModel.FilterLocationsCommand.Execute(null);

@@ -12,6 +12,7 @@ using Xamarin.Forms;
 
 namespace OpenGeoDB.Droid
 {
+    //todo: Fix rotation (navigate back on rotate)
     [Activity(Label = "FormsApplicationActivity", ScreenOrientation = ScreenOrientation.Portrait)]
     public class FormsApplicationActivity : MvxFormsApplicationActivity
     {

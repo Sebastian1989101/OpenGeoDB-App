@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
@@ -36,13 +35,13 @@ namespace OpenGeoDB.Core.ViewModels
 
         public override void Start()
         {
-            LoadDataAsync().Wait();
+            Initialize().Wait();
 		}
 
-        private async Task LoadDataAsync()
-        {
-			_locations = await _locationsRepository.GetAllAsync();
-			FilterLocationsCommand.Execute(null);
+	    public override async Task Initialize()
+	    {
+	        _locations = await _locationsRepository.GetAllAsync();
+	        FilterLocationsCommand.Execute(null);
         }
 
 		private void OnFilterLocationsCommandExecute()
@@ -58,10 +57,10 @@ namespace OpenGeoDB.Core.ViewModels
 		
 		private void OnShowDetailsCommandExecute(string key)
 		{
-            var result = Data.First(data => data.Key == key).Select(grp => grp);
-            if (result.Count() == 1)
+            var result = Data.First(data => data.Key == key).Select(grp => grp).ToArray();
+            if (result.Length == 1)
             {
-                // Show details
+                ShowViewModel<DetailViewModel, Location>(result.First());
             }
             else 
             {
