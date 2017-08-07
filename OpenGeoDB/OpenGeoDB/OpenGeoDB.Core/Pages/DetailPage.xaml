@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                     x:Class="OpenGeoDB.Core.Pages.DetailPage" 
@@ -36,7 +36,9 @@
 
         <controls:MapsuiMap Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="MapsuiPanel"
                             BackgroundColor="{Binding BackgroundColor, Source={x:Reference Page}}"
+                            ChooseLocationCommand="{Binding ChangeLocationCommand}"
                             FocusLatitude="{Binding Location.Latitude}"
-                            FocusLongitude="{Binding Location.Longitude}" />
+                            FocusLongitude="{Binding Location.Longitude}"
+                            MapMarker="{Binding NearbyMarker}" />
     </Grid>
 </mvx:MvxContentPage>

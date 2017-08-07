@@ -12,6 +12,8 @@ namespace OpenGeoDB.Core.Model.Data
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
+        public double Distance { get; set; }
+
         public bool Equals(string filter)
         {
             if (string.IsNullOrEmpty(filter))

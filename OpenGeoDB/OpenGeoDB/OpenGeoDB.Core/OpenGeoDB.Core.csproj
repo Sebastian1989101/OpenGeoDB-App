@@ -165,6 +165,8 @@
     <EmbeddedResource Include="Pages\ChooseZipPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Marker.png" />
+    <EmbeddedResource Include="Resources\Marker.Highlight.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\DetailPage.xaml">

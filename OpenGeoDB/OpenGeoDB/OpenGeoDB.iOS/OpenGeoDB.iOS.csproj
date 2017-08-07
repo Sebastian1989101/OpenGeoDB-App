@@ -109,6 +109,7 @@
     <Content Include="Entitlements.plist" />
     <None Include="packages.config" />
     <Compile Include="DependencyServices\DataFileService.cs" />
+    <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
@@ -16,14 +15,14 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
     public class LocationRepositoryFixture
     {
         [Test]
-        public async Task Usage()
+        public async Task GetAllAsyncUsage()
         {
             // Arrange
             IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
             LocationRepository repository = new LocationRepository(dataFileService);
 
             // Act
-            Location[] response = (await repository.GetAllAsync()).ToArray();
+            Location[] response = (await repository.GetAllAsync());
 
             // Assert
             Assert.IsNotNull(response);
@@ -61,14 +60,14 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
         }
 
         [Test]
-        public async Task ContainsFailureData()
+        public async Task GetAllAsyncContainsFailureData()
         {
 			// Arrange
 			IDataFileService dataFileService = ServiceMocks.GetMockDataFileService(true);
 			LocationRepository repository = new LocationRepository(dataFileService);
 
             // Act
-            Location[] response = (await repository.GetAllAsync()).ToArray();
+            Location[] response = (await repository.GetAllAsync());
 
             // Assert
             Assert.IsNotNull(response);
@@ -106,7 +105,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
         }
 
         [Test]
-        public async Task LoadFileContentNull()
+        public async Task GetAllAsyncLoadFileContentNull()
         {
             // Arrange
             Mock<IDataFileService> mock = new Mock<IDataFileService>();
@@ -122,7 +121,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
         }
 
         [Test]
-        public async Task NoRelevantContent()
+        public async Task GetAllAsyncNoRelevantContent()
         {
 			// Arrange
 			Mock<IDataFileService> mock = new Mock<IDataFileService>();
@@ -138,8 +137,8 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
             Assert.AreEqual(0, response.Count());
         }
 
-        [Test]
-        public void LoadFileContentThrowsException()
+        [Test, SetUICulture("en-US")]
+        public void GetAllAsyncLoadFileContentThrowsException()
         {
 			// Arrange
 			Mock<IDataFileService> mock = new Mock<IDataFileService>();
@@ -153,5 +152,98 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 			Assert.IsNotNull(exception);
             Assert.AreEqual("Process failed", exception.Message);
         }
+
+        [Test]
+        public async Task GetNearbyEntriesUsage()
+        {
+            // Arrange
+            IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
+            LocationRepository repository = new LocationRepository(dataFileService);
+
+            Location startLocation = new Location
+                {
+                    ID = -1, 
+                    ZipCode = "31600", 
+                    Village = "Uchte", 
+                    Latitude = 52.5192716743236, 
+                    Longitude = 8.87567370960235
+                };
+
+            // Act
+            Location[] response = (await repository.GetNearbyEntries(startLocation, 2, true));
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(3, response.Length);
+
+            Assert.AreEqual(-1, response[0].ID);
+            Assert.AreEqual("31600", response[0].ZipCode);
+            Assert.AreEqual("Uchte", response[0].Village);
+            Assert.AreEqual(52.5192716743236, response[0].Latitude);
+            Assert.AreEqual(8.87567370960235, response[0].Longitude);
+
+            Assert.AreEqual(7073, response[1].ID);
+            Assert.AreEqual("31582", response[1].ZipCode);
+            Assert.AreEqual("Nienburg (Weser)", response[1].Village);
+            Assert.AreEqual(52.6407898946597, response[1].Latitude);
+            Assert.AreEqual(9.23150063371375, response[1].Longitude);
+
+            Assert.AreEqual(10672, response[2].ID);
+            Assert.AreEqual("80796", response[2].ZipCode);
+            Assert.AreEqual("München", response[2].Village);
+            Assert.AreEqual(48.1646490940644, response[2].Latitude);
+            Assert.AreEqual(11.5694707183568, response[2].Longitude);
+        }
+
+        [Test]
+        public async Task GetNearbyEntriesUsageWithoutItself()
+        {
+			// Arrange
+			IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
+			LocationRepository repository = new LocationRepository(dataFileService);
+
+            Location startLocation = new Location
+	            {
+	                ID = -1, 
+	                ZipCode = "31600", 
+	                Village = "Uchte", 
+	                Latitude = 52.5192716743236, 
+	                Longitude = 8.87567370960235
+	            };
+
+			// Act
+			Location[] response = (await repository.GetNearbyEntries(startLocation, 2, false));
+
+			// Assert
+			Assert.IsNotNull(response);
+			Assert.AreEqual(2, response.Length);
+
+			Assert.AreEqual(7073, response[0].ID);
+			Assert.AreEqual("31582", response[0].ZipCode);
+			Assert.AreEqual("Nienburg (Weser)", response[0].Village);
+			Assert.AreEqual(52.6407898946597, response[0].Latitude);
+			Assert.AreEqual(9.23150063371375, response[0].Longitude);
+
+			Assert.AreEqual(10672, response[1].ID);
+			Assert.AreEqual("80796", response[1].ZipCode);
+			Assert.AreEqual("München", response[1].Village);
+			Assert.AreEqual(48.1646490940644, response[1].Latitude);
+			Assert.AreEqual(11.5694707183568, response[1].Longitude);
+		}
+
+		[Test, SetUICulture("en-US")]
+		public void GetNearbyEntriesLocationNullException()
+		{
+			// Arrange
+			IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
+			LocationRepository repository = new LocationRepository(dataFileService);
+
+            // Act / Assert
+            NullReferenceException exception = Assert.ThrowsAsync<NullReferenceException>(async () => await repository.GetNearbyEntries(null));
+
+			Assert.IsNotNull(exception);
+			Assert.AreEqual(typeof(NullReferenceException), exception.GetType());
+			Assert.IsTrue(exception.Message.StartsWith("Object reference not set to an instance of an object", StringComparison.Ordinal));
+		}
     }
 }

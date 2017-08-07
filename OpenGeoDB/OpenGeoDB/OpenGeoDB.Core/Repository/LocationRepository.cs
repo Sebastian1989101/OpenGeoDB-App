@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using OpenGeoDB.Core.DependencyServices;
@@ -47,6 +48,47 @@ namespace OpenGeoDB.Core.Repository
             }
 
             return locations.ToArray();
+        }
+
+        public async Task<Location[]> GetNearbyEntries(Location location, int neighboursCount = 10, bool includeLocationParameter = true)
+        {
+            //Note (sk): Maybe replace return array with IEnumerable?
+            List<Location> allLocations = (await GetAllAsync()).ToList();
+            allLocations.RemoveAll(l => l.ZipCode == location.ZipCode);
+
+            if (includeLocationParameter)
+            {
+                location.Distance = 0;
+
+                List<Location> tempLocations = allLocations.OrderBy(l => DistanceBetween(location, l)).ToList();
+                tempLocations.Insert(0, location);
+
+                return tempLocations.GetRange(0, neighboursCount + 1).ToArray();
+            }
+
+            return allLocations.OrderBy(l => DistanceBetween(location, l))
+                               .ToList().GetRange(0, neighboursCount)
+                               .ToArray();
+        }
+
+        private double DistanceBetween(Location start, Location destination)
+        {
+            double startLat = Math.PI * start.Latitude / 180;
+            double destLat = Math.PI * destination.Latitude / 180;
+            double combinedLng = Math.PI * (start.Longitude - destination.Longitude) / 180;
+
+            double distance = Math.Sin(startLat) * Math.Sin(destLat) +
+                              Math.Cos(startLat) * Math.Cos(destLat) *
+                              Math.Cos(combinedLng);
+
+            distance = Math.Acos(distance);
+            distance = distance * 180 / Math.PI;
+            distance = distance * 60 * 1.1515;
+
+            // Kilometers: 1.609344; Nautical Miles: 0.8684; Miles: 0
+            destination.Distance = distance * 1.609344;
+
+			return destination.Distance;
         }
     }
 }
