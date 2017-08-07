@@ -99,19 +99,6 @@
     <BundleResource Include="Resources\Default-568h%402x.png" />
     <BundleResource Include="Resources\Default.png" />
     <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\Icon-60%402x.png" />
-    <BundleResource Include="Resources\Icon-72.png" />
-    <BundleResource Include="Resources\Icon-72%402x.png" />
-    <BundleResource Include="Resources\Icon-76.png" />
-    <BundleResource Include="Resources\Icon-76%402x.png" />
-    <BundleResource Include="Resources\Icon-Small-40.png" />
-    <BundleResource Include="Resources\Icon-Small-40%402x.png" />
-    <BundleResource Include="Resources\Icon-Small-50.png" />
-    <BundleResource Include="Resources\Icon-Small-50%402x.png" />
-    <BundleResource Include="Resources\Icon-Small.png" />
-    <BundleResource Include="Resources\Icon-Small%402x.png" />
-    <BundleResource Include="Resources\Icon.png" />
-    <BundleResource Include="Resources\Icon%402x.png" />
     <BundleResource Include="..\..\Data.tab">
       <Link>Resources\Data.tab</Link>
     </BundleResource>
@@ -236,6 +223,15 @@
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120x120.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\57x57.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\114x114.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\180x180.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\76x76.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\152x152.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\144x144.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\72x72.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\167x167.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
