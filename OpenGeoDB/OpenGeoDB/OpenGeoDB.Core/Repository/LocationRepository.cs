@@ -6,16 +6,19 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using OpenGeoDB.Core.DependencyServices;
 using OpenGeoDB.Core.Model.Data;
+using OpenGeoDB.Core.Services;
 
 namespace OpenGeoDB.Core.Repository
 {
     public class LocationRepository
     {
         private readonly IDataFileService _fileService;
+        private readonly IAppSettings _appSettings;
 
-        public LocationRepository(IDataFileService fileService)
+        public LocationRepository(IDataFileService fileService, IAppSettings appSettings)
         {
-            _fileService = fileService;
+			_fileService = fileService;
+            _appSettings = appSettings;
         }
 
         public async Task<Location[]> GetAllAsync()
@@ -85,8 +88,19 @@ namespace OpenGeoDB.Core.Repository
             distance = distance * 180 / Math.PI;
             distance = distance * 60 * 1.1515;
 
-            // Kilometers: 1.609344; Nautical Miles: 0.8684; Miles: 0
-            destination.Distance = distance * 1.609344;
+            destination.DistanceType = _appSettings.DistanceType;
+            switch (destination.DistanceType)
+            {
+                case DistanceType.Kilometers: 
+                    destination.Distance = distance * 1.609344;
+                    break;
+                case DistanceType.NauticalMiles: 
+                    destination.Distance = distance * 0.8684;
+                    break;
+                case DistanceType.Miles: 
+                    destination.Distance = distance;
+                    break;
+            }
 
 			return destination.Distance;
         }

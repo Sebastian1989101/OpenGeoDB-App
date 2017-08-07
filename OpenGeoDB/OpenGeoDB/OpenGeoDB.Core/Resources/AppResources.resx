@@ -129,4 +129,13 @@
   <data name="ChooseZipPage_Title" xml:space="preserve">
     <value>Choose zip</value>
   </data>
+  <data name="DistanceType_Kilometers_Text" xml:space="preserve">
+    <value>{0:F2} km</value>
+  </data>
+  <data name="DistanceType_NauticalMiles_Text" xml:space="preserve">
+    <value>{0:F2} NM</value>
+  </data>
+  <data name="DistanceType_Miles_Text" xml:space="preserve">
+    <value>{0:F2} mi.</value>
+  </data>
 </root>

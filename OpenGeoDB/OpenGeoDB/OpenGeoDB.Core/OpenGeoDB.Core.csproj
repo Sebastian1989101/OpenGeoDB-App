@@ -78,6 +78,7 @@
       <DependentUpon>ChooseZipPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\ChooseZipViewModel.cs" />
+    <Compile Include="Model\Data\DistanceType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

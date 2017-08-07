@@ -7,6 +7,7 @@ using NUnit.Framework;
 using OpenGeoDB.Core.DependencyServices;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
+using OpenGeoDB.Core.Services;
 using OpenGeoDB.UnitTests.Mocks;
 
 namespace OpenGeoDB.UnitTests.Tests.Repository
@@ -14,12 +15,24 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
     [TestFixture]
     public class LocationRepositoryFixture
     {
+        private IAppSettings _appSettings;
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+			Mock<IAppSettings> mock = new Mock<IAppSettings>();
+            mock.SetupGet(service => service.NearbyMarkerCount).Returns(10);
+            mock.SetupGet(service => service.DistanceType).Returns(DistanceType.Kilometers);
+
+            _appSettings = mock.Object;
+        }
+
         [Test]
         public async Task GetAllAsyncUsage()
         {
             // Arrange
             IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
-            LocationRepository repository = new LocationRepository(dataFileService);
+            LocationRepository repository = new LocationRepository(dataFileService, _appSettings);
 
             // Act
             Location[] response = (await repository.GetAllAsync());
@@ -64,7 +77,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
         {
 			// Arrange
 			IDataFileService dataFileService = ServiceMocks.GetMockDataFileService(true);
-			LocationRepository repository = new LocationRepository(dataFileService);
+			LocationRepository repository = new LocationRepository(dataFileService, _appSettings);
 
             // Act
             Location[] response = (await repository.GetAllAsync());
@@ -111,7 +124,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
             Mock<IDataFileService> mock = new Mock<IDataFileService>();
             mock.Setup(service => service.LoadFileContentAsync()).Returns(Task.FromResult<string>(null));
 
-            LocationRepository repository = new LocationRepository(mock.Object);
+            LocationRepository repository = new LocationRepository(mock.Object, _appSettings);
 
             // Act
             IEnumerable<Location> response = await repository.GetAllAsync();
@@ -127,7 +140,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 			Mock<IDataFileService> mock = new Mock<IDataFileService>();
 			mock.Setup(service => service.LoadFileContentAsync()).Returns(Task.FromResult("It's not relevant"));
 
-			LocationRepository repository = new LocationRepository(mock.Object);
+			LocationRepository repository = new LocationRepository(mock.Object, _appSettings);
 
 			// Act
 			IEnumerable<Location> response = await repository.GetAllAsync();
@@ -144,7 +157,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 			Mock<IDataFileService> mock = new Mock<IDataFileService>();
             mock.Setup(service => service.LoadFileContentAsync()).ThrowsAsync(new Exception("Process failed"));
 
-			LocationRepository repository = new LocationRepository(mock.Object);
+			LocationRepository repository = new LocationRepository(mock.Object, _appSettings);
 
             // Act / Assert
             Exception exception = Assert.ThrowsAsync<Exception>(async () => await repository.GetAllAsync());
@@ -158,7 +171,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
         {
             // Arrange
             IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
-            LocationRepository repository = new LocationRepository(dataFileService);
+            LocationRepository repository = new LocationRepository(dataFileService, _appSettings);
 
             Location startLocation = new Location
                 {
@@ -200,7 +213,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
         {
 			// Arrange
 			IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
-			LocationRepository repository = new LocationRepository(dataFileService);
+			LocationRepository repository = new LocationRepository(dataFileService, _appSettings);
 
             Location startLocation = new Location
 	            {
@@ -236,7 +249,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 		{
 			// Arrange
 			IDataFileService dataFileService = ServiceMocks.GetMockDataFileService();
-			LocationRepository repository = new LocationRepository(dataFileService);
+			LocationRepository repository = new LocationRepository(dataFileService, _appSettings);
 
             // Act / Assert
             NullReferenceException exception = Assert.ThrowsAsync<NullReferenceException>(async () => await repository.GetNearbyEntries(null));

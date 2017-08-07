@@ -70,5 +70,23 @@ namespace OpenGeoDB.Core.Resources {
                 return ResourceManager.GetString("ChooseZipPage_Title", resourceCulture);
             }
         }
+        
+        internal static string DistanceType_Kilometers_Text {
+            get {
+                return ResourceManager.GetString("DistanceType_Kilometers_Text", resourceCulture);
+            }
+        }
+        
+        internal static string DistanceType_NauticalMiles_Text {
+            get {
+                return ResourceManager.GetString("DistanceType_NauticalMiles_Text", resourceCulture);
+            }
+        }
+        
+        internal static string DistanceType_Miles_Text {
+            get {
+                return ResourceManager.GetString("DistanceType_Miles_Text", resourceCulture);
+            }
+        }
     }
 }

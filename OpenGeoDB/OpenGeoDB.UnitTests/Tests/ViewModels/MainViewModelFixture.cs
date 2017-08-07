@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
+using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
 using OpenGeoDB.Core.Services;
 using OpenGeoDB.Core.ViewModels;
@@ -11,12 +12,24 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
 {
     [TestFixture]
     public class MainViewModelFixture
-    {
-        [Test]
+	{
+		private IAppSettings _appSettings;
+
+		[OneTimeSetUp]
+		public void OneTimeSetUp()
+		{
+			Mock<IAppSettings> mock = new Mock<IAppSettings>();
+			mock.SetupGet(service => service.NearbyMarkerCount).Returns(10);
+			mock.SetupGet(service => service.DistanceType).Returns(DistanceType.Kilometers);
+
+			_appSettings = mock.Object;
+		}
+
+		[Test]
         public async Task LoadingDataUsage()
         {
             // Arrange
-            LocationRepository locationRepository = new LocationRepository(ServiceMocks.GetMockDataFileService());
+            LocationRepository locationRepository = new LocationRepository(ServiceMocks.GetMockDataFileService(), _appSettings);
 
             Mock<IAppSettings> mockAppSettings = new Mock<IAppSettings>();
             mockAppSettings.Setup(settings => settings.OrderByZipCode).Returns(false);
@@ -68,7 +81,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
         public async Task FilterUsage()
         {
 			// Arrange
-			LocationRepository locationRepository = new LocationRepository(ServiceMocks.GetMockDataFileService());
+			LocationRepository locationRepository = new LocationRepository(ServiceMocks.GetMockDataFileService(), _appSettings);
 
 			Mock<IAppSettings> mockAppSettings = new Mock<IAppSettings>();
 			mockAppSettings.Setup(settings => settings.OrderByZipCode).Returns(false);

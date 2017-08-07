@@ -10,6 +10,7 @@ using Mapsui.Providers;
 using Mapsui.Styles;
 using Mapsui.Utilities;
 using OpenGeoDB.Core.Model.Data;
+using OpenGeoDB.Core.Resources;
 using Xamarin.Forms;
 using Color = Mapsui.Styles.Color;
 using Point = Mapsui.Geometries.Point;
@@ -177,14 +178,28 @@ namespace OpenGeoDB.Core.Controls
                 Point position = SphericalMercator.FromLonLat(entry.Longitude, entry.Latitude);
                 position.Y += 3000;
 
+                string text = entry.Distance.ToString();
+                switch (entry.DistanceType)
+                {
+                    case DistanceType.Kilometers:
+                        text = string.Format(AppResources.DistanceType_Kilometers_Text, entry.Distance);
+                        break;
+                    case DistanceType.NauticalMiles:
+                        text = string.Format(AppResources.DistanceType_NauticalMiles_Text, entry.Distance);
+                        break;
+                    case DistanceType.Miles:
+                        text = string.Format(AppResources.DistanceType_Miles_Text, entry.Distance);
+                        break;
+                }
+
 				Feature feature = new Feature { Geometry = position };
 				feature.Styles.Add(new LabelStyle
 					{
-                        Text = $"{entry.Distance:F2} km",
+                        Text = text,
 						Font = { Size = 10 },
 						ForeColor = Color.FromArgb(255, 0, 0, 0),
 						BackColor = new Brush(Color.FromArgb(196, 255, 255, 255)),
-						HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center
+                        HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center
 					});
 
 				features.Add(feature);
