@@ -18,8 +18,8 @@ namespace OpenGeoDB.Core.ViewModels
 
         public override Task Initialize(Location[] parameter)
         {
-            Data = parameter;
-            return Task.FromResult(true);
+			Data = parameter;
+			return App.CompletedTask;
 		}
 
 		private void OnShowDetailsCommandExecute(string key)

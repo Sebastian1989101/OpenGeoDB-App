@@ -11,7 +11,7 @@ namespace OpenGeoDB.Core.ViewModels
         public override Task Initialize(Location parameter)
         {
             Location = parameter;
-            return Task.FromResult(true);
+            return App.CompletedTask;
         }
     }
 }

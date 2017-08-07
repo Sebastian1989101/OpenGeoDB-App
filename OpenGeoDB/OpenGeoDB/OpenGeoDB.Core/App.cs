@@ -1,4 +1,5 @@
-﻿using Acr.UserDialogs;
+﻿using System.Threading.Tasks;
+using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Platform;
 using MvvmCross.Platform.IoC;
@@ -13,6 +14,10 @@ namespace OpenGeoDB.Core
 {
     public class App : MvxApplication
     {
+        private static Task _completedTask = Task.FromResult(false);
+
+        public static Task CompletedTask => _completedTask;
+
         public override void Initialize()
         {
             Mvx.RegisterSingleton(DependencyService.Get<IDataFileService>());
