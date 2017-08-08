@@ -46,5 +46,7 @@
 	<string>PLZ Suche</string>
 	<key>CFBundleVersion</key>
 	<string>17218</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 </dict>
 </plist>
