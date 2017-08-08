@@ -13,6 +13,10 @@
             <converters:LocationGroupingToZipCodeTextConverter x:Key="ZipCodeTextConverter" />
         </ResourceDictionary>
     </mvx:MvxContentPage.Resources>
+
+    <mvx:MvxContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings" Icon="Settings.png" Command="{Binding ShowSettingsCommand}" />
+    </mvx:MvxContentPage.ToolbarItems>
     
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
@@ -29,7 +33,7 @@
                                               CommandParameter="{Binding Key}" x:TypeArguments="x:String">
                         <StackLayout Orientation="Vertical" VerticalOptions="Center" Spacing="0" Padding="15,5">
                             <Label Text="{Binding Key}" LineBreakMode="TailTruncation" FontAttributes="Bold" />
-                            <Label Text="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}" LineBreakMode="TailTruncation" FontSize="12" />
+                            <Label Text="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}" LineBreakMode="TailTruncation" FontSize="12" />
                         </StackLayout>
                     </controls:CommandViewCell>
                 </DataTemplate>

@@ -38,6 +38,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
 
             // Act
             await viewModel.Initialize();
+            viewModel.ViewAppearing();
 
             // Assert
             Assert.IsNotNull(viewModel.Data);

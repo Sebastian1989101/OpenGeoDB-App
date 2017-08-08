@@ -138,4 +138,40 @@
   <data name="DistanceType_Miles_Text" xml:space="preserve">
     <value>{0:F2} mi.</value>
   </data>
+  <data name="SettingsPage_Title" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TableSection_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="TableSection_Legal" xml:space="preserve">
+    <value>Legal</value>
+  </data>
+  <data name="ViewCell_OrderByZipCode" xml:space="preserve">
+    <value>Order by Zip Code</value>
+  </data>
+  <data name="ViewCell_NearbyMarkerCount" xml:space="preserve">
+    <value>Nearby marker count</value>
+  </data>
+  <data name="ViewCell_DistanceType" xml:space="preserve">
+    <value>Distance unit</value>
+  </data>
+  <data name="ViewCell_UsedSoftware" xml:space="preserve">
+    <value>Used Software</value>
+  </data>
+  <data name="ViewCell_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="ViewCell_Imprint" xml:space="preserve">
+    <value>Imprint</value>
+  </data>
+  <data name="DistanceTypeConverter_Kilometers" xml:space="preserve">
+    <value>Kilometers</value>
+  </data>
+  <data name="DistanceTypeConverter_NauticalMiles" xml:space="preserve">
+    <value>Nautical Miles</value>
+  </data>
+  <data name="DistanceTypeConverter_Miles" xml:space="preserve">
+    <value>Miles</value>
+  </data>
 </root>

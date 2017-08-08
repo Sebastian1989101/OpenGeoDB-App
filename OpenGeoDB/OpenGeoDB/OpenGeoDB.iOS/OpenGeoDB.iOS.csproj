@@ -110,6 +110,11 @@
     <None Include="packages.config" />
     <Compile Include="DependencyServices\DataFileService.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
+    <BundleResource Include="Resources\Settings.png" />
+    <BundleResource Include="Resources\Settings%402x.png" />
+    <BundleResource Include="Resources\Settings%403x.png" />
+    <Compile Include="DependencyServices\VersionService.cs" />
+    <Compile Include="Renderer\CustomPickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

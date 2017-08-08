@@ -21,6 +21,7 @@ namespace OpenGeoDB.Core
         public override void Initialize()
         {
             Mvx.RegisterSingleton(DependencyService.Get<IDataFileService>());
+            Mvx.RegisterSingleton(DependencyService.Get<IVersionService>());
 
             CreatableTypes()
                 .EndingWith("Service")

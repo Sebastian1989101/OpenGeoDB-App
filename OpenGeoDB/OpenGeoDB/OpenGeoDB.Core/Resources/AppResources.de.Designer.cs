@@ -88,5 +88,77 @@ namespace OpenGeoDB.Core.Resources {
                 return ResourceManager.GetString("DistanceType_Miles_Text", resourceCulture);
             }
         }
+        
+        internal static string SettingsPage_Title {
+            get {
+                return ResourceManager.GetString("SettingsPage_Title", resourceCulture);
+            }
+        }
+        
+        internal static string TableSection_Settings {
+            get {
+                return ResourceManager.GetString("TableSection_Settings", resourceCulture);
+            }
+        }
+        
+        internal static string TableSection_Legal {
+            get {
+                return ResourceManager.GetString("TableSection_Legal", resourceCulture);
+            }
+        }
+        
+        internal static string ViewCell_OrderByZipCode {
+            get {
+                return ResourceManager.GetString("ViewCell_OrderByZipCode", resourceCulture);
+            }
+        }
+        
+        internal static string ViewCell_NearbyMarkerCount {
+            get {
+                return ResourceManager.GetString("ViewCell_NearbyMarkerCount", resourceCulture);
+            }
+        }
+        
+        internal static string ViewCell_DistanceType {
+            get {
+                return ResourceManager.GetString("ViewCell_DistanceType", resourceCulture);
+            }
+        }
+        
+        internal static string ViewCell_UsedSoftware {
+            get {
+                return ResourceManager.GetString("ViewCell_UsedSoftware", resourceCulture);
+            }
+        }
+        
+        internal static string ViewCell_PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("ViewCell_PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        internal static string ViewCell_Imprint {
+            get {
+                return ResourceManager.GetString("ViewCell_Imprint", resourceCulture);
+            }
+        }
+        
+        internal static string DistanceTypeConverter_Kilometers {
+            get {
+                return ResourceManager.GetString("DistanceTypeConverter_Kilometers", resourceCulture);
+            }
+        }
+        
+        internal static string DistanceTypeConverter_NauticalMiles {
+            get {
+                return ResourceManager.GetString("DistanceTypeConverter_NauticalMiles", resourceCulture);
+            }
+        }
+        
+        internal static string DistanceTypeConverter_Miles {
+            get {
+                return ResourceManager.GetString("DistanceTypeConverter_Miles", resourceCulture);
+            }
+        }
     }
 }

@@ -19,6 +19,8 @@ namespace OpenGeoDB.Core.ViewModels
 
         public IGrouping<string, Location>[] Data { get; private set; }
 
+        public MvxCommand ShowSettingsCommand { get; }
+
         public MvxCommand FilterLocationsCommand { get; }
         public MvxCommand<string> ShowDetailsCommand { get; }
 
@@ -29,6 +31,8 @@ namespace OpenGeoDB.Core.ViewModels
 			_appSettings = appSettings;
 
             // Commands
+            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
+
             FilterLocationsCommand = new MvxCommand(OnFilterLocationsCommandExecute);
             ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);
         }
@@ -38,10 +42,15 @@ namespace OpenGeoDB.Core.ViewModels
             Initialize().Wait();
 		}
 
+        public override void ViewAppearing()
+        {
+            FilterLocationsCommand.Execute(null);
+            base.ViewAppearing();
+        }
+
 	    public override async Task Initialize()
 	    {
 	        _locations = await _locationsRepository.GetAllAsync();
-	        FilterLocationsCommand.Execute(null);
         }
 
 		private void OnFilterLocationsCommandExecute()

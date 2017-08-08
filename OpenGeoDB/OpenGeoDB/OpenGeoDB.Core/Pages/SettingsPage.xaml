@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="OpenGeoDB.Core.Pages.SettingsPage" 
+    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
+    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls"
+    xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
+    Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page">
+
+    <mvx:MvxContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DistanceTypeConverter x:Key="DistanceTypeConverter" />
+        </ResourceDictionary>
+    </mvx:MvxContentPage.Resources>
+
+    <TableView Intent="Settings" HasUnevenRows="True">
+        <TableRoot>
+            <TableSection>
+                <ViewCell>
+                    <StackLayout Orientation="Vertical" Spacing="0" Padding="10">
+                        <Label Text="PLZ Suche" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" LineBreakMode="NoWrap" />
+                        <Label Text="{Binding Version}" FontSize="12" Margin="0" HorizontalOptions="Center" LineBreakMode="NoWrap" />
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
+            
+            <TableSection Title="{res:TranslateExtension TableSection_Settings}">
+                <ViewCell>
+                    <Grid Padding="15,5" ColumnSpacing="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_OrderByZipCode}" VerticalOptions="Center" />
+                        <Switch Grid.Column="1" IsToggled="{Binding Settings.OrderByZipCode}" VerticalOptions="Center" HorizontalOptions="End" />
+                    </Grid>
+                </ViewCell>
+
+                <ViewCell>
+                    <Grid Padding="15,5" ColumnSpacing="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_NearbyMarkerCount}" VerticalOptions="Center" />
+                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableNearbyMarkerCount}" SelectedItem="{Binding Settings.NearbyMarkerCount}" VerticalOptions="Center" />
+                    </Grid>
+                </ViewCell>
+
+                <ViewCell>
+                    <Grid Padding="15,5" ColumnSpacing="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_DistanceType}" VerticalOptions="Center" />
+                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableDistanceTypes}" SelectedItem="{Binding Settings.DistanceType}"
+                                ItemDisplayBinding="{Binding Path=., Converter={StaticResource DistanceTypeConverter}}" VerticalOptions="Center" />
+                    </Grid>
+                </ViewCell>
+            </TableSection>
+            
+            <!--<TableSection Title="{res:TranslateExtension TableSection_Legal}">
+                <controls:CommandViewCell Command="{Binding ShowUsedSoftwareCommand}">
+                    <StackLayout Orientation="Vertical" Padding="10" Spacing="0">
+                        <Label Text="{res:TranslateExtension ViewCell_UsedSoftware}" HorizontalOptions="Center" LineBreakMode="NoWrap" />
+                    </StackLayout>
+                </controls:CommandViewCell>
+                
+                <controls:CommandViewCell Command="{Binding ShowPrivacyPolicyCommand}">
+                    <StackLayout Orientation="Vertical" Padding="10" Spacing="0">
+                        <Label Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" HorizontalOptions="Center" LineBreakMode="NoWrap" />
+                    </StackLayout>
+                </controls:CommandViewCell>
+                
+                <controls:CommandViewCell Command="{Binding ShowImprintCommand}">
+                    <StackLayout Orientation="Vertical" Padding="10" Spacing="0">
+                        <Label Text="{res:TranslateExtension ViewCell_Imprint}" HorizontalOptions="Center" LineBreakMode="NoWrap" />
+                    </StackLayout>
+                </controls:CommandViewCell>
+            </TableSection>-->
+            
+            <TableSection>
+                <ViewCell>
+                    <StackLayout Orientation="Vertical" Spacing="15" Padding="10,20">
+                        <Label Text="Designed and developed by Sebastian Kruse" FontSize="12" HorizontalOptions="Center" LineBreakMode="NoWrap" />
+                        <Label Text="Copyright © 2017 Sebastian Kruse" FontSize="12" HorizontalOptions="Center" LineBreakMode="NoWrap" />
+                    </StackLayout>
+                </ViewCell>
+            </TableSection>
+        </TableRoot>
+    </TableView>
+</mvx:MvxContentPage>

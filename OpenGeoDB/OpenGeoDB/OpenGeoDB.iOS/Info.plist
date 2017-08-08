@@ -43,7 +43,7 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Media.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleName</key>
-	<string>PLZ Finder</string>
+	<string>PLZ Suche</string>
 	<key>CFBundleVersion</key>
 	<string>17218</string>
 </dict>

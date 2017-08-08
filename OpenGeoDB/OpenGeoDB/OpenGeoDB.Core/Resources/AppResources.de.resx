@@ -138,4 +138,40 @@
   <data name="DistanceType_Miles_Text" xml:space="preserve">
     <value>{0:F2} meilen</value>
   </data>
+  <data name="SettingsPage_Title" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="TableSection_Settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="TableSection_Legal" xml:space="preserve">
+    <value>Rechtliches</value>
+  </data>
+  <data name="ViewCell_OrderByZipCode" xml:space="preserve">
+    <value>Nach PLZ sortieren</value>
+  </data>
+  <data name="ViewCell_NearbyMarkerCount" xml:space="preserve">
+    <value>Anzahl benachbarter Marker</value>
+  </data>
+  <data name="ViewCell_DistanceType" xml:space="preserve">
+    <value>Distanzeinheit</value>
+  </data>
+  <data name="ViewCell_UsedSoftware" xml:space="preserve">
+    <value>Genutzte Software</value>
+  </data>
+  <data name="ViewCell_PrivacyPolicy" xml:space="preserve">
+    <value>Datenschtzerklärung</value>
+  </data>
+  <data name="ViewCell_Imprint" xml:space="preserve">
+    <value>Impressum</value>
+  </data>
+  <data name="DistanceTypeConverter_Kilometers" xml:space="preserve">
+    <value>Kilometer</value>
+  </data>
+  <data name="DistanceTypeConverter_NauticalMiles" xml:space="preserve">
+    <value>Seemeilen</value>
+  </data>
+  <data name="DistanceTypeConverter_Miles" xml:space="preserve">
+    <value>Meilen</value>
+  </data>
 </root>
