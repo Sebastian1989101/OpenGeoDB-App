@@ -13,7 +13,6 @@ using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Resources;
 using Xamarin.Forms;
 using Color = Mapsui.Styles.Color;
-using Point = Mapsui.Geometries.Point;
 
 namespace OpenGeoDB.Core.Controls
 {
@@ -167,7 +166,7 @@ namespace OpenGeoDB.Core.Controls
 			Stream image = assembly.GetManifestResourceStream(icon);
 			int bitmapId = BitmapRegistry.Instance.Register(image);
 
-			return new SymbolStyle { BitmapId = bitmapId, SymbolScale = 0.2, SymbolOffset = new Offset(0, 0) };
+			return new SymbolStyle { BitmapId = bitmapId, SymbolScale = 0.2, SymbolOffset = new Offset(0, 72) };
 		}
 
 		private static Features GetLabelFeatures(IEnumerable<Location> entries)
@@ -175,9 +174,6 @@ namespace OpenGeoDB.Core.Controls
 			var features = new Features();
 			foreach (Location entry in entries)
 			{
-                Point position = SphericalMercator.FromLonLat(entry.Longitude, entry.Latitude);
-                position.Y += 3000;
-
                 string text = entry.Distance.ToString();
                 switch (entry.DistanceType)
                 {
@@ -192,14 +188,15 @@ namespace OpenGeoDB.Core.Controls
                         break;
                 }
 
-				Feature feature = new Feature { Geometry = position };
+				Feature feature = new Feature { Geometry = SphericalMercator.FromLonLat(entry.Longitude, entry.Latitude) };
 				feature.Styles.Add(new LabelStyle
 					{
                         Text = text,
 						Font = { Size = 10 },
 						ForeColor = Color.FromArgb(255, 0, 0, 0),
 						BackColor = new Brush(Color.FromArgb(196, 255, 255, 255)),
-                        HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center
+                        HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center, 
+                        Offset = new Offset(0, -46)
 					});
 
 				features.Add(feature);
