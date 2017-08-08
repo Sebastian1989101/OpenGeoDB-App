@@ -16,8 +16,8 @@ namespace OpenGeoDB.Core.Services
 
 		public int NearbyMarkerCount
 		{
-			get { return _settings.GetValueOrDefault(nameof(OrderByZipCode), 10); }
-			set { _settings.AddOrUpdateValue(nameof(OrderByZipCode), value); }
+			get { return _settings.GetValueOrDefault(nameof(NearbyMarkerCount), 10); }
+			set { _settings.AddOrUpdateValue(nameof(NearbyMarkerCount), value); }
 		}
 
 		public DistanceType DistanceType
