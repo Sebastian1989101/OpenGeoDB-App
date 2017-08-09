@@ -97,9 +97,6 @@
     <Compile Include="Renderer\MapsuiMapRenderer.cs" />
     <Compile Include="Services\LocalizeService.cs" />
     <Compile Include="Setup.cs" />
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
     <BundleResource Include="..\..\Data.tab">
       <Link>Resources\Data.tab</Link>
     </BundleResource>
@@ -240,6 +237,28 @@
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\72x72.png" />
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\167x167.png" />
     <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40x40.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1242x2208.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\750x1334.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2208x1242.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x2732.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\640x960.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\640x1136.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\768x1024.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1536x2048.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1024x768.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x1536.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\320x480.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\768x1004.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1536x2008.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1024x748.png" />
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x1496.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\100x100.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\50x50.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\80x80.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\58x58.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\87x87.png" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
