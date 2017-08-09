@@ -127,7 +127,7 @@
     <value>Locations</value>
   </data>
   <data name="ChooseZipPage_Title" xml:space="preserve">
-    <value>Choose zip</value>
+    <value>Choose ZIP</value>
   </data>
   <data name="DistanceType_Kilometers_Text" xml:space="preserve">
     <value>{0:F2} km</value>
@@ -148,13 +148,13 @@
     <value>Legal</value>
   </data>
   <data name="ViewCell_OrderByZipCode" xml:space="preserve">
-    <value>Order by Zip Code</value>
+    <value>Order by ZIP Code</value>
   </data>
   <data name="ViewCell_NearbyMarkerCount" xml:space="preserve">
     <value>Nearby marker count</value>
   </data>
   <data name="ViewCell_DistanceType" xml:space="preserve">
-    <value>Distance unit</value>
+    <value>Unit of length</value>
   </data>
   <data name="ViewCell_UsedSoftware" xml:space="preserve">
     <value>Used Software</value>

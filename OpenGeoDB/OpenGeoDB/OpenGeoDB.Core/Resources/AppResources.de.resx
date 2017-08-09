@@ -136,7 +136,7 @@
     <value>{0:F2} sm</value>
   </data>
   <data name="DistanceType_Miles_Text" xml:space="preserve">
-    <value>{0:F2} meilen</value>
+    <value>{0:F2} mile</value>
   </data>
   <data name="SettingsPage_Title" xml:space="preserve">
     <value>Einstellungen</value>
@@ -154,13 +154,13 @@
     <value>Anzahl benachbarter Marker</value>
   </data>
   <data name="ViewCell_DistanceType" xml:space="preserve">
-    <value>Distanzeinheit</value>
+    <value>Längeneinheit</value>
   </data>
   <data name="ViewCell_UsedSoftware" xml:space="preserve">
     <value>Genutzte Software</value>
   </data>
   <data name="ViewCell_PrivacyPolicy" xml:space="preserve">
-    <value>Datenschtzerklärung</value>
+    <value>Datenschutzerklärung</value>
   </data>
   <data name="ViewCell_Imprint" xml:space="preserve">
     <value>Impressum</value>
