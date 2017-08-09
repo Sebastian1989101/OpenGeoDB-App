@@ -14,20 +14,33 @@ namespace OpenGeoDB.Core.ViewModels
 		public Location Location { get; private set; }
         public Location[] NearbyMarker { get; private set; }
 
-        public MvxCommand<Location> ChangeLocationCommand { get; }
+        public MvxAsyncCommand<Location> ChangeLocationCommand { get; }
 
         public DetailViewModel(LocationRepository locationsRepository, IAppSettings appSettings)
         {
 			_locationsRepository = locationsRepository;
             _appSettings = appSettings;
 
-            ChangeLocationCommand = new MvxCommand<Location>(location => ShowViewModel<DetailViewModel, Location>(location));
+            ChangeLocationCommand = new MvxAsyncCommand<Location>(OnChangeLocationCommandExecute);
         }
 
         public override async Task Initialize(Location parameter)
         {
-            Location = parameter;
-            NearbyMarker = await _locationsRepository.GetNearbyEntries(parameter, _appSettings.NearbyMarkerCount, false);
+            await SetLocation(parameter);
+		}
+
+		private async Task OnChangeLocationCommandExecute(Location location)
+		{
+			await SetLocation(location);
+		}
+
+        private async Task SetLocation(Location location)
+        {
+			Location = location;
+			NearbyMarker = await _locationsRepository.GetNearbyEntries(location, _appSettings.NearbyMarkerCount, false);
+
+            RaisePropertyChanged(() => Location);
+            RaisePropertyChanged(() => NearbyMarker);
         }
     }
 }

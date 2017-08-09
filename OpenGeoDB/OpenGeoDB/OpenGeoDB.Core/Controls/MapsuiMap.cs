@@ -90,6 +90,8 @@ namespace OpenGeoDB.Core.Controls
 
 				Features features = GetIconFeatures(mapsuiMap.FocusLatitude, mapsuiMap.FocusLongitude);
 				mapsuiMap.AddFeatures(features, "HighlightMarkerLayer", HIGHLIGHT_MARKER_RESOURCE);
+
+                mapsuiMap.NativeMap.ViewChanged(true);
             }
 		}
 
@@ -101,13 +103,19 @@ namespace OpenGeoDB.Core.Controls
                 Features features = GetIconFeatures(mapsuiMap.MapMarker);
                 mapsuiMap.AddFeatures(features, "MarkerLayer", MARKER_RESOURCE);
 
-                Layer labelLayer = new Layer("LABEL")
+                const string LABEL_LAYERNAME = "LABEL";
+                ILayer matchingLayer = mapsuiMap.NativeMap.Layers.FirstOrDefault(l => l.Name == LABEL_LAYERNAME);
+				if (matchingLayer != null)
+					mapsuiMap.NativeMap.Layers.Remove(matchingLayer);
+                
+                Layer labelLayer = new Layer(LABEL_LAYERNAME)
 	                {
 	                    DataSource = new MemoryProvider(GetLabelFeatures(mapsuiMap.MapMarker)),
 	                    Style = null
 	                };
 
-                mapsuiMap.NativeMap.Layers.Add(labelLayer);
+				mapsuiMap.NativeMap.Layers.Add(labelLayer);
+				mapsuiMap.NativeMap.ViewChanged(true);
             }
 		}
 
