@@ -7,7 +7,7 @@ using Xamarin.Forms;
 namespace OpenGeoDB.Droid
 {
     [Activity(
-        Label = "OpenGeoDB.Droid"
+        Label = "PLZ Suche"
         , MainLauncher = true
         //, Icon = "@mipmap/icon"
         , Theme = "@style/Theme.Splash"

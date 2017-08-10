@@ -28,7 +28,14 @@
                 <SwitchCell Text="{res:TranslateExtension ViewCell_OrderByZipCode}" On="{Binding Settings.OrderByZipCode}" />
 
                 <ViewCell>
-                    <Grid Padding="20,12" ColumnSpacing="25">
+                    <Grid ColumnSpacing="25">
+                        <Grid.Padding>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="20,12" />
+                                <On Platform="Android" Value="17,0,5,0" />
+                            </OnPlatform>
+                        </Grid.Padding>
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -40,7 +47,14 @@
                 </ViewCell>
 
                 <ViewCell>
-                    <Grid Padding="20,12" ColumnSpacing="25">
+                    <Grid ColumnSpacing="25">
+                        <Grid.Padding>
+                            <OnPlatform x:TypeArguments="Thickness">
+                                <On Platform="iOS" Value="20,12" />
+                                <On Platform="Android" Value="17,0,5,0" />
+                            </OnPlatform>
+                        </Grid.Padding>
+                        
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />

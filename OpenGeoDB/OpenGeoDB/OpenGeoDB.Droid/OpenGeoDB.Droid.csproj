@@ -215,6 +215,8 @@
     <Compile Include="Services\LocalizeService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="DependencyServices\VersionService.cs" />
+    <Compile Include="Renderer\CustomPickerRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="..\..\Data.tab">
@@ -226,6 +228,7 @@
     <AndroidResource Include="Resources\layout\SplashScreen.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\drawable\Settings.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
