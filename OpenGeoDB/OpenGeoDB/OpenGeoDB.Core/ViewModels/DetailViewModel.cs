@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
@@ -6,7 +7,7 @@ using OpenGeoDB.Core.Services;
 
 namespace OpenGeoDB.Core.ViewModels
 {
-    public class DetailViewModel : MvxViewModel<Location>
+    public class DetailViewModel : MvxViewModel<Location>, INotifyPropertyChanged
 	{
 		private readonly LocationRepository _locationsRepository;
 		private readonly IAppSettings _appSettings;
@@ -38,9 +39,6 @@ namespace OpenGeoDB.Core.ViewModels
         {
 			Location = location;
 			NearbyMarker = await _locationsRepository.GetNearbyEntries(location, _appSettings.NearbyMarkerCount, false);
-
-            RaisePropertyChanged(() => Location);
-            RaisePropertyChanged(() => NearbyMarker);
         }
     }
 }

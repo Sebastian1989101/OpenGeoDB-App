@@ -4,7 +4,6 @@
     x:Class="OpenGeoDB.Core.Pages.SettingsPage" 
     xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
     xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
-    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls"
     xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
     Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page">
 
@@ -26,20 +25,10 @@
             </TableSection>
             
             <TableSection Title="{res:TranslateExtension TableSection_Settings}">
-                <ViewCell>
-                    <Grid Padding="15,5" ColumnSpacing="25">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_OrderByZipCode}" VerticalOptions="Center" />
-                        <Switch Grid.Column="1" IsToggled="{Binding Settings.OrderByZipCode}" VerticalOptions="Center" HorizontalOptions="End" />
-                    </Grid>
-                </ViewCell>
+                <SwitchCell Text="{res:TranslateExtension ViewCell_OrderByZipCode}" On="{Binding Settings.OrderByZipCode}" />
 
                 <ViewCell>
-                    <Grid Padding="15,5" ColumnSpacing="25">
+                    <Grid Padding="20,12" ColumnSpacing="25">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
@@ -51,38 +40,24 @@
                 </ViewCell>
 
                 <ViewCell>
-                    <Grid Padding="15,5" ColumnSpacing="25">
+                    <Grid Padding="20,12" ColumnSpacing="25">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_DistanceType}" VerticalOptions="Center" />
-                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableDistanceTypes}" SelectedItem="{Binding Settings.DistanceType}"
+                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableDistanceTypes}" SelectedItem="{Binding Settings.DistanceType}" 
                                 ItemDisplayBinding="{Binding Path=., Converter={StaticResource DistanceTypeConverter}}" VerticalOptions="Center" />
                     </Grid>
                 </ViewCell>
             </TableSection>
             
-            <!--<TableSection Title="{res:TranslateExtension TableSection_Legal}">
-                <controls:CommandViewCell Command="{Binding ShowUsedSoftwareCommand}">
-                    <StackLayout Orientation="Vertical" Padding="10" Spacing="0">
-                        <Label Text="{res:TranslateExtension ViewCell_UsedSoftware}" HorizontalOptions="Center" LineBreakMode="NoWrap" />
-                    </StackLayout>
-                </controls:CommandViewCell>
-                
-                <controls:CommandViewCell Command="{Binding ShowPrivacyPolicyCommand}">
-                    <StackLayout Orientation="Vertical" Padding="10" Spacing="0">
-                        <Label Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" HorizontalOptions="Center" LineBreakMode="NoWrap" />
-                    </StackLayout>
-                </controls:CommandViewCell>
-                
-                <controls:CommandViewCell Command="{Binding ShowImprintCommand}">
-                    <StackLayout Orientation="Vertical" Padding="10" Spacing="0">
-                        <Label Text="{res:TranslateExtension ViewCell_Imprint}" HorizontalOptions="Center" LineBreakMode="NoWrap" />
-                    </StackLayout>
-                </controls:CommandViewCell>
-            </TableSection>-->
+            <TableSection Title="{res:TranslateExtension TableSection_Legal}">
+                <TextCell Text="{res:TranslateExtension ViewCell_UsedSoftware}" Command="{Binding ShowUsedSoftwareCommand}" />
+                <TextCell Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" Command="{Binding ShowPrivacyPolicyCommand}" IsEnabled="false" />
+                <TextCell Text="{res:TranslateExtension ViewCell_Imprint}" Command="{Binding ShowImprintCommand}" IsEnabled="false" />
+            </TableSection>
             
             <TableSection>
                 <ViewCell>

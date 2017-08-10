@@ -16,10 +16,14 @@ namespace OpenGeoDB.Core.ViewModels
         public List<int> AvailableNearbyMarkerCount => Enumerable.Range(0, 20).ToList();
         public List<DistanceType> AvailableDistanceTypes => Enum.GetValues(typeof(DistanceType)).Cast<DistanceType>().ToList();
 
+        public MvxCommand ShowUsedSoftwareCommand { get; }
+
         public SettingsViewModel(IVersionService versionService, IAppSettings settings)
 		{
             Version = versionService.GetAppVersion();
             Settings = settings;
+
+            ShowUsedSoftwareCommand = new MvxCommand(() => ShowViewModel<UsedSoftwareViewModel>());
         }
     }
 }

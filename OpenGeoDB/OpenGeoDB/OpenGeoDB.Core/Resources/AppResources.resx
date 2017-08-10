@@ -174,4 +174,7 @@
   <data name="DistanceTypeConverter_Miles" xml:space="preserve">
     <value>Miles</value>
   </data>
+  <data name="UsedSoftwarePage_Title" xml:space="preserve">
+    <value>Used Software</value>
+  </data>
 </root>

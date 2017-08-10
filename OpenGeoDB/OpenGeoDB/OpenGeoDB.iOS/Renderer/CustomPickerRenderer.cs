@@ -12,7 +12,10 @@ namespace OpenGeoDB.iOS.Renderer
 		{
 			base.OnElementChanged(e);
             if (Control != null)
+            {
                 Control.TextAlignment = UITextAlignment.Right;
+                Control.BorderStyle = UITextBorderStyle.None;
+            }
 		}
     }
 }

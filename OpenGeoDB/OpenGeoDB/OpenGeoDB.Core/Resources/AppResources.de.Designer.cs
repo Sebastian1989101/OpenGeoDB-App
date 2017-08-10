@@ -160,5 +160,11 @@ namespace OpenGeoDB.Core.Resources {
                 return ResourceManager.GetString("DistanceTypeConverter_Miles", resourceCulture);
             }
         }
+        
+        internal static string UsedSoftwarePage_Title {
+            get {
+                return ResourceManager.GetString("UsedSoftwarePage_Title", resourceCulture);
+            }
+        }
     }
 }

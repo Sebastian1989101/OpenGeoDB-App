@@ -10,12 +10,8 @@
    <ListView ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <controls:CommandViewCell Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Page}}" 
-                                          CommandParameter="{Binding ZipCode}" x:TypeArguments="x:String">
-                    <Grid VerticalOptions="Center" Padding="15,5">
-                        <Label Text="{Binding ZipCode}" LineBreakMode="NoWrap" FontAttributes="Bold" />
-                    </Grid>
-                </controls:CommandViewCell>
+                <TextCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}" 
+                          Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Page}}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
