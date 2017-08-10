@@ -45,7 +45,7 @@
 	<key>CFBundleName</key>
 	<string>PLZ Suche</string>
 	<key>CFBundleVersion</key>
-	<string>17221</string>
+	<string>17222</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>UIRequiresFullScreen</key>
