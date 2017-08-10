@@ -17,7 +17,7 @@ namespace OpenGeoDB.Core.ViewModels
 
         public string Filter { get; set; }
 
-        public IGrouping<string, Location>[] Data { get; private set; }
+        public LocationCategoryGroup[] Data { get; private set; }
 
         public MvxCommand ShowSettingsCommand { get; }
 
@@ -44,7 +44,7 @@ namespace OpenGeoDB.Core.ViewModels
 
         public override void ViewAppearing()
         {
-            FilterLocationsCommand.Execute(null);
+            FilterLocationsCommand.Execute(null); 
             base.ViewAppearing();
         }
 
@@ -60,13 +60,26 @@ namespace OpenGeoDB.Core.ViewModels
                 .OrderBy(location => _appSettings.OrderByZipCode ? location.ZipCode : location.Village)
                 .GroupBy(location => location.Village);
 
-            Data = data.ToArray();
+            List<LocationCategoryGroup> groupData = new List<LocationCategoryGroup>();
+            foreach (var grouping in data.GroupBy(d => d.First().Village[0]))
+            {
+                LocationCategoryGroup currentGroupData = new LocationCategoryGroup();
+				foreach (var compendiumEntry in grouping)
+					currentGroupData.Add(compendiumEntry);
+
+				groupData.Add(currentGroupData);
+            }
+
+            Data = groupData.ToArray();
             RaisePropertyChanged(() => Data);
 		}
 		
 		private void OnShowDetailsCommandExecute(string key)
 		{
-            var result = Data.First(data => data.Key == key).Select(grp => grp).ToArray();
+            Location[] result = Data.First(x => x.Any(y => y.Key == key))
+                                    .First(data => data.Key == key)
+                                    .Select(grp => grp).ToArray();
+            
             if (result.Length == 1)
                 ShowViewModel<DetailViewModel, Location>(result.First());
             else 
@@ -75,7 +88,7 @@ namespace OpenGeoDB.Core.ViewModels
 
 		private bool CanExecuteShowDetailsCommand(string key)
 		{
-			return !string.IsNullOrEmpty(key) && Data.Any(data => data.Key == key);
+            return !string.IsNullOrEmpty(key) && Data.First(x => x.Any(y => y.Key == key)).Any(data => data.Key == key);
 		}
     }
 }

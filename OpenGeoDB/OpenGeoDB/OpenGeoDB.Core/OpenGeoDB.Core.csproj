@@ -88,6 +88,7 @@
     <Compile Include="Pages\UsedSoftwarePage.xaml.cs">
       <DependentUpon>UsedSoftwarePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\Data\LocationCategoryGroup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

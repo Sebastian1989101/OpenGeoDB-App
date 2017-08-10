@@ -25,7 +25,8 @@
 
         <SearchBar Grid.Row="0" Text="{Binding Filter}" SearchCommand="{Binding FilterLocationsCommand}" />
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False">
+        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true" 
+                  GroupDisplayBinding="{Binding Category}" GroupShortNameBinding="{Binding ShortCategory}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Key}" Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}"
