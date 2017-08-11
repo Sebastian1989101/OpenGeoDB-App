@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
                     x:Class="OpenGeoDB.Core.Pages.LegalContentPage" 
-                    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
                     xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
                     xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls;assembly=OpenGeoDB.Core"
-                    Title="{res:TranslateExtension MainPage_Title}" x:Name="Page">
+                    Title="{Binding Title}" x:Name="Page">
 
     <controls:OfflineWebView OfflineContent="{Binding Content}" />
 </mvx:MvxContentPage>

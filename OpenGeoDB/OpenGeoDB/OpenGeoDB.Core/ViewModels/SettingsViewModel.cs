@@ -27,8 +27,8 @@ namespace OpenGeoDB.Core.ViewModels
             Settings = settings;
 
             ShowUsedSoftwareCommand = new MvxCommand(() => ShowViewModel<UsedSoftwareViewModel>());
-		    ShowPrivacyPolicyCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string>(AppResources.PrivacyPolicy_Content));
-		    ShowImprintCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string>(AppResources.Imprint_Content));
+            ShowPrivacyPolicyCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_PrivacyPolicy, AppResources.PrivacyPolicy_Content }));
+            ShowImprintCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_Imprint, AppResources.Imprint_Content }));
         }
     }
 }
