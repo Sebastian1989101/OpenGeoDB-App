@@ -69,8 +69,8 @@
             
             <TableSection Title="{res:TranslateExtension TableSection_Legal}">
                 <TextCell Text="{res:TranslateExtension ViewCell_UsedSoftware}" Command="{Binding ShowUsedSoftwareCommand}" />
-                <TextCell Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" Command="{Binding ShowPrivacyPolicyCommand}" IsEnabled="false" />
-                <TextCell Text="{res:TranslateExtension ViewCell_Imprint}" Command="{Binding ShowImprintCommand}" IsEnabled="false" />
+                <TextCell Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" Command="{Binding ShowPrivacyPolicyCommand}" />
+                <TextCell Text="{res:TranslateExtension ViewCell_Imprint}" Command="{Binding ShowImprintCommand}" />
             </TableSection>
             
             <TableSection>

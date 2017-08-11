@@ -24,7 +24,7 @@
     <MtouchArch>i386, x86_64</MtouchArch>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-<CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -227,38 +227,102 @@
     <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\Contents.json">
       <InProject>false</InProject>
     </ImageAsset>
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120x120.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\57x57.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\114x114.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\180x180.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\76x76.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\152x152.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\144x144.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\72x72.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\167x167.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40x40.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1242x2208.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\750x1334.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2208x1242.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x2732.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\640x960.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\640x1136.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\768x1024.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1536x2048.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1024x768.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x1536.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\320x480.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\768x1004.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1536x2008.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1024x748.png" />
-    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x1496.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\100x100.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\50x50.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\80x80.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\58x58.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png" />
-    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\87x87.png" />
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\120x120.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\57x57.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\114x114.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\180x180.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\76x76.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\152x152.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\144x144.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\72x72.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\167x167.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\40x40.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1242x2208.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\750x1334.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2208x1242.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x2732.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\640x960.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\640x1136.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\768x1024.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1536x2048.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1024x768.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x1536.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\320x480.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\768x1004.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1536x2008.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\1024x748.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\LaunchImages.launchimage\2048x1496.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\100x100.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\50x50.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\80x80.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\58x58.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\29x29.png">
+      <InProject>false</InProject>
+    </ImageAsset>
+    <ImageAsset Include="Resources\Media.xcassets\AppIcons.appiconset\87x87.png">
+      <InProject>false</InProject>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

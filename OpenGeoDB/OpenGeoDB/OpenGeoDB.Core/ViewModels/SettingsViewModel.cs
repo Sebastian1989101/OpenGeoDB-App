@@ -4,6 +4,7 @@ using System.Linq;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.DependencyServices;
 using OpenGeoDB.Core.Model.Data;
+using OpenGeoDB.Core.Resources;
 using OpenGeoDB.Core.Services;
 
 namespace OpenGeoDB.Core.ViewModels
@@ -17,6 +18,8 @@ namespace OpenGeoDB.Core.ViewModels
         public List<DistanceType> AvailableDistanceTypes => Enum.GetValues(typeof(DistanceType)).Cast<DistanceType>().ToList();
 
         public MvxCommand ShowUsedSoftwareCommand { get; }
+        public MvxCommand ShowPrivacyPolicyCommand { get; }
+        public MvxCommand ShowImprintCommand { get; }
 
         public SettingsViewModel(IVersionService versionService, IAppSettings settings)
 		{
@@ -24,6 +27,8 @@ namespace OpenGeoDB.Core.ViewModels
             Settings = settings;
 
             ShowUsedSoftwareCommand = new MvxCommand(() => ShowViewModel<UsedSoftwareViewModel>());
+		    ShowPrivacyPolicyCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string>(AppResources.PrivacyPolicy_Content));
+		    ShowImprintCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string>(AppResources.Imprint_Content));
         }
     }
 }
