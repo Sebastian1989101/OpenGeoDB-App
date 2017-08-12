@@ -31,7 +31,7 @@
                     <Grid ColumnSpacing="25">
                         <Grid.Padding>
                             <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="iOS" Value="20,12" />
+                                <On Platform="iOS" Value="15,12" />
                                 <On Platform="Android" Value="17,0,5,0" />
                             </OnPlatform>
                         </Grid.Padding>
@@ -50,7 +50,7 @@
                     <Grid ColumnSpacing="25">
                         <Grid.Padding>
                             <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="iOS" Value="20,12" />
+                                <On Platform="iOS" Value="15,12" />
                                 <On Platform="Android" Value="17,0,5,0" />
                             </OnPlatform>
                         </Grid.Padding>
