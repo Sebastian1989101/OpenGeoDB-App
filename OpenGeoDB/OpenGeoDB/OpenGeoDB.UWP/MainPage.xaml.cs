@@ -3,14 +3,13 @@ using MvvmCross.Core.Views;
 using MvvmCross.Forms.Uwp.Presenters;
 using MvvmCross.Platform;
 using System.Text;
-using Xamarin.Forms.Platform.UWP;
 
 namespace OpenGeoDB.UWP
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : WindowsPage
+    public sealed partial class MainPage 
     {
         public MainPage()
         {
@@ -20,8 +19,8 @@ namespace OpenGeoDB.UWP
             start.Start();
 
             var presenter = Mvx.Resolve<IMvxViewPresenter>() as MvxFormsUwpPagePresenter;
-
-            LoadApplication(presenter.FormsApplication);
+            if (presenter != null)
+                LoadApplication(presenter.FormsApplication);
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
         }

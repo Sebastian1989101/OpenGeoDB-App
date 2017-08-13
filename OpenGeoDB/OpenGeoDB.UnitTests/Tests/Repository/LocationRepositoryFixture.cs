@@ -43,31 +43,31 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 
             Assert.AreEqual(7073, response[0].ID);
             Assert.AreEqual("31582", response[0].ZipCode);
-            Assert.AreEqual("Nienburg (Weser)", response[0].Village);
+            Assert.AreEqual("Nienburg (Weser)", response[0].Village?.Trim());
             Assert.AreEqual(52.6407898946597, response[0].Latitude);
             Assert.AreEqual(9.23150063371375, response[0].Longitude);
 
             Assert.AreEqual(7076, response[1].ID);
             Assert.AreEqual("31600", response[1].ZipCode);
-            Assert.AreEqual("Uchte", response[1].Village);
+            Assert.AreEqual("Uchte", response[1].Village?.Trim());
             Assert.AreEqual(52.5192716743236, response[1].Latitude);
             Assert.AreEqual(8.87567370960235, response[1].Longitude);
 
             Assert.AreEqual(10670, response[2].ID);
             Assert.AreEqual("80687", response[2].ZipCode);
-            Assert.AreEqual("München", response[2].Village);
+            Assert.AreEqual("München", response[2].Village?.Trim());
             Assert.AreEqual(48.1432006878012, response[2].Latitude);
             Assert.AreEqual(11.5059093215982, response[2].Longitude);
 
             Assert.AreEqual(10672, response[3].ID);
             Assert.AreEqual("80796", response[3].ZipCode);
-            Assert.AreEqual("München", response[3].Village);
+            Assert.AreEqual("München", response[3].Village?.Trim());
             Assert.AreEqual(48.1646490940644, response[3].Latitude);
             Assert.AreEqual(11.5694707183568, response[3].Longitude);
 
             Assert.AreEqual(10674, response[4].ID);
             Assert.AreEqual("80798", response[4].ZipCode);
-            Assert.AreEqual("München", response[4].Village);
+            Assert.AreEqual("München", response[4].Village?.Trim());
             Assert.AreEqual(48.1571679755151, response[4].Latitude);
             Assert.AreEqual(11.5656418013965, response[4].Longitude);
         }
@@ -88,31 +88,31 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 
             Assert.AreEqual(7073, response[0].ID);
             Assert.AreEqual("31582", response[0].ZipCode);
-            Assert.AreEqual("Nienburg (Weser)", response[0].Village);
+            Assert.AreEqual("Nienburg (Weser)", response[0].Village?.Trim());
             Assert.AreEqual(52.6407898946597, response[0].Latitude);
             Assert.AreEqual(9.23150063371375, response[0].Longitude);
 
             Assert.AreEqual(7076, response[1].ID);
             Assert.AreEqual("31600", response[1].ZipCode);
-            Assert.AreEqual("Uchte", response[1].Village);
+            Assert.AreEqual("Uchte", response[1].Village?.Trim());
             Assert.AreEqual(52.5192716743236, response[1].Latitude);
             Assert.AreEqual(8.87567370960235, response[1].Longitude);
 
             Assert.AreEqual(10670, response[2].ID);
             Assert.AreEqual("80687", response[2].ZipCode);
-            Assert.AreEqual("München", response[2].Village);
+            Assert.AreEqual("München", response[2].Village?.Trim());
             Assert.AreEqual(48.1432006878012, response[2].Latitude);
 			Assert.AreEqual(11.5059093215982, response[2].Longitude);
 
 			Assert.AreEqual(10672, response[3].ID);
 			Assert.AreEqual("80796", response[3].ZipCode);
-			Assert.AreEqual("München", response[3].Village);
+			Assert.AreEqual("München", response[3].Village?.Trim());
 			Assert.AreEqual(48.1646490940644, response[3].Latitude);
 			Assert.AreEqual(11.5694707183568, response[3].Longitude);
 
 			Assert.AreEqual(10674, response[4].ID);
 			Assert.AreEqual("80798", response[4].ZipCode);
-			Assert.AreEqual("München", response[4].Village);
+			Assert.AreEqual("München", response[4].Village?.Trim());
 			Assert.AreEqual(48.1571679755151, response[4].Latitude);
 			Assert.AreEqual(11.5656418013965, response[4].Longitude);
         }
@@ -191,19 +191,19 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 
             Assert.AreEqual(-1, response[0].ID);
             Assert.AreEqual("31600", response[0].ZipCode);
-            Assert.AreEqual("Uchte", response[0].Village);
+            Assert.AreEqual("Uchte", response[0].Village?.Trim());
             Assert.AreEqual(52.5192716743236, response[0].Latitude);
             Assert.AreEqual(8.87567370960235, response[0].Longitude);
 
             Assert.AreEqual(7073, response[1].ID);
             Assert.AreEqual("31582", response[1].ZipCode);
-            Assert.AreEqual("Nienburg (Weser)", response[1].Village);
+            Assert.AreEqual("Nienburg (Weser)", response[1].Village?.Trim());
             Assert.AreEqual(52.6407898946597, response[1].Latitude);
             Assert.AreEqual(9.23150063371375, response[1].Longitude);
 
             Assert.AreEqual(10672, response[2].ID);
             Assert.AreEqual("80796", response[2].ZipCode);
-            Assert.AreEqual("München", response[2].Village);
+            Assert.AreEqual("München", response[2].Village?.Trim());
             Assert.AreEqual(48.1646490940644, response[2].Latitude);
             Assert.AreEqual(11.5694707183568, response[2].Longitude);
         }
@@ -233,13 +233,13 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 
 			Assert.AreEqual(7073, response[0].ID);
 			Assert.AreEqual("31582", response[0].ZipCode);
-			Assert.AreEqual("Nienburg (Weser)", response[0].Village);
+			Assert.AreEqual("Nienburg (Weser)", response[0].Village?.Trim());
 			Assert.AreEqual(52.6407898946597, response[0].Latitude);
 			Assert.AreEqual(9.23150063371375, response[0].Longitude);
 
 			Assert.AreEqual(10672, response[1].ID);
 			Assert.AreEqual("80796", response[1].ZipCode);
-			Assert.AreEqual("München", response[1].Village);
+			Assert.AreEqual("München", response[1].Village?.Trim());
 			Assert.AreEqual(48.1646490940644, response[1].Latitude);
 			Assert.AreEqual(11.5694707183568, response[1].Longitude);
 		}

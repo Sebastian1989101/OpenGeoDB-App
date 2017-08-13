@@ -37,10 +37,10 @@ namespace OpenGeoDB.Core.ViewModels
             ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);
         }
 
-        public override void Start()
+        public override async void Start()
         {
-            Initialize().Wait();
-		}
+            await Initialize();
+        }
 
         public override void ViewAppearing()
         {
