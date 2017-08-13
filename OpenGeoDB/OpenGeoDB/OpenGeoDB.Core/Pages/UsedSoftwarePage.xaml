@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="OpenGeoDB.Core.Pages.UsedSoftwarePage" 
-    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
-    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
-    Title="{res:TranslateExtension UsedSoftwarePage_Title}" x:Name="Page">
+
+<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="OpenGeoDB.Core.Pages.UsedSoftwarePage"
+                    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
+                    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+                    Title="{res:TranslateExtension UsedSoftwarePage_Title}" x:Name="Page">
 
     <TableView Intent="Data" HasUnevenRows="True">
         <TableRoot>
             <TableSection Title="Libraries and Frameworks">
                 <TextCell Text="Acr.UserDialogs" Detail="A cross platform library that allows you to call for standard user dialogs from a shared/portable library."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/aritchie/userdialogs/blob/master/LICENSE.md" />
-                
+
                 <TextCell Text="BruTile" Detail="BruTile is a C# open source library to access tile services like OpenStreetMap and Bing."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/BruTile/BruTile/blob/master/license.txt" />
-                
+
                 <TextCell Text="Fody" Detail="Manipulating the IL of an assembly as part of a build requires a significant amount of plumbing code."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/Fody/Fody/blob/master/License.txt" />
-                
+
                 <TextCell Text="Mapsui" Detail="Mapsui is a C# map component for apps."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/pauldendulk/Mapsui/blob/master/licence.txt" />
-                
+
                 <TextCell Text="MvvmCross" Detail="Build clean, pixel perfect, native UIs. Share behavior and business logic in a single codebase across supported platforms, using the Model-View-ViewModel (MVVM) design pattern."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://www.mvvmcross.com" />
-                
+
                 <TextCell Text="NETStandard.Library" Detail="A set of standard .NET APIs that are prescribed to be used and supported together."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://www.nuget.org/packages/NETStandard.Library/" />
-                
+
                 <TextCell Text="Newtonsoft.Json" Detail="Popular high-performance JSON framework for .NET"
                           Command="{Binding OpenUrlCommand}" CommandParameter="http://www.newtonsoft.com/json" />
-                
+
                 <TextCell Text="SkiaSharp" Detail="SkiaSharp is a cross-platform 2D graphics API for .NET platforms based on Google's Skia Graphics Library (https://skia.org/)."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/mono/SkiaSharp/blob/master/LICENSE.md" />
-                
+
                 <TextCell Text="Splat" Detail="A library to make things cross-platform that should be."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/reactiveui/splat/blob/master/LICENSE" />
-                
+
                 <TextCell Text="Xam.Plugins.Settings" Detail="Create and access settings from shared code across all of your apps!"
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://github.com/jamesmontemagno/SettingsPlugin/blob/master/LICENSE" />
-                
+
                 <TextCell Text="Xamarin.Forms" Detail="Build native UIs for iOS, Android and Windows from a single, shared C# codebase."
-                          Command="{Binding OpenUrlCommand}" CommandParameter="https://www.xamarin.com/forms" />>
+                          Command="{Binding OpenUrlCommand}" CommandParameter="https://www.xamarin.com/forms" />
+                >
             </TableSection>
 
             <TableSection Title="Software and Programs">

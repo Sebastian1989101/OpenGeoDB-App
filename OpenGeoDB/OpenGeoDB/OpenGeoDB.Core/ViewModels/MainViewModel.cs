@@ -54,7 +54,10 @@ namespace OpenGeoDB.Core.ViewModels
         }
 
 		private void OnFilterLocationsCommandExecute()
-        {
+		{
+		    if (_locations == null)
+		        return;
+
             IEnumerable<IGrouping<string, Location>> data = _locations
                 .Where(location => location.Equals(Filter))
                 .OrderBy(location => _appSettings.OrderByZipCode ? location.ZipCode : location.Village)

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="OpenGeoDB.Core.Pages.MainPage" 
-    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
-    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms" 
-    xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
-    Title="{res:TranslateExtension MainPage_Title}" x:Name="Page">
+
+<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="OpenGeoDB.Core.Pages.MainPage"
+                    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
+                    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+                    xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
+                    Title="{res:TranslateExtension MainPage_Title}" x:Name="Page">
 
     <mvx:MvxContentPage.Resources>
         <ResourceDictionary>
@@ -16,7 +17,7 @@
     <mvx:MvxContentPage.ToolbarItems>
         <ToolbarItem Text="Settings" Icon="Settings.png" Command="{Binding ShowSettingsCommand}" />
     </mvx:MvxContentPage.ToolbarItems>
-    
+
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,8 +26,9 @@
 
         <SearchBar Grid.Row="0" Text="{Binding Filter}" SearchCommand="{Binding FilterLocationsCommand}" />
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true" 
+        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true" SeparatorVisibility="Default"
                   GroupDisplayBinding="{Binding Category}" GroupShortNameBinding="{Binding ShortCategory}">
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Key}" Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}"

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="OpenGeoDB.Core.Pages.ChooseZipPage" 
-    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
-    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms" 
-    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls"
-    Title="{res:TranslateExtension ChooseZipPage_Title}" x:Name="Page">
 
-   <ListView ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False">
+<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="OpenGeoDB.Core.Pages.ChooseZipPage"
+                    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
+                    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+                    Title="{res:TranslateExtension ChooseZipPage_Title}" x:Name="Page">
+
+    <ListView ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False" SeparatorVisibility="Default">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <TextCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}" 
+                <TextCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}"
                           Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Page}}" />
             </DataTemplate>
         </ListView.ItemTemplate>

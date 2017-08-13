@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-    x:Class="OpenGeoDB.Core.Pages.SettingsPage" 
-    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core" 
-    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
-    xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
-    Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page">
+
+<mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="OpenGeoDB.Core.Pages.SettingsPage"
+                    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
+                    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+                    xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
+                    Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page">
 
     <mvx:MvxContentPage.Resources>
         <ResourceDictionary>
@@ -23,7 +24,7 @@
                     </StackLayout>
                 </ViewCell>
             </TableSection>
-            
+
             <TableSection Title="{res:TranslateExtension TableSection_Settings}">
                 <SwitchCell Text="{res:TranslateExtension ViewCell_OrderByZipCode}" On="{Binding Settings.OrderByZipCode}" />
 
@@ -33,16 +34,24 @@
                             <OnPlatform x:TypeArguments="Thickness">
                                 <On Platform="iOS" Value="15,12" />
                                 <On Platform="Android" Value="17,0,5,0" />
+                                <On Platform="Windows" Value="0,5,5,5" />
                             </OnPlatform>
                         </Grid.Padding>
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_NearbyMarkerCount}" VerticalOptions="Center" />
-                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableNearbyMarkerCount}" SelectedItem="{Binding Settings.NearbyMarkerCount}" VerticalOptions="Center" />
+                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_NearbyMarkerCount}" VerticalOptions="Center">
+                            <Label.FontAttributes>
+                                <OnPlatform x:TypeArguments="FontAttributes">
+                                    <On Platform="Windows" Value="Bold" />
+                                </OnPlatform>
+                            </Label.FontAttributes>
+                        </Label>
+                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableNearbyMarkerCount}"
+                                SelectedItem="{Binding Settings.NearbyMarkerCount}" VerticalOptions="Center" />
                     </Grid>
                 </ViewCell>
 
@@ -52,27 +61,34 @@
                             <OnPlatform x:TypeArguments="Thickness">
                                 <On Platform="iOS" Value="15,12" />
                                 <On Platform="Android" Value="17,0,5,0" />
+                                <On Platform="Windows" Value="0,5,5,5" />
                             </OnPlatform>
                         </Grid.Padding>
-                        
+
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_DistanceType}" VerticalOptions="Center" />
-                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableDistanceTypes}" SelectedItem="{Binding Settings.DistanceType}" 
+                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_DistanceType}" VerticalOptions="Center">
+                            <Label.FontAttributes>
+                                <OnPlatform x:TypeArguments="FontAttributes">
+                                    <On Platform="Windows" Value="Bold" />
+                                </OnPlatform>
+                            </Label.FontAttributes>
+                        </Label>
+                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableDistanceTypes}" SelectedItem="{Binding Settings.DistanceType}"
                                 ItemDisplayBinding="{Binding Path=., Converter={StaticResource DistanceTypeConverter}}" VerticalOptions="Center" />
                     </Grid>
                 </ViewCell>
             </TableSection>
-            
+
             <TableSection Title="{res:TranslateExtension TableSection_Legal}">
                 <TextCell Text="{res:TranslateExtension ViewCell_UsedSoftware}" Command="{Binding ShowUsedSoftwareCommand}" />
                 <TextCell Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" Command="{Binding ShowPrivacyPolicyCommand}" />
                 <TextCell Text="{res:TranslateExtension ViewCell_Imprint}" Command="{Binding ShowImprintCommand}" />
             </TableSection>
-            
+
             <TableSection>
                 <ViewCell>
                     <StackLayout Orientation="Vertical" Spacing="15" Padding="10,20">

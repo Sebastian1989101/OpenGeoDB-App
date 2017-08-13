@@ -10,7 +10,8 @@ namespace OpenGeoDB.UWP.DependencyServices
     {
         public string GetAppVersion()
         {
-            return Package.Current.Id.Version.ToString();
+            PackageVersion version = Package.Current.Id.Version;
+            return $"{version.Major}.{version.Minor}.{version.Build}";
         }
     }
 }
