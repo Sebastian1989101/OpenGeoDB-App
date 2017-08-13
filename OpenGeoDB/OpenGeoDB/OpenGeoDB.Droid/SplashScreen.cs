@@ -6,26 +6,20 @@ using Xamarin.Forms;
 
 namespace OpenGeoDB.Droid
 {
-    [Activity(
-        Label = "PLZ Suche"
-        , MainLauncher = true
-        //, Icon = "@mipmap/icon"
-        , Theme = "@style/Theme.Splash"
-        , NoHistory = true
-        , ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "PLZ Suche", MainLauncher = true, Icon = "@drawable/Icon", Theme = "@style/Theme.Splash", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
+        private bool _isInitializationComplete;
+
         public SplashScreen()
             : base(Resource.Layout.SplashScreen)
-        {
-        }
+        { }
 
-        private bool isInitializationComplete = false;
         public override void InitializationComplete()
         {
-            if (!isInitializationComplete)
+            if (!_isInitializationComplete)
             {
-                isInitializationComplete = true;
+                _isInitializationComplete = true;
                 StartActivity(typeof(FormsApplicationActivity));
             }
         }
@@ -33,14 +27,11 @@ namespace OpenGeoDB.Droid
         protected override void OnCreate(Android.OS.Bundle bundle)
         {
             Forms.Init(this, bundle);
-            // Leverage controls' StyleId attrib. to Xamarin.UITest
-            Forms.ViewInitialized += (object sender, ViewInitializedEventArgs e) =>
-            {
-                if (!string.IsNullOrWhiteSpace(e.View.StyleId))
+            Forms.ViewInitialized += (sender, e) =>
                 {
-                    e.NativeView.ContentDescription = e.View.StyleId;
-                }
-            };
+                    if (!string.IsNullOrWhiteSpace(e.View.StyleId))
+                        e.NativeView.ContentDescription = e.View.StyleId;
+                };
 
             base.OnCreate(bundle);
         }

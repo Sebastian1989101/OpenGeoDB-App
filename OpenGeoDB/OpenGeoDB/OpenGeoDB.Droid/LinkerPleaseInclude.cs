@@ -91,9 +91,9 @@ namespace OpenGeoDB.Droid
         public void Include(System.ComponentModel.INotifyPropertyChanged changed)
         {
             changed.PropertyChanged += (sender, e) =>
-            {
-                var test = e.PropertyName;
-            };
+                {
+                    var test = e.PropertyName;
+                };
         }
 
         public void Include(MvxTaskBasedBindingContext context)

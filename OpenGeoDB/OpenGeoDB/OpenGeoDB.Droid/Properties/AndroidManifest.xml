@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.SoftwareNotion.ZipFinder" android:versionCode="17218" android:versionName="1.0.0" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.SoftwareNotion.ZipFinder" android:versionCode="17225" android:versionName="1.0.1" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="16" />
 	<uses-permission android:name="android.permission.INTERNET" />
-	<application android:label="PLZ Finder" android:icon="@drawable/Icon"></application>
+	<application android:label="PLZ Finder" android:icon="@drawable/Icon">
+		<meta-data android:name="android.max_aspect" android:value="2.1" />
+	</application>
+	<uses-permission android:name="android.permission.INTERNET" />
 </manifest>

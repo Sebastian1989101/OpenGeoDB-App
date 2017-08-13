@@ -12,8 +12,7 @@ namespace OpenGeoDB.Droid
     {
         public Setup(Context applicationContext)
             : base(applicationContext)
-        {
-        }
+        { }
 
         protected override void InitializeFirstChance()
         {
