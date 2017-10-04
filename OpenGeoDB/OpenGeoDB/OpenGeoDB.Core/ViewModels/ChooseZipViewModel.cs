@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.Model.Data;
 
@@ -16,10 +15,9 @@ namespace OpenGeoDB.Core.ViewModels
             ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);   
         }
 
-        public override Task Initialize(Location[] parameter)
+        public override void Prepare(Location[] parameter)
         {
 			Data = parameter;
-			return App.CompletedTask;
 		}
 
 		private void OnShowDetailsCommandExecute(string key)

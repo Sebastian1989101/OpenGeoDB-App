@@ -25,7 +25,7 @@ namespace OpenGeoDB.Core.ViewModels
             ChangeLocationCommand = new MvxAsyncCommand<Location>(OnChangeLocationCommandExecute);
         }
 
-        public override async Task Initialize(Location parameter)
+        public override async void Prepare(Location parameter)
         {
             await SetLocation(parameter);
 		}

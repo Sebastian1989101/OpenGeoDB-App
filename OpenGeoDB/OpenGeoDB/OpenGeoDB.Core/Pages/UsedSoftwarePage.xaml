@@ -42,7 +42,6 @@
 
                 <TextCell Text="Xamarin.Forms" Detail="Build native UIs for iOS, Android and Windows from a single, shared C# codebase."
                           Command="{Binding OpenUrlCommand}" CommandParameter="https://www.xamarin.com/forms" />
-                >
             </TableSection>
 
             <TableSection Title="Software and Programs">
