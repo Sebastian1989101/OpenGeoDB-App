@@ -31,9 +31,8 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <!-- todo: Click does not work -->
-                    <TextCell Text="{Binding Key}" Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}"
-                              Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Page}}" CommandParameter="{Binding Key}" />
+                    <TextCell Text="{Binding Key}" Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}" 
+                              Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}" CommandParameter="{Binding Key}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

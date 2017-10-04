@@ -11,7 +11,7 @@
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}"
-                          Command="{Binding BindingContext.ShowDetailsCommand, Source={x:Reference Page}}" />
+                          Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
