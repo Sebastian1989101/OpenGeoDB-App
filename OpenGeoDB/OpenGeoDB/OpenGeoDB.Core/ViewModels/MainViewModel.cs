@@ -14,8 +14,18 @@ namespace OpenGeoDB.Core.ViewModels
 		private readonly IAppSettings _appSettings;
 
         private Location[] _locations;
+        string filter;
 
-        public string Filter { get; set; }
+        public string Filter
+        {
+            get { return filter; }
+            set
+            {
+                filter = value;
+                if (string.IsNullOrEmpty(filter))
+                    FilterLocationsCommand.Execute(null);
+            }
+        }
 
         public LocationCategoryGroup[] Data { get; private set; }
 
