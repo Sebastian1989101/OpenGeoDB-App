@@ -7,6 +7,7 @@ namespace OpenGeoDB.Core.Services
         bool OrderByZipCode { get; set; }
 
         int NearbyMarkerCount { get; set; }
+        bool ShowZipCodeAboveNearbyMarker { get; set; }
         DistanceType DistanceType { get; set; }
     }
 }

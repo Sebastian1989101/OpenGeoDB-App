@@ -55,6 +55,8 @@
                     </Grid>
                 </ViewCell>
 
+                <SwitchCell Text="{res:TranslateExtension ViewCell_ShowZipCodeAboveNearbyMarker}" On="{Binding Settings.ShowZipCodeAboveNearbyMarker}" />
+
                 <ViewCell>
                     <Grid ColumnSpacing="25">
                         <Grid.Padding>

@@ -9,8 +9,10 @@ using Mapsui.Projection;
 using Mapsui.Providers;
 using Mapsui.Styles;
 using Mapsui.Utilities;
+using MvvmCross.Platform;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Resources;
+using OpenGeoDB.Core.Services;
 using Xamarin.Forms;
 using Color = Mapsui.Styles.Color;
 
@@ -20,6 +22,8 @@ namespace OpenGeoDB.Core.Controls
     {
         private const string MARKER_RESOURCE = "OpenGeoDB.Core.Resources.Marker.png";
         private const string HIGHLIGHT_MARKER_RESOURCE = "OpenGeoDB.Core.Resources.Marker.Highlight.png";
+
+        private static IAppSettings _appSettings;
 
         public static readonly BindableProperty FocusLatitudeProperty = BindableProperty.Create(
             nameof(FocusLatitude), typeof(double), typeof(MapsuiMap), 0d, BindingMode.OneWay, null, OnFocusLocationChanged);
@@ -61,6 +65,7 @@ namespace OpenGeoDB.Core.Controls
 
         public MapsuiMap()
         {
+            _appSettings = Mvx.Resolve<IAppSettings>();
             NativeMap = new Map();
 
             if (Device.RuntimePlatform == Device.iOS)
@@ -182,30 +187,46 @@ namespace OpenGeoDB.Core.Controls
 			var features = new Features();
 			foreach (Location entry in entries)
 			{
-                string text = entry.Distance.ToString();
+                string distanceText = entry.Distance.ToString();
                 switch (entry.DistanceType)
                 {
                     case DistanceType.Kilometers:
-                        text = string.Format(AppResources.DistanceType_Kilometers_Text, entry.Distance);
+                        distanceText = string.Format(AppResources.DistanceType_Kilometers_Text, entry.Distance);
                         break;
                     case DistanceType.NauticalMiles:
-                        text = string.Format(AppResources.DistanceType_NauticalMiles_Text, entry.Distance);
+                        distanceText = string.Format(AppResources.DistanceType_NauticalMiles_Text, entry.Distance);
                         break;
                     case DistanceType.Miles:
-                        text = string.Format(AppResources.DistanceType_Miles_Text, entry.Distance);
+                        distanceText = string.Format(AppResources.DistanceType_Miles_Text, entry.Distance);
                         break;
                 }
 
 				Feature feature = new Feature { Geometry = SphericalMercator.FromLonLat(entry.Longitude, entry.Latitude) };
-				feature.Styles.Add(new LabelStyle
-					{
-                        Text = text,
-						Font = { Size = 10 },
-						ForeColor = Color.FromArgb(255, 0, 0, 0),
-						BackColor = new Brush(Color.FromArgb(196, 255, 255, 255)),
+                if (_appSettings.ShowZipCodeAboveNearbyMarker)
+                {
+                    LabelStyle labelStyle = new LabelStyle
+                        {
+                        Text = $"{entry.ZipCode} {entry.Village}",
+                            Font = { Size = 11 },
+                            ForeColor = Color.FromArgb(255, 0, 0, 0),
+                            BackColor = new Brush(Color.FromArgb(196, 255, 255, 255)),
+                            HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center,
+                            Offset = new Offset(0, -64)
+                        };
+
+                    labelStyle.Halo = new Pen(labelStyle.ForeColor, 0.2);
+                    feature.Styles.Add(labelStyle);
+                }
+
+                feature.Styles.Add(new LabelStyle
+                    {
+                        Text = distanceText,
+                        Font = { Size = 10 },
+                        ForeColor = Color.FromArgb(255, 0, 0, 0),
+                        BackColor = new Brush(Color.FromArgb(196, 255, 255, 255)),
                         HorizontalAlignment = LabelStyle.HorizontalAlignmentEnum.Center, 
                         Offset = new Offset(0, -46)
-					});
+                    });
 
 				features.Add(feature);
 			}

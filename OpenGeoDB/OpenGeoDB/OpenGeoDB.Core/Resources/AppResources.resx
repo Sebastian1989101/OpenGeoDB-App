@@ -177,6 +177,9 @@
   <data name="UsedSoftwarePage_Title" xml:space="preserve">
     <value>Used Software</value>
   </data>
+  <data name="ViewCell_ShowZipCodeAboveNearbyMarker" xml:space="preserve">
+    <value>Show ZIP above marker</value>
+  </data>
   <data name="Imprint_Content" xml:space="preserve">
     <value>&lt;!DOCTYPE html&gt;
 &lt;html&gt;

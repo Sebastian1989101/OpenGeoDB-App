@@ -14,10 +14,16 @@ namespace OpenGeoDB.Core.Services
 			set { _settings.AddOrUpdateValue(nameof(OrderByZipCode), value); }
 		}
 
-		public int NearbyMarkerCount
+        public int NearbyMarkerCount
+        {
+            get { return _settings.GetValueOrDefault(nameof(NearbyMarkerCount), 10); }
+            set { _settings.AddOrUpdateValue(nameof(NearbyMarkerCount), value); }
+        }
+
+		public bool ShowZipCodeAboveNearbyMarker
 		{
-			get { return _settings.GetValueOrDefault(nameof(NearbyMarkerCount), 10); }
-			set { _settings.AddOrUpdateValue(nameof(NearbyMarkerCount), value); }
+			get { return _settings.GetValueOrDefault(nameof(ShowZipCodeAboveNearbyMarker), true); }
+			set { _settings.AddOrUpdateValue(nameof(ShowZipCodeAboveNearbyMarker), value); }
 		}
 
 		public DistanceType DistanceType
