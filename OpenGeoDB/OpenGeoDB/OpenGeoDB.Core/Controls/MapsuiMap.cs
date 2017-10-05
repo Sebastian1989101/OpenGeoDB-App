@@ -206,7 +206,7 @@ namespace OpenGeoDB.Core.Controls
                 {
                     LabelStyle labelStyle = new LabelStyle
                         {
-                        Text = $"{entry.ZipCode} {entry.Village}",
+                            Text = $"{entry.ZipCode} {entry.Village}",
                             Font = { Size = 11 },
                             ForeColor = Color.FromArgb(255, 0, 0, 0),
                             BackColor = new Brush(Color.FromArgb(196, 255, 255, 255)),
