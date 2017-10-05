@@ -12,6 +12,8 @@ namespace OpenGeoDB.Core.ViewModels
 		private readonly LocationRepository _locationsRepository;
 		private readonly IAppSettings _appSettings;
 
+        public bool IsLoading { get; private set; }
+
 		public Location Location { get; private set; }
         public Location[] NearbyMarker { get; private set; }
 
@@ -25,9 +27,9 @@ namespace OpenGeoDB.Core.ViewModels
             ChangeLocationCommand = new MvxAsyncCommand<Location>(OnChangeLocationCommandExecute);
         }
 
-        public override async void Prepare(Location parameter)
+        public override void Prepare(Location parameter)
         {
-            await SetLocation(parameter);
+            Task.Run(() => SetLocation(parameter));
 		}
 
 		private async Task OnChangeLocationCommandExecute(Location location)
@@ -37,8 +39,17 @@ namespace OpenGeoDB.Core.ViewModels
 
         private async Task SetLocation(Location location)
         {
-			Location = location;
-			NearbyMarker = await _locationsRepository.GetNearbyEntries(location, _appSettings.NearbyMarkerCount, false);
+			try
+            {
+                IsLoading = true;
+
+                Location = location;
+                NearbyMarker = await _locationsRepository.GetNearbyEntries(location, _appSettings.NearbyMarkerCount, false);
+            }
+            finally
+            {
+                IsLoading = false;
+            }
         }
     }
 }

@@ -44,5 +44,8 @@
                             FocusLatitude="{Binding Location.Latitude}"
                             FocusLongitude="{Binding Location.Longitude}"
                             MapMarker="{Binding NearbyMarker}" />
+
+        <ActivityIndicator Grid.Row="0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2" 
+                           IsRunning="{Binding IsLoading}" HorizontalOptions="Center" VerticalOptions="Center" />
     </Grid>
 </mvx:MvxContentPage>
