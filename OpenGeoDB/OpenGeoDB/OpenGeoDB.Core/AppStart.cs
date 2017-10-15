@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.ViewModels;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -150,7 +150,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
             Assert.AreEqual(0, response.Count());
         }
 
-        [Test, SetUICulture("en-US")]
+        [Test, Culture("en-US")]
         public void GetAllAsyncLoadFileContentThrowsException()
         {
 			// Arrange
@@ -183,7 +183,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
                 };
 
             // Act
-            Location[] response = (await repository.GetNearbyEntries(startLocation, 2, true));
+            Location[] response = (await repository.GetNearbyEntries(startLocation, 2));
 
             // Assert
             Assert.IsNotNull(response);
@@ -244,7 +244,7 @@ namespace OpenGeoDB.UnitTests.Tests.Repository
 			Assert.AreEqual(11.5694707183568, response[1].Longitude);
 		}
 
-		[Test, SetUICulture("en-US")]
+		[Test, Culture("en-US")]
 		public void GetNearbyEntriesLocationNullException()
 		{
 			// Arrange

@@ -153,43 +153,43 @@
       <Version>6.5.1</Version>
     </PackageReference>
     <PackageReference Include="BruTile">
-      <Version>0.21.1</Version>
+      <Version>0.22.1</Version>
     </PackageReference>
     <PackageReference Include="Mapsui">
-      <Version>1.0.11</Version>
+      <Version>1.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.3.4</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross">
-      <Version>5.1.1</Version>
+      <Version>5.3.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Binding">
-      <Version>5.1.1</Version>
+      <Version>5.3.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Core">
-      <Version>5.1.1</Version>
+      <Version>5.3.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Forms">
-      <Version>5.1.1</Version>
+      <Version>5.3.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Platform">
-      <Version>5.1.1</Version>
+      <Version>5.3.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmCross.Plugin.Json">
-      <Version>4.4.0</Version>
+      <Version>5.3.0</Version>
     </PackageReference>
     <PackageReference Include="NETStandard.Library">
-      <Version>1.6.1</Version>
+      <Version>2.0.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
-      <Version>9.0.1</Version>
+      <Version>10.0.3</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp">
-      <Version>1.58.1</Version>
+      <Version>1.59.1</Version>
     </PackageReference>
     <PackageReference Include="SkiaSharp.Views">
-      <Version>1.58.1</Version>
+      <Version>1.59.1.1</Version>
     </PackageReference>
     <PackageReference Include="Splat">
       <Version>2.0.0</Version>
@@ -198,7 +198,7 @@
       <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>2.3.4.247</Version>
+      <Version>2.4.0.282</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
