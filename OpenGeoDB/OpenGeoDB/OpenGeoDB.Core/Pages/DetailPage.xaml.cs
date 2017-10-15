@@ -1,9 +1,8 @@
-﻿using MvvmCross.Forms.Core;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace OpenGeoDB.Core.Pages
 {
-    public partial class DetailPage : MvxContentPage
+    public partial class DetailPage
     {
         public DetailPage()
         {

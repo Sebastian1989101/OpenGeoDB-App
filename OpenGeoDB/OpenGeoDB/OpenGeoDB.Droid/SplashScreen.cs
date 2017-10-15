@@ -9,19 +9,14 @@ namespace OpenGeoDB.Droid
     [Activity(Label = "PLZ Suche", MainLauncher = true, Icon = "@drawable/Icon", Theme = "@style/Theme.Splash", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
-        private bool _isInitializationComplete;
-
         public SplashScreen()
             : base(Resource.Layout.SplashScreen)
         { }
 
-        public override void InitializationComplete()
+        protected override void TriggerFirstNavigate()
         {
-            if (!_isInitializationComplete)
-            {
-                _isInitializationComplete = true;
-                StartActivity(typeof(FormsApplicationActivity));
-            }
+            StartActivity(typeof(FormsApplicationActivity));
+            base.TriggerFirstNavigate();
         }
 
         protected override void OnCreate(Android.OS.Bundle bundle)

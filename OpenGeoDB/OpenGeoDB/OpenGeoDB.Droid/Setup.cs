@@ -1,6 +1,6 @@
 using Android.Content;
 using MvvmCross.Core.ViewModels;
-using MvvmCross.Forms.Droid;
+using MvvmCross.Forms.Droid.Platform;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Platform;
 using Plugin.Settings;

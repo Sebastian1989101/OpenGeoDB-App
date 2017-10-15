@@ -2,8 +2,9 @@
 
 <mvx:MvxContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    x:Class="OpenGeoDB.Core.Pages.LegalContentPage"
-                    xmlns:mvx="clr-namespace:MvvmCross.Forms.Core;assembly=MvvmCross.Forms"
+                    x:Class="OpenGeoDB.Core.Pages.LegalContentPage" x:TypeArguments="vm:LegalContentViewModel"
+                    xmlns:vm="clr-namespace:OpenGeoDB.Core.ViewModels;assembly=OpenGeoDB.Core"
+                    xmlns:mvx="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                     xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls;assembly=OpenGeoDB.Core"
                     Title="{Binding Title}" x:Name="Page">
 

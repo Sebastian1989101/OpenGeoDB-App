@@ -39,7 +39,8 @@ namespace OpenGeoDB.Core
 
             Resources.AppResources.Culture = Mvx.Resolve<Services.ILocalizeService>().GetCurrentCultureInfo();
 
-            RegisterNavigationServiceAppStart<ViewModels.MainViewModel>();
+            Mvx.ConstructAndRegisterSingleton<IMvxAppStart, AppStart>();
+            RegisterAppStart(Mvx.Resolve<IMvxAppStart>());
         }
     }
 }

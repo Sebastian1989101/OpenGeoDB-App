@@ -1,8 +1,6 @@
-﻿using MvvmCross.Forms.Core;
-
-namespace OpenGeoDB.Core.Pages
+﻿namespace OpenGeoDB.Core.Pages
 {
-    public partial class UsedSoftwarePage : MvxContentPage
+    public partial class UsedSoftwarePage
     {
         public UsedSoftwarePage()
         {
