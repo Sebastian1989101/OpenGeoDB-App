@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCopyright("Copyright © 2017 Sebastian Kruse")]
 [assembly: AssemblyTrademark("")]
 
-[assembly: AssemblyVersion("1.0.0.17225")]
+[assembly: AssemblyVersion("1.1.0.17292")]
 
 [assembly: InternalsVisibleTo("OpenGeoDB.UITests")] 
 [assembly: InternalsVisibleTo("OpenGeoDB.UnitTests")] 
