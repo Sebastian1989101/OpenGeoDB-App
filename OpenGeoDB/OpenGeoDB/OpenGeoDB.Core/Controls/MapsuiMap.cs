@@ -72,6 +72,8 @@ namespace OpenGeoDB.Core.Controls
                 NativeMap.BackColor = Color.White;
 
             var mapLayer = OpenStreetMap.CreateTileLayer();
+            mapLayer.Attribution.Text = "© OpenStreetMap";
+
             NativeMap.Layers.Add(mapLayer);
 
             NativeMap.Info += (sender, e) => 
