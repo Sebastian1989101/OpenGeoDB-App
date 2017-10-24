@@ -745,7 +745,13 @@ namespace OpenGeoDB.Droid
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.abc_textfield_search_material = global::OpenGeoDB.Droid.Resource.Drawable.abc_textfield_search_material;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.abc_vector_test = global::OpenGeoDB.Droid.Resource.Drawable.abc_vector_test;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password = global::OpenGeoDB.Droid.Resource.Drawable.avd_hide_password;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password_1 = global::OpenGeoDB.Droid.Resource.Drawable.avd_hide_password_1;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password_2 = global::OpenGeoDB.Droid.Resource.Drawable.avd_hide_password_2;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_hide_password_3 = global::OpenGeoDB.Droid.Resource.Drawable.avd_hide_password_3;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password = global::OpenGeoDB.Droid.Resource.Drawable.avd_show_password;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password_1 = global::OpenGeoDB.Droid.Resource.Drawable.avd_show_password_1;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password_2 = global::OpenGeoDB.Droid.Resource.Drawable.avd_show_password_2;
+			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.avd_show_password_3 = global::OpenGeoDB.Droid.Resource.Drawable.avd_show_password_3;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.design_bottom_navigation_item_background = global::OpenGeoDB.Droid.Resource.Drawable.design_bottom_navigation_item_background;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.design_fab_background = global::OpenGeoDB.Droid.Resource.Drawable.design_fab_background;
 			global::MvvmCross.Droid.Support.V7.AppCompat.Resource.Drawable.design_ic_visibility = global::OpenGeoDB.Droid.Resource.Drawable.design_ic_visibility;
