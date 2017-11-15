@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
@@ -11,7 +12,9 @@ namespace OpenGeoDB.Core.ViewModels
     public class MainViewModel : MvxViewModel
 	{
 		private readonly LocationRepository _locationsRepository;
-		private readonly IAppSettings _appSettings;
+        private readonly IAppSettings _appSettings;
+
+        private readonly IMvxNavigationService _navigationService;
 
         private Location[] _locations;
         string filter;
@@ -34,14 +37,15 @@ namespace OpenGeoDB.Core.ViewModels
         public MvxCommand FilterLocationsCommand { get; }
         public MvxCommand<string> ShowDetailsCommand { get; }
 
-        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings)
+        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IMvxNavigationService navigationService)
         {
-			// Fields
-			_locationsRepository = locationsRepository;
+            // Fields
+            _locationsRepository = locationsRepository;
 			_appSettings = appSettings;
+            _navigationService = navigationService;
 
             // Commands
-            ShowSettingsCommand = new MvxCommand(() => ShowViewModel<SettingsViewModel>());
+            ShowSettingsCommand = new MvxCommand(() => _navigationService.Navigate<SettingsViewModel>());
 
             FilterLocationsCommand = new MvxCommand(OnFilterLocationsCommandExecute);
             ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);
@@ -94,9 +98,9 @@ namespace OpenGeoDB.Core.ViewModels
                                     .Select(grp => grp).ToArray();
             
             if (result.Length == 1)
-                ShowViewModel<DetailViewModel, Location>(result.First());
+                _navigationService.Navigate<DetailViewModel, Location>(result.First());
             else 
-                ShowViewModel<ChooseZipViewModel, Location[]>(result);
+                _navigationService.Navigate<ChooseZipViewModel, Location[]>(result);
 		}
 
 		private bool CanExecuteShowDetailsCommand(string key)

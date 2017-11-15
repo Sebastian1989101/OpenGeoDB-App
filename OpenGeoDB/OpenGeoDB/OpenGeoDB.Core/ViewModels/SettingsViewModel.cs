@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.DependencyServices;
 using OpenGeoDB.Core.Model.Data;
@@ -21,14 +22,14 @@ namespace OpenGeoDB.Core.ViewModels
         public MvxCommand ShowPrivacyPolicyCommand { get; }
         public MvxCommand ShowImprintCommand { get; }
 
-        public SettingsViewModel(IVersionService versionService, IAppSettings settings)
+        public SettingsViewModel(IVersionService versionService, IAppSettings settings, IMvxNavigationService navigationService)
 		{
             Version = versionService.GetAppVersion();
             Settings = settings;
 
-            ShowUsedSoftwareCommand = new MvxCommand(() => ShowViewModel<UsedSoftwareViewModel>());
-            ShowPrivacyPolicyCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_PrivacyPolicy, AppResources.PrivacyPolicy_Content }));
-            ShowImprintCommand = new MvxCommand(() => ShowViewModel<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_Imprint, AppResources.Imprint_Content }));
+            ShowUsedSoftwareCommand = new MvxCommand(() => navigationService.Navigate<UsedSoftwareViewModel>());
+            ShowPrivacyPolicyCommand = new MvxCommand(() => navigationService.Navigate<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_PrivacyPolicy, AppResources.PrivacyPolicy_Content }));
+            ShowImprintCommand = new MvxCommand(() => navigationService.Navigate<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_Imprint, AppResources.Imprint_Content }));
         }
     }
 }
