@@ -2,6 +2,7 @@ using Android.Content;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Forms.Droid.Platform;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Logging;
 using MvvmCross.Platform.Platform;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
@@ -31,5 +32,7 @@ namespace OpenGeoDB.Droid
         {
             return new Core.DebugTrace();
         }
+
+        protected override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.None;
     }
 }

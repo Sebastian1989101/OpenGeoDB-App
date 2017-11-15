@@ -2,6 +2,7 @@
 using MvvmCross.Forms.iOS;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
+using MvvmCross.Platform.Logging;
 using MvvmCross.Platform.Platform;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
@@ -33,5 +34,7 @@ namespace OpenGeoDB.iOS
         {
             return new Core.DebugTrace();
         }
+
+        protected override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.None;
     }
 }

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.9.0\build\net35\NUnit3TestAdapter.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -26,37 +26,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MvvmCross.Binding, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.5.3.2\lib\net45\MvvmCross.Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Binding.Wpf, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.5.3.2\lib\net45\MvvmCross.Binding.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Core, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.5.3.2\lib\net45\MvvmCross.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Localization, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Binding.5.3.2\lib\net45\MvvmCross.Localization.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.5.3.2\lib\net45\MvvmCross.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Platform.Wpf, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Platform.5.3.2\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="MvvmCross.Wpf, Version=5.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MvvmCross.Core.5.3.2\lib\net45\MvvmCross.Wpf.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.3.8.1\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.7.142\lib\net45\Moq.dll</HintPath>
+      <HintPath>..\packages\Moq.4.7.145\lib\net45\Moq.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform">
+      <HintPath>..\packages\MvvmCross.Platform.5.4.2\lib\net45\MvvmCross.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Platform.Wpf">
+      <HintPath>..\packages\MvvmCross.Platform.5.4.2\lib\net45\MvvmCross.Platform.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Core">
+      <HintPath>..\packages\MvvmCross.Core.5.4.2\lib\net45\MvvmCross.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Wpf">
+      <HintPath>..\packages\MvvmCross.Core.5.4.2\lib\net45\MvvmCross.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding">
+      <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\net45\MvvmCross.Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Binding.Wpf">
+      <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\net45\MvvmCross.Binding.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Localization">
+      <HintPath>..\packages\MvvmCross.Binding.5.4.2\lib\net45\MvvmCross.Localization.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
