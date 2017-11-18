@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
-using OpenGeoDB.Core.DependencyServices;
+using OpenGeoDB.Core.Services;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
-using OpenGeoDB.Core.Services;
 using OpenGeoDB.UnitTests.Mocks;
+using OpenGeoDB.Core.DependencyServices;
 
 namespace OpenGeoDB.UnitTests.Tests.Repository
 {

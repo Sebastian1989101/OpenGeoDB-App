@@ -4,9 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using OpenGeoDB.Core.DependencyServices;
-using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Services;
+using OpenGeoDB.Core.Model.Data;
+using OpenGeoDB.Core.DependencyServices;
 
 namespace OpenGeoDB.Core.Repository
 {

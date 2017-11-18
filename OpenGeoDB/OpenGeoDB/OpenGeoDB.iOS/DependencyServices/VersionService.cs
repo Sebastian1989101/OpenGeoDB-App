@@ -6,7 +6,7 @@ using Xamarin.Forms;
 [assembly: Dependency(typeof(VersionService))]
 namespace OpenGeoDB.iOS.DependencyServices
 {
-	public class VersionService : IVersionService
+    public class VersionService : IVersionService
 	{
 		public string GetAppVersion()
 		{

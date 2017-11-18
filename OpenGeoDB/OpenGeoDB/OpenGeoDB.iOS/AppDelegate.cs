@@ -1,8 +1,11 @@
-﻿using Foundation;
+﻿using System.Diagnostics;
+using Foundation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
+using OpenGeoDB.Core.Services;
 using UIKit;
+using Xamarin.Forms;
 
 namespace OpenGeoDB.iOS
 {
@@ -31,6 +34,17 @@ namespace OpenGeoDB.iOS
 
             Window.MakeKeyAndVisible();
 
+            NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidChangeStatusBarOrientationNotification, n =>
+                {
+                    UpdateDeviceMargins();
+                });
+
+            NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidChangeStatusBarFrameNotification, n =>
+                {
+                    UpdateDeviceMargins();
+                });
+
+            UpdateDeviceMargins();
             return true;
         }
 
@@ -63,6 +77,23 @@ namespace OpenGeoDB.iOS
         public override void WillTerminate(UIApplication application)
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+        }
+
+        private void UpdateDeviceMargins()
+        {
+            if (UIDevice.CurrentDevice.CheckSystemVersion(11, 0))
+            {
+                var deviceInfo = Mvx.Resolve<IDeviceInfoService>();
+                var safeArea = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
+
+                Debug.WriteLine($"Device Orientation: {UIApplication.SharedApplication.StatusBarOrientation}");
+                Debug.WriteLine($"Device margin: Bottom ({safeArea.Bottom})");
+                Debug.WriteLine($"Device margin: Left ({safeArea.Left})");
+                Debug.WriteLine($"Device margin: Top ({safeArea.Top})");
+                Debug.WriteLine($"Device margin: Right ({safeArea.Right})");
+
+                deviceInfo.SetDeviceMargins(new Thickness(safeArea.Left, safeArea.Top, safeArea.Right, safeArea.Bottom));
+            }
         }
     }
 }

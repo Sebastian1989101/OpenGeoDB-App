@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
-using OpenGeoDB.Core.DependencyServices;
+using OpenGeoDB.Core.Services;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Resources;
-using OpenGeoDB.Core.Services;
+using OpenGeoDB.Core.DependencyServices;
 
 namespace OpenGeoDB.Core.ViewModels
 {

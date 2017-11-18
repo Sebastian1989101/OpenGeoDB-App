@@ -29,7 +29,6 @@
 
         <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true" SeparatorVisibility="Default"
                   GroupDisplayBinding="{Binding Category}" GroupShortNameBinding="{Binding ShortCategory}">
-
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Key}" Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}" 

@@ -13,29 +13,27 @@ namespace OpenGeoDB.Core.Pages
         {
             if (width > height)
             {
-                Grid.SetRow(LatitudePanel, 1);
+                Grid.SetRow(LatitudePanel, 0);
                 Grid.SetColumn(LatitudePanel, 0);
                 Grid.SetColumnSpan(LatitudePanel, 1);
 
-                Grid.SetRow(LongitudePanel, 1);
+                Grid.SetRow(LongitudePanel, 0);
                 Grid.SetColumn(LongitudePanel, 1);
                 Grid.SetColumnSpan(LongitudePanel, 1);
 
-                Grid.SetRow(MapsuiPanel, 2);
-                Grid.SetRowSpan(MapsuiPanel, 2);
+                LatLongGrid.RowSpacing = 0;
             }
             else
             {
-                Grid.SetRow(LatitudePanel, 1);
+                Grid.SetRow(LatitudePanel, 0);
                 Grid.SetColumn(LatitudePanel, 0);
                 Grid.SetColumnSpan(LatitudePanel, 2);
 
-                Grid.SetRow(LongitudePanel, 2);
+                Grid.SetRow(LongitudePanel, 1);
                 Grid.SetColumn(LongitudePanel, 0);
                 Grid.SetColumnSpan(LongitudePanel, 2);
 
-                Grid.SetRow(MapsuiPanel, 3);
-                Grid.SetRowSpan(MapsuiPanel, 1);
+                LatLongGrid.RowSpacing = 10;
             }
 
             base.OnSizeAllocated(width, height);
