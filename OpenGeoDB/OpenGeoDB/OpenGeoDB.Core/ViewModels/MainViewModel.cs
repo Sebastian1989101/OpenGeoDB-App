@@ -15,8 +15,9 @@ namespace OpenGeoDB.Core.ViewModels
         private readonly IAppSettings _appSettings;
 
         private readonly IMvxNavigationService _navigationService;
+	    private readonly IDeviceInfoService _deviceInfoService;
 
-        private Location[] _locations;
+	    private Location[] _locations;
         string filter;
 
         public string Filter
@@ -32,23 +33,30 @@ namespace OpenGeoDB.Core.ViewModels
 
         public LocationCategoryGroup[] Data { get; private set; }
 
+	    public double BottomSafeArea => _deviceInfoService.GetDeviceMargins().Bottom;
+
         public MvxCommand ShowSettingsCommand { get; }
 
         public MvxCommand FilterLocationsCommand { get; }
         public MvxCommand<string> ShowDetailsCommand { get; }
 
-        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IMvxNavigationService navigationService)
+        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IMvxNavigationService navigationService, IDeviceInfoService deviceInfoService)
         {
             // Fields
             _locationsRepository = locationsRepository;
 			_appSettings = appSettings;
+
             _navigationService = navigationService;
+            _deviceInfoService = deviceInfoService;
 
             // Commands
             ShowSettingsCommand = new MvxCommand(() => _navigationService.Navigate<SettingsViewModel>());
 
             FilterLocationsCommand = new MvxCommand(OnFilterLocationsCommandExecute);
             ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);
+
+            // Events
+            _deviceInfoService.DeviceMarginsChanged += delegate { RaisePropertyChanged(nameof(BottomSafeArea)); };
         }
 
         public override async void Start()

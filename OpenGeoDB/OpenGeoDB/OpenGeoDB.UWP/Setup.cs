@@ -5,6 +5,7 @@ using MvvmCross.Platform.Platform;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using Windows.ApplicationModel.Activation;
+using MvvmCross.Platform.Logging;
 using XamlControls = Windows.UI.Xaml.Controls;
 
 namespace OpenGeoDB.UWP
@@ -35,5 +36,7 @@ namespace OpenGeoDB.UWP
         {
             return new Core.DebugTrace();
         }
+
+        protected override MvxLogProviderType GetDefaultLogProviderType() => MvxLogProviderType.None;
     }
 }

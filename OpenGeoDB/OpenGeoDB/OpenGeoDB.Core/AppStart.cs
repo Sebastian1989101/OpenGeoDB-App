@@ -2,6 +2,7 @@ using System.Diagnostics;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.ViewModels;
+using Xamarin.Forms;
 
 namespace OpenGeoDB.Core
 {
@@ -18,6 +19,12 @@ namespace OpenGeoDB.Core
         {
             try
             {
+                if (Device.RuntimePlatform == Device.WinPhone || Device.RuntimePlatform == Device.WinRT || Device.RuntimePlatform == Device.UWP)
+                {
+                    _navigationService.Navigate<MainViewModel>();
+                    return;
+                }
+
                 _navigationService.Navigate<MainViewModel>().GetAwaiter().GetResult();
             }
             catch (System.Exception e)

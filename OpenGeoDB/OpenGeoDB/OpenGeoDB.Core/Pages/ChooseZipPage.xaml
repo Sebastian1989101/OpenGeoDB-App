@@ -6,14 +6,25 @@
                     xmlns:vm="clr-namespace:OpenGeoDB.Core.ViewModels;assembly=OpenGeoDB.Core"
                     xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
                     xmlns:mvx="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls;assembly=OpenGeoDB.Core"
                     Title="{res:TranslateExtension ChooseZipPage_Title}" x:Name="Page">
 
-    <ListView ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False" SeparatorVisibility="Default">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}"
-                          Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+      
+        <ListView Grid.Row="0" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False"
+                  SeparatorVisibility="Default" ItemSelected="OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <controls:DetailActionViewCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}"
+                                                   Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Grid Grid.Row="1" BackgroundColor="WhiteSmoke" HeightRequest="{Binding BottomSafeArea}" />
+    </Grid>
 </mvx:MvxContentPage>

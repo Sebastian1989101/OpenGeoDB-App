@@ -2,21 +2,29 @@
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.Model.Data;
+using OpenGeoDB.Core.Services;
 
 namespace OpenGeoDB.Core.ViewModels
 {
     public class ChooseZipViewModel : MvxViewModel<Location[]>
     {
         private readonly IMvxNavigationService _navigationService;
+        private readonly IDeviceInfoService _deviceInfoService;
 
         public Location[] Data { get; private set; }
 
-		public MvxCommand<string> ShowDetailsCommand { get; }
+        public double BottomSafeArea => _deviceInfoService.GetDeviceMargins().Bottom;
 
-        public ChooseZipViewModel(IMvxNavigationService navigationService)
+        public MvxCommand<string> ShowDetailsCommand { get; }
+
+        public ChooseZipViewModel(IMvxNavigationService navigationService, IDeviceInfoService deviceInfoService)
         {
             _navigationService = navigationService;
-            ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);   
+            _deviceInfoService = deviceInfoService;
+
+            ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);
+
+            _deviceInfoService.DeviceMarginsChanged += delegate { RaisePropertyChanged(nameof(BottomSafeArea)); };
         }
 
         public override void Prepare(Location[] parameter)

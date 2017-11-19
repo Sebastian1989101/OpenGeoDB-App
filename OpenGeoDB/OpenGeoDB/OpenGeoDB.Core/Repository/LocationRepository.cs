@@ -42,7 +42,7 @@ namespace OpenGeoDB.Core.Repository
                             ID = Convert.ToInt32(match.Groups["id"].Value),
                             
 	                        ZipCode = match.Groups["zip"].Value, 
-	                        Village = match.Groups["vil"].Value,
+	                        Village = match.Groups["vil"].Value?.Trim(),
 
 	                        Latitude = Convert.ToDouble(match.Groups["lat"].Value, CultureInfo.InvariantCulture),
                             Longitude = Convert.ToDouble(match.Groups["lon"].Value, CultureInfo.InvariantCulture)

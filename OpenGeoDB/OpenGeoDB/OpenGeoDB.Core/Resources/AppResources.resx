@@ -324,4 +324,7 @@
 &lt;/body&gt;
 &lt;/html&gt;</value>
   </data>
+  <data name="SearchBar_Placeholder" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>

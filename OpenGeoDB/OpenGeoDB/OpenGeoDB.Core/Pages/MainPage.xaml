@@ -7,6 +7,7 @@
                     xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
                     xmlns:mvx="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                     xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
+                    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls;assembly=OpenGeoDB.Core"
                     Title="{res:TranslateExtension MainPage_Title}" x:Name="Page">
 
     <mvx:MvxContentPage.Resources>
@@ -23,18 +24,31 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <SearchBar Grid.Row="0" Text="{Binding Filter}" SearchCommand="{Binding FilterLocationsCommand}" />
+        <SearchBar Grid.Row="0" Text="{Binding Filter}" SearchCommand="{Binding FilterLocationsCommand}"
+                   Placeholder="{res:TranslateExtension SearchBar_Placeholder}" />
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true" SeparatorVisibility="Default"
-                  GroupDisplayBinding="{Binding Category}" GroupShortNameBinding="{Binding ShortCategory}">
+        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true"
+                  SeparatorVisibility="Default" GroupShortNameBinding="{Binding ShortCategory}"
+                  ItemSelected="OnItemSelected">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <controls:GroupHeaderViewCell Header="{Binding Category}" />
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Key}" Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}" 
-                              Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}" CommandParameter="{Binding Key}" />
+                    <controls:DetailActionViewCell Text="{Binding Key}"
+                                                   Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}"
+                                                   Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}"
+                                                   CommandParameter="{Binding Key}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <Grid Grid.Row="2" BackgroundColor="WhiteSmoke" HeightRequest="{Binding BottomSafeArea}" />
     </Grid>
 </mvx:MvxContentPage>

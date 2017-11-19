@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using Foundation;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
+using OpenGeoDB.Core.Pages;
 using OpenGeoDB.Core.Services;
 using UIKit;
 using Xamarin.Forms;
@@ -15,6 +17,7 @@ namespace OpenGeoDB.iOS
     public class AppDelegate : MvxApplicationDelegate
     {
         // class-level declarations
+        private bool _finishedLaunching;
 
         public override UIWindow Window
         {
@@ -45,6 +48,8 @@ namespace OpenGeoDB.iOS
                 });
 
             UpdateDeviceMargins();
+            _finishedLaunching = true;
+
             return true;
         }
 
@@ -77,6 +82,40 @@ namespace OpenGeoDB.iOS
         public override void WillTerminate(UIApplication application)
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+        }
+
+        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
+        {
+            if (Xamarin.Forms.Application.Current?.MainPage != null)
+            {
+                if (HasSafeArea() && CurrentPageIsOfType<SettingsPage>())
+                {
+                    if (UIApplication.SharedApplication.StatusBarOrientation != UIInterfaceOrientation.Portrait)
+                        UIDevice.CurrentDevice.SetValueForKey(NSNumber.FromInt32((int)UIInterfaceOrientationMask.Portrait), (NSString)"orientation");
+
+                    return UIInterfaceOrientationMask.Portrait;
+                }
+            }
+
+            if (Device.Idiom == TargetIdiom.Phone)
+                return UIInterfaceOrientationMask.AllButUpsideDown;
+
+            return UIInterfaceOrientationMask.All;
+        }
+
+        private bool CurrentPageIsOfType<TPageType>()
+        {
+            var mainPage = Xamarin.Forms.Application.Current.MainPage;
+            return mainPage is TPageType || (mainPage as NavigationPage)?.CurrentPage is TPageType || mainPage.Navigation?.ModalStack.LastOrDefault() is TPageType;
+        }
+
+        private bool HasSafeArea()
+        {
+            if (!_finishedLaunching)
+                return false;
+
+            var safeArea = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
+            return safeArea.Top > 0 || safeArea.Left > 0 || safeArea.Top > 0 || safeArea.Bottom > 0;
         }
 
         private void UpdateDeviceMargins()
