@@ -175,7 +175,7 @@ namespace OpenGeoDB.Core.Controls
 
         private static SymbolStyle GetSymbolStyle(string icon)
 		{
-            Assembly assembly = typeof(App).GetTypeInfo().Assembly;
+            Assembly assembly = typeof(CoreApp).GetTypeInfo().Assembly;
 			Stream image = assembly.GetManifestResourceStream(icon);
 			int bitmapId = BitmapRegistry.Instance.Register(image);
 

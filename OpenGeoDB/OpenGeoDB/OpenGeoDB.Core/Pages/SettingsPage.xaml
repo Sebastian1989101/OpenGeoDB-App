@@ -19,7 +19,7 @@
         <TableRoot>
             <TableSection>
                 <ViewCell>
-                    <StackLayout Orientation="Vertical" Spacing="0" Padding="10">
+                    <StackLayout Orientation="Vertical" Spacing="0" Padding="10" HorizontalOptions="Center">
                         <Label Text="PLZ Suche" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" LineBreakMode="NoWrap" />
                         <Label Text="{Binding Version}" FontSize="12" Margin="0" HorizontalOptions="Center" LineBreakMode="NoWrap" />
                     </StackLayout>
@@ -27,63 +27,19 @@
             </TableSection>
 
             <TableSection Title="{res:TranslateExtension TableSection_Settings}">
-                <SwitchCell Text="{res:TranslateExtension ViewCell_OrderByZipCode}" On="{Binding Settings.OrderByZipCode}" />
+                <SwitchCell Text="{res:TranslateExtension ViewCell_OrderByZipCode}" 
+                            On="{Binding Settings.OrderByZipCode}" />
+                
+                <TextCell Text="{res:TranslateExtension ViewCell_NearbyMarkerCount}"
+                          Detail="{Binding Settings.NearbyMarkerCount}"
+                          Command="{Binding ChooseNearbyMarkerCountCommand}" />
 
-                <ViewCell>
-                    <Grid ColumnSpacing="25">
-                        <Grid.Padding>
-                            <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="iOS" Value="15,12" />
-                                <On Platform="Android" Value="17,0,5,0" />
-                                <On Platform="Windows" Value="0,5,5,5" />
-                            </OnPlatform>
-                        </Grid.Padding>
+                <SwitchCell Text="{res:TranslateExtension ViewCell_ShowZipCodeAboveNearbyMarker}" 
+                            On="{Binding Settings.ShowZipCodeAboveNearbyMarker}" />
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_NearbyMarkerCount}" VerticalOptions="Center">
-                            <Label.FontAttributes>
-                                <OnPlatform x:TypeArguments="FontAttributes">
-                                    <On Platform="Windows" Value="Bold" />
-                                </OnPlatform>
-                            </Label.FontAttributes>
-                        </Label>
-                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableNearbyMarkerCount}"
-                                SelectedItem="{Binding Settings.NearbyMarkerCount}" VerticalOptions="Center" />
-                    </Grid>
-                </ViewCell>
-
-                <SwitchCell Text="{res:TranslateExtension ViewCell_ShowZipCodeAboveNearbyMarker}" On="{Binding Settings.ShowZipCodeAboveNearbyMarker}" />
-
-                <ViewCell>
-                    <Grid ColumnSpacing="25">
-                        <Grid.Padding>
-                            <OnPlatform x:TypeArguments="Thickness">
-                                <On Platform="iOS" Value="15,12" />
-                                <On Platform="Android" Value="17,0,5,0" />
-                                <On Platform="Windows" Value="0,5,5,5" />
-                            </OnPlatform>
-                        </Grid.Padding>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.Column="0" Text="{res:TranslateExtension ViewCell_DistanceType}" VerticalOptions="Center">
-                            <Label.FontAttributes>
-                                <OnPlatform x:TypeArguments="FontAttributes">
-                                    <On Platform="Windows" Value="Bold" />
-                                </OnPlatform>
-                            </Label.FontAttributes>
-                        </Label>
-                        <Picker Grid.Column="1" ItemsSource="{Binding AvailableDistanceTypes}" SelectedItem="{Binding Settings.DistanceType}"
-                                ItemDisplayBinding="{Binding Path=., Converter={StaticResource DistanceTypeConverter}}" VerticalOptions="Center" />
-                    </Grid>
-                </ViewCell>
+                <TextCell Text="{res:TranslateExtension ViewCell_DistanceType}"
+                          Detail="{Binding Path=Settings.DistanceType, Converter={StaticResource DistanceTypeConverter}}"
+                          Command="{Binding ChooseDistanceTypeCommand}" />
             </TableSection>
 
             <TableSection Title="{res:TranslateExtension TableSection_Legal}">
@@ -94,7 +50,7 @@
 
             <TableSection>
                 <ViewCell>
-                    <StackLayout Orientation="Vertical" Spacing="15" Padding="10,20">
+                    <StackLayout Orientation="Vertical" Spacing="15" Padding="10,20" HorizontalOptions="Center">
                         <Label Text="Designed and developed by Sebastian Kruse" FontSize="12" HorizontalOptions="Center" LineBreakMode="NoWrap" />
                         <Label Text="Copyright © 2017 Sebastian Kruse" FontSize="12" HorizontalOptions="Center" LineBreakMode="NoWrap" />
                     </StackLayout>

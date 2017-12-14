@@ -11,7 +11,7 @@ namespace OpenGeoDB.Core.Pages
 
         protected override void OnSizeAllocated(double width, double height)
         {
-            if (width > height)
+            if (width > height || width >= 375)
             {
                 Grid.SetRow(LatitudePanel, 0);
                 Grid.SetColumn(LatitudePanel, 0);

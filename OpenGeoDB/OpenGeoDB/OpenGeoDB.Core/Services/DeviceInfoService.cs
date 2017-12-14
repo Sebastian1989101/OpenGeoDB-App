@@ -5,15 +5,22 @@ namespace OpenGeoDB.Core.Services
 {
     public interface IDeviceInfoService
     {
+        float Width { get; }
+        float Height { get; }
+
         event EventHandler DeviceMarginsChanged;
 
         Thickness GetDeviceMargins();
-        void SetDeviceMargins(Thickness deviceMargins);
+        void SetDeviceValues(Thickness deviceMargins, float width, float height);
     }
 
     public class DeviceInfoService : IDeviceInfoService
     {
         private Thickness _deviceMargins = new Thickness(0);
+        private float _width, _height;
+
+        public float Width => _width;
+        public float Height => _height;
 
         public event EventHandler DeviceMarginsChanged;
 
@@ -22,8 +29,11 @@ namespace OpenGeoDB.Core.Services
             return _deviceMargins;
         }
 
-        public void SetDeviceMargins(Thickness deviceMargins)
+        public void SetDeviceValues(Thickness deviceMargins, float width, float height)
         {
+            _width = width;
+            _height = height;
+
             _deviceMargins = deviceMargins;
             DeviceMarginsChanged?.Invoke(this, null);
         }

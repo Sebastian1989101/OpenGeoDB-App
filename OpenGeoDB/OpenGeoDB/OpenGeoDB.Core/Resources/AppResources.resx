@@ -327,4 +327,7 @@
   <data name="SearchBar_Placeholder" xml:space="preserve">
     <value>Search</value>
   </data>
+	<data name="ProgressDialog_Loading" xml:space="preserve">
+		<value>Loading...</value>
+	</data>
 </root>

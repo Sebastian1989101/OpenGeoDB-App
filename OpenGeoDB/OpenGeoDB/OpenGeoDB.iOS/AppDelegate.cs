@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using Foundation;
 using MvvmCross.Core.ViewModels;
@@ -84,25 +85,6 @@ namespace OpenGeoDB.iOS
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
 
-        public override UIInterfaceOrientationMask GetSupportedInterfaceOrientations(UIApplication application, UIWindow forWindow)
-        {
-            if (Xamarin.Forms.Application.Current?.MainPage != null)
-            {
-                if (HasSafeArea() && CurrentPageIsOfType<SettingsPage>())
-                {
-                    if (UIApplication.SharedApplication.StatusBarOrientation != UIInterfaceOrientation.Portrait)
-                        UIDevice.CurrentDevice.SetValueForKey(NSNumber.FromInt32((int)UIInterfaceOrientationMask.Portrait), (NSString)"orientation");
-
-                    return UIInterfaceOrientationMask.Portrait;
-                }
-            }
-
-            if (Device.Idiom == TargetIdiom.Phone)
-                return UIInterfaceOrientationMask.AllButUpsideDown;
-
-            return UIInterfaceOrientationMask.All;
-        }
-
         private bool CurrentPageIsOfType<TPageType>()
         {
             var mainPage = Xamarin.Forms.Application.Current.MainPage;
@@ -125,13 +107,25 @@ namespace OpenGeoDB.iOS
                 var deviceInfo = Mvx.Resolve<IDeviceInfoService>();
                 var safeArea = UIApplication.SharedApplication.KeyWindow.SafeAreaInsets;
 
-                Debug.WriteLine($"Device Orientation: {UIApplication.SharedApplication.StatusBarOrientation}");
+                var width = UIScreen.MainScreen.Bounds.Width;
+                var height = UIScreen.MainScreen.Bounds.Height;
+
+                var deviceOrientation = UIApplication.SharedApplication.StatusBarOrientation;
+                if ((!UIApplication.SharedApplication.StatusBarHidden || deviceOrientation == UIInterfaceOrientation.Portrait) && safeArea.Top == 0)
+                {
+                    nfloat statusBarHeight = UIApplication.SharedApplication.StatusBarFrame.Height;
+                    Debug.WriteLine($"Change top to status bar height: {statusBarHeight}");
+
+                    safeArea.Top = statusBarHeight;
+                }
+
+                Debug.WriteLine($"Device Orientation: {deviceOrientation}");
                 Debug.WriteLine($"Device margin: Bottom ({safeArea.Bottom})");
                 Debug.WriteLine($"Device margin: Left ({safeArea.Left})");
                 Debug.WriteLine($"Device margin: Top ({safeArea.Top})");
                 Debug.WriteLine($"Device margin: Right ({safeArea.Right})");
 
-                deviceInfo.SetDeviceMargins(new Thickness(safeArea.Left, safeArea.Top, safeArea.Right, safeArea.Bottom));
+                deviceInfo.SetDeviceValues(new Thickness(safeArea.Left, safeArea.Top, safeArea.Right, safeArea.Bottom), (float)width, (float)height);
             }
         }
     }

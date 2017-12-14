@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Threading.Tasks;
+using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
@@ -11,10 +12,12 @@ namespace OpenGeoDB.Core.ViewModels
     public class DetailViewModel : MvxViewModel<Location>, INotifyPropertyChanged
     {
         private readonly LocationRepository _locationsRepository;
+
         private readonly IAppSettings _appSettings;
+        private readonly IProgressDialog _progressDialogs;
         private readonly IDeviceInfoService _deviceInfoService;
 
-        public bool IsLoading { get; private set; }
+        public string Title => $"{Location.ZipCode} {Location.Village}";
 
         public Location Location { get; private set; }
         public Location[] NearbyMarker { get; private set; }
@@ -24,17 +27,25 @@ namespace OpenGeoDB.Core.ViewModels
             get
             {
                 var margin = _deviceInfoService.GetDeviceMargins();
-                return new Thickness(margin.Left, 0, margin.Right, 0);
+                return new Thickness(margin.Left, 10, margin.Right, 0);
             }
         }
 
         public MvxAsyncCommand<Location> ChangeLocationCommand { get; }
 
-        public DetailViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IDeviceInfoService deviceInfoService)
+        public DetailViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IUserDialogs userDialogs, IDeviceInfoService deviceInfoService)
         {
             _locationsRepository = locationsRepository;
+
             _appSettings = appSettings;
             _deviceInfoService = deviceInfoService;
+
+            _progressDialogs = userDialogs.Progress(new ProgressDialogConfig
+                {
+                    Title = Resources.AppResources.ProgressDialog_Loading,
+                    IsDeterministic = false,
+                    AutoShow = false
+                });
 
             ChangeLocationCommand = new MvxAsyncCommand<Location>(OnChangeLocationCommandExecute);
 
@@ -46,7 +57,7 @@ namespace OpenGeoDB.Core.ViewModels
 
         public override void Prepare(Location parameter)
         {
-            Task.Run(() => SetLocation(parameter));
+            Task.Run(() => SetLocation(parameter, true));
 		}
 
 		private async Task OnChangeLocationCommandExecute(Location location)
@@ -54,18 +65,20 @@ namespace OpenGeoDB.Core.ViewModels
 			await SetLocation(location);
 		}
 
-        private async Task SetLocation(Location location)
+        private async Task SetLocation(Location location, bool isPreparing = false)
         {
 			try
             {
-                IsLoading = true;
+                if (!isPreparing)
+                    _progressDialogs.Show();
 
                 Location = location;
                 NearbyMarker = await _locationsRepository.GetNearbyEntries(location, _appSettings.NearbyMarkerCount, false);
             }
             finally
             {
-                IsLoading = false;
+                if (!isPreparing && _progressDialogs.IsShowing)
+                    _progressDialogs.Hide();
             }
         }
     }

@@ -1,5 +1,6 @@
 ﻿using MvvmCross.Core.ViewModels;
 using MvvmCross.Forms.iOS;
+using MvvmCross.Forms.Platform;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Logging;
@@ -26,6 +27,11 @@ namespace OpenGeoDB.iOS
         }
 
         protected override IMvxApplication CreateApp()
+        {
+            return new Core.CoreApp();
+        }
+
+        protected override MvxFormsApplication CreateFormsApplication()
         {
             return new Core.App();
         }

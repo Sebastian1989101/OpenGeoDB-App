@@ -1,6 +1,7 @@
 using Android.Content;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.Forms.Droid.Platform;
+using MvvmCross.Forms.Platform;
 using MvvmCross.Platform;
 using MvvmCross.Platform.Logging;
 using MvvmCross.Platform.Platform;
@@ -24,6 +25,11 @@ namespace OpenGeoDB.Droid
         }
 
         protected override IMvxApplication CreateApp()
+        {
+            return new Core.CoreApp();
+        }
+
+        protected override MvxFormsApplication CreateFormsApplication()
         {
             return new Core.App();
         }

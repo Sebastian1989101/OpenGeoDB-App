@@ -4,25 +4,17 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="OpenGeoDB.Core.Pages.DetailPage" x:TypeArguments="vm:DetailViewModel"
                     xmlns:vm="clr-namespace:OpenGeoDB.Core.ViewModels;assembly=OpenGeoDB.Core"
-                    xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
                     xmlns:mvx="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                     xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls"
-                    Title="{res:TranslateExtension DetailPage_Title}" x:Name="Page">
+                    Title="{Binding Title}" x:Name="Page">
 
     <Grid x:Name="ContentGrid" RowSpacing="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackLayout Grid.Row="0" Orientation="Horizontal"
-                     HorizontalOptions="Center" Padding="0,10">
-            <Label Text="{Binding Location.ZipCode}" LineBreakMode="NoWrap" FontAttributes="Bold" FontSize="24" />
-            <Label Text="{Binding Location.Village}" LineBreakMode="NoWrap" FontAttributes="Bold" FontSize="24" />
-        </StackLayout>
-
-        <Grid Grid.Row="1" x:Name="LatLongGrid" RowSpacing="10" Margin="{Binding SafeAreaMargins}">
+        <Grid Grid.Row="0" x:Name="LatLongGrid" RowSpacing="10" Margin="{Binding SafeAreaMargins}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -45,14 +37,11 @@
             </StackLayout>
         </Grid>
 
-        <controls:MapsuiMap Grid.Row="2" x:Name="MapsuiPanel"
+        <controls:MapsuiMap Grid.Row="1" x:Name="MapsuiPanel"
                             BackgroundColor="{Binding BackgroundColor, Source={x:Reference Page}}"
                             ChooseLocationCommand="{Binding ChangeLocationCommand}"
                             FocusLatitude="{Binding Location.Latitude}"
                             FocusLongitude="{Binding Location.Longitude}"
                             MapMarker="{Binding NearbyMarker}" />
-
-        <ActivityIndicator Grid.Row="0" Grid.RowSpan="3" IsRunning="{Binding IsLoading}" 
-                           HorizontalOptions="Center" VerticalOptions="Center" />
     </Grid>
 </mvx:MvxContentPage>
