@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -9,6 +10,7 @@ using Mapsui.Projection;
 using Mapsui.Providers;
 using Mapsui.Styles;
 using Mapsui.Utilities;
+using Mapsui.Widgets;
 using MvvmCross.Platform;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Resources;
@@ -72,8 +74,9 @@ namespace OpenGeoDB.Core.Controls
                 NativeMap.BackColor = Color.White;
 
             var mapLayer = OpenStreetMap.CreateTileLayer();
-            NativeMap.Layers.Add(mapLayer);
+            mapLayer.Attribution = null;
 
+            NativeMap.Layers.Add(mapLayer);
             NativeMap.Info += (sender, e) => 
 	            {
                     if (e.Feature?["Location"] != null && ChooseLocationCommand != null)
@@ -83,6 +86,21 @@ namespace OpenGeoDB.Core.Controls
                             ChooseLocationCommand.Execute(location);
 	                }
 	            };
+
+            var deviceInfoService = Mvx.Resolve<IDeviceInfoService>();
+            NativeMap.Widgets.Add(new Hyperlink
+                {
+                    Text = "© OpenStreetMap contributors",
+                    Url = "http://www.openstreetmap.org/copyright",
+                    VerticalAlignment = VerticalAlignment.Bottom,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    CornerRadius = 4,
+                    MarginX = 0,
+                    MarginY = (float)Math.Max(deviceInfoService.GetDeviceMargins().Bottom, 5f),
+                    PaddingX = 32,
+                    PaddingY = 8,
+                    BackColor = new Color(255, 255, 255, 196)
+                });
         }
 
         private static void OnFocusLocationChanged(BindableObject bindable, object oldvalue, object newvalue)
