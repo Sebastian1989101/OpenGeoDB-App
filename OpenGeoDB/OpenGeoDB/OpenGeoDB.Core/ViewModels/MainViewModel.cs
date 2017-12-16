@@ -15,7 +15,6 @@ namespace OpenGeoDB.Core.ViewModels
         private readonly IAppSettings _appSettings;
 
         private readonly IMvxNavigationService _navigationService;
-	    private readonly IDeviceInfoService _deviceInfoService;
 
 	    private Location[] _locations;
         string filter;
@@ -33,30 +32,24 @@ namespace OpenGeoDB.Core.ViewModels
 
         public LocationCategoryGroup[] Data { get; private set; }
 
-	    public double BottomSafeArea => _deviceInfoService.GetDeviceMargins().Bottom;
-
         public MvxCommand ShowSettingsCommand { get; }
 
         public MvxCommand FilterLocationsCommand { get; }
         public MvxCommand<string> ShowDetailsCommand { get; }
 
-        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IMvxNavigationService navigationService, IDeviceInfoService deviceInfoService)
+        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IMvxNavigationService navigationService)
         {
             // Fields
             _locationsRepository = locationsRepository;
 			_appSettings = appSettings;
 
             _navigationService = navigationService;
-            _deviceInfoService = deviceInfoService;
 
             // Commands
             ShowSettingsCommand = new MvxCommand(() => _navigationService.Navigate<SettingsViewModel>());
 
             FilterLocationsCommand = new MvxCommand(OnFilterLocationsCommandExecute);
             ShowDetailsCommand = new MvxCommand<string>(OnShowDetailsCommandExecute, CanExecuteShowDetailsCommand);
-
-            // Events
-            _deviceInfoService.DeviceMarginsChanged += delegate { RaisePropertyChanged(nameof(BottomSafeArea)); };
         }
 
         public override async void Start()
@@ -80,19 +73,39 @@ namespace OpenGeoDB.Core.ViewModels
 		    if (_locations == null)
 		        return;
 
-            IEnumerable<IGrouping<string, Location>> data = _locations
-                .Where(location => location.Equals(Filter))
-                .OrderBy(location => _appSettings.OrderByZipCode ? location.ZipCode : location.Village)
-                .GroupBy(location => location.Village);
-
             List<LocationCategoryGroup> groupData = new List<LocationCategoryGroup>();
-            foreach (var grouping in data.GroupBy(d => d.First().Village[0]))
-            {
-                LocationCategoryGroup currentGroupData = new LocationCategoryGroup();
-				foreach (var compendiumEntry in grouping)
-					currentGroupData.Add(compendiumEntry);
 
-				groupData.Add(currentGroupData);
+            if (_appSettings.OrderByZipCode)
+            {
+                IEnumerable<IGrouping<string, Location>> data = _locations
+                    .Where(location => location.Equals(Filter))
+                    .OrderBy(location => location.ZipCode)
+                    .GroupBy(location => location.Village);
+
+                foreach (var grouping in data.GroupBy(d => d.First().ZipCode[0]))
+                {
+                    LocationCategoryGroup currentGroupData = new LocationCategoryGroup(_appSettings);
+                    foreach (var compendiumEntry in grouping)
+                        currentGroupData.Add(compendiumEntry);
+
+                    groupData.Add(currentGroupData);
+                }
+            }
+            else
+            {
+                IEnumerable<IGrouping<string, Location>> data = _locations
+                    .Where(location => location.Equals(Filter))
+                    .OrderBy(location => location.Village)
+                    .GroupBy(location => location.Village);
+
+                foreach (var grouping in data.GroupBy(d => d.First().Village[0]))
+                {
+                    LocationCategoryGroup currentGroupData = new LocationCategoryGroup(_appSettings);
+                    foreach (var compendiumEntry in grouping)
+                        currentGroupData.Add(compendiumEntry);
+
+                    groupData.Add(currentGroupData);
+                }
             }
 
             Data = groupData.ToArray();

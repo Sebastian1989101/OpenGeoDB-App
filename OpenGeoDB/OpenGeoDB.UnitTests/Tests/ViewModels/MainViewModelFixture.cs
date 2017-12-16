@@ -36,7 +36,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
             Mock<IAppSettings> mockAppSettings = new Mock<IAppSettings>();
             mockAppSettings.Setup(settings => settings.OrderByZipCode).Returns(false);
 
-            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, new Mock<IMvxNavigationService>().Object, new DeviceInfoService());
+            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, new Mock<IMvxNavigationService>().Object);
 
             // Act
             await viewModel.Initialize();
@@ -89,7 +89,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
 			Mock<IAppSettings> mockAppSettings = new Mock<IAppSettings>();
 			mockAppSettings.Setup(settings => settings.OrderByZipCode).Returns(false);
 
-            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, new Mock<IMvxNavigationService>().Object, new DeviceInfoService());
+            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, new Mock<IMvxNavigationService>().Object);
 
             // Act
             await viewModel.Initialize();

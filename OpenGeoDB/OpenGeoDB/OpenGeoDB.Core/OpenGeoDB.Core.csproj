@@ -43,15 +43,8 @@
     <Compile Include="CoreApp.cs" />
     <Compile Include="Behaviors\BehaviorBase.cs" />
     <Compile Include="Behaviors\EventToCommandBehavior.cs" />
-    <Compile Include="Controls\DetailActionViewCell.xaml.cs">
-      <DependentUpon>DetailActionViewCell.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\GroupHeaderViewCell.xaml.cs">
-      <DependentUpon>GroupHeaderViewCell.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\MapsuiMap.cs" />
     <Compile Include="Controls\OfflineWebView.cs" />
-    <Compile Include="Controls\SafeAreaViewCell.cs" />
     <Compile Include="Converters\NegateBooleanConverter.cs" />
     <Compile Include="DebugTrace.cs" />
     <Compile Include="Helpers\Settings.cs" />
@@ -104,6 +97,8 @@
     <Compile Include="AppStart.cs" />
     <Compile Include="Services\DeviceInfoService.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Controls\SettingsTextCell.cs" />
+    <Compile Include="Controls\NavigationTextCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.UserDialogs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -210,18 +205,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Pages\LegalContentPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Controls\DetailActionViewCell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Controls\GroupHeaderViewCell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

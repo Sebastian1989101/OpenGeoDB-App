@@ -9,22 +9,13 @@
                     xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls;assembly=OpenGeoDB.Core"
                     Title="{res:TranslateExtension ChooseZipPage_Title}" x:Name="Page">
 
-    <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-      
-        <ListView Grid.Row="0" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False"
-                  SeparatorVisibility="Default" ItemSelected="OnItemSelected">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <controls:DetailActionViewCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}"
-                                                   Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <Grid Grid.Row="1" BackgroundColor="WhiteSmoke" HeightRequest="{Binding BottomSafeArea}" />
-    </Grid>
+    <ListView Grid.Row="0" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="False"
+              SeparatorVisibility="Default" ItemSelected="OnItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <controls:NavigationTextCell Text="{Binding ZipCode}" CommandParameter="{Binding ZipCode}"
+                                             Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </mvx:MvxContentPage>

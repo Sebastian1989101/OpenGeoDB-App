@@ -19,36 +19,22 @@
     <mvx:MvxContentPage.ToolbarItems>
         <ToolbarItem Text="Settings" Icon="Settings.png" Command="{Binding ShowSettingsCommand}" />
     </mvx:MvxContentPage.ToolbarItems>
+    
+    <ListView ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true"
+              SeparatorVisibility="Default" GroupDisplayBinding="{Binding Category}" 
+              GroupShortNameBinding="{Binding ShortCategory}" ItemSelected="OnItemSelected">
+        <ListView.Header>
+            <SearchBar Text="{Binding Filter}" SearchCommand="{Binding FilterLocationsCommand}"
+                       Placeholder="{res:TranslateExtension SearchBar_Placeholder}" />
+        </ListView.Header>
 
-    <Grid RowSpacing="0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <SearchBar Grid.Row="0" Text="{Binding Filter}" SearchCommand="{Binding FilterLocationsCommand}"
-                   Placeholder="{res:TranslateExtension SearchBar_Placeholder}" />
-
-        <ListView Grid.Row="1" ItemsSource="{Binding Data}" HasUnevenRows="false" IsGroupingEnabled="true"
-                  SeparatorVisibility="Default" GroupShortNameBinding="{Binding ShortCategory}"
-                  ItemSelected="OnItemSelected">
-            <ListView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <controls:GroupHeaderViewCell Header="{Binding Category}" />
-                </DataTemplate>
-            </ListView.GroupHeaderTemplate>
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <controls:DetailActionViewCell Text="{Binding Key}"
-                                                   Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}"
-                                                   Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}"
-                                                   CommandParameter="{Binding Key}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-        <Grid Grid.Row="2" BackgroundColor="WhiteSmoke" HeightRequest="{Binding BottomSafeArea}" />
-    </Grid>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <controls:NavigationTextCell Text="{Binding Key}"
+                                             Detail="{Binding Path=., Converter={StaticResource ZipCodeTextConverter}}"
+                                             Command="{Binding ViewModel.ShowDetailsCommand, Source={x:Reference Page}}"
+                                             CommandParameter="{Binding Key}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </mvx:MvxContentPage>

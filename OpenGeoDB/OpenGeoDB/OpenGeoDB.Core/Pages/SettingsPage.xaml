@@ -7,7 +7,7 @@
                     xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
                     xmlns:mvx="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
                     xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
-                    Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page">
+                    Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page" xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls">
 
     <mvx:MvxContentPage.Resources>
         <ResourceDictionary>
@@ -30,22 +30,22 @@
                 <SwitchCell Text="{res:TranslateExtension ViewCell_OrderByZipCode}" 
                             On="{Binding Settings.OrderByZipCode}" />
                 
-                <TextCell Text="{res:TranslateExtension ViewCell_NearbyMarkerCount}"
-                          Detail="{Binding Settings.NearbyMarkerCount}"
-                          Command="{Binding ChooseNearbyMarkerCountCommand}" />
+                <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_NearbyMarkerCount}"
+                                           Detail="{Binding Settings.NearbyMarkerCount}"
+                                           Command="{Binding ChooseNearbyMarkerCountCommand}" />
 
                 <SwitchCell Text="{res:TranslateExtension ViewCell_ShowZipCodeAboveNearbyMarker}" 
                             On="{Binding Settings.ShowZipCodeAboveNearbyMarker}" />
 
-                <TextCell Text="{res:TranslateExtension ViewCell_DistanceType}"
-                          Detail="{Binding Path=Settings.DistanceType, Converter={StaticResource DistanceTypeConverter}}"
-                          Command="{Binding ChooseDistanceTypeCommand}" />
+                <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_DistanceType}"
+                                           Detail="{Binding Path=Settings.DistanceType, Converter={StaticResource DistanceTypeConverter}}" 
+                                           Command="{Binding ChooseDistanceTypeCommand}" />
             </TableSection>
 
             <TableSection Title="{res:TranslateExtension TableSection_Legal}">
-                <TextCell Text="{res:TranslateExtension ViewCell_UsedSoftware}" Command="{Binding ShowUsedSoftwareCommand}" />
-                <TextCell Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" Command="{Binding ShowPrivacyPolicyCommand}" />
-                <TextCell Text="{res:TranslateExtension ViewCell_Imprint}" Command="{Binding ShowImprintCommand}" />
+                <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_UsedSoftware}" Command="{Binding ShowUsedSoftwareCommand}" />
+                <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" Command="{Binding ShowPrivacyPolicyCommand}" />
+                <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_Imprint}" Command="{Binding ShowImprintCommand}" />
             </TableSection>
 
             <TableSection>
