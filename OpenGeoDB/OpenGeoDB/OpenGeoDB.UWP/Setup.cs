@@ -5,6 +5,7 @@ using MvvmCross.Platform.Platform;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using Windows.ApplicationModel.Activation;
+using MvvmCross.Forms.Platform;
 using MvvmCross.Platform.Logging;
 using XamlControls = Windows.UI.Xaml.Controls;
 
@@ -28,6 +29,11 @@ namespace OpenGeoDB.UWP
         }
 
         protected override IMvxApplication CreateApp()
+        {
+            return new Core.CoreApp();
+        }
+
+        protected override MvxFormsApplication CreateFormsApplication()
         {
             return new Core.App();
         }

@@ -3,6 +3,7 @@ using MvvmCross.Core.Views;
 using MvvmCross.Forms.Uwp.Presenters;
 using MvvmCross.Platform;
 using System.Text;
+using MvvmCross.Forms.Views;
 
 namespace OpenGeoDB.UWP
 {
@@ -18,7 +19,7 @@ namespace OpenGeoDB.UWP
             var start = Mvx.Resolve<IMvxAppStart>();
             start.Start();
 
-            var presenter = Mvx.Resolve<IMvxViewPresenter>() as MvxFormsUwpViewPresenter;
+            var presenter = Mvx.Resolve<IMvxFormsViewPresenter>() as MvxFormsUwpViewPresenter;
             if (presenter != null)
                 LoadApplication(presenter.FormsApplication);
 
