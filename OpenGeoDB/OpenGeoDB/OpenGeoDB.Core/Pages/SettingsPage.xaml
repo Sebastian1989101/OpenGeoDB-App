@@ -6,8 +6,9 @@
                     xmlns:vm="clr-namespace:OpenGeoDB.Core.ViewModels;assembly=OpenGeoDB.Core"
                     xmlns:res="clr-namespace:OpenGeoDB.Core.Resources;assembly=OpenGeoDB.Core"
                     xmlns:mvx="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+                    xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls"
                     xmlns:converters="clr-namespace:OpenGeoDB.Core.Converters"
-                    Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page" xmlns:controls="clr-namespace:OpenGeoDB.Core.Controls">
+                    Title="{res:TranslateExtension SettingsPage_Title}" x:Name="Page">
 
     <mvx:MvxContentPage.Resources>
         <ResourceDictionary>

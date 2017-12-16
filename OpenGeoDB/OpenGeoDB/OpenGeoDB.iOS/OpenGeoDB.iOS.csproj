@@ -116,7 +116,6 @@
     <BundleResource Include="Resources\Settings%402x.png" />
     <BundleResource Include="Resources\Settings%403x.png" />
     <Compile Include="DependencyServices\VersionService.cs" />
-    <Compile Include="Renderer\CustomPickerRenderer.cs" />
     <BundleResource Include="Resources\LaunchBackground.jpg" />
     <BundleResource Include="Resources\Logo%402x.png" />
     <BundleResource Include="Resources\Logo.png" />
@@ -124,7 +123,7 @@
     <Compile Include="Renderer\CustomPageRenderer.cs" />
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Renderer\SettingsTextCellRenderer.cs" />
-    <Compile Include="Renderer\DetailActionViewCellRenderer.cs" />
+    <Compile Include="Renderer\NavigationTextCellRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

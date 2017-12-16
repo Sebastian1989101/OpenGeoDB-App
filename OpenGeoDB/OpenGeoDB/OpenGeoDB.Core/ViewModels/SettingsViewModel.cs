@@ -47,7 +47,8 @@ namespace OpenGeoDB.Core.ViewModels
             var actionSheetConfig = new ActionSheetConfig();
             actionSheetConfig.Title = AppResources.ViewCell_NearbyMarkerCount;
 
-            foreach (var count in Enumerable.Range(0, 21))
+            actionSheetConfig.Add("0", () => { Settings.NearbyMarkerCount = 0; RaisePropertyChanged(nameof(Settings)); });
+            foreach (var count in Enumerable.Range(0, 8).Select(i => Convert.ToInt32(Math.Pow(2, i))))
                 actionSheetConfig.Add(count.ToString(), () => { Settings.NearbyMarkerCount = count; RaisePropertyChanged(nameof(Settings)); });
 
             _userDialogs.ActionSheet(actionSheetConfig);
