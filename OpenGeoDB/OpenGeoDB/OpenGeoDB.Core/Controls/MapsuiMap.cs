@@ -37,30 +37,30 @@ namespace OpenGeoDB.Core.Controls
             nameof(MapMarker), typeof(IEnumerable<Location>), typeof(MapsuiMap), null, BindingMode.OneWay, null, OnMapMarkerChanged);
 
         public static readonly BindableProperty ChooseLocationCommandProperty = BindableProperty.Create(
-            nameof(ChooseLocationCommand), typeof(ICommand), typeof(MapsuiMap), null, BindingMode.OneWay);
+            nameof(ChooseLocationCommand), typeof(ICommand), typeof(MapsuiMap));
 
         public double FocusLatitude
         {
-            get { return (double) GetValue(FocusLatitudeProperty); }
-            set { SetValue(FocusLatitudeProperty, value); }
+            get => (double) GetValue(FocusLatitudeProperty);
+            set => SetValue(FocusLatitudeProperty, value);
         }
 
         public double FocusLongitude
         {
-            get { return (double) GetValue(FocusLongitudeProperty); }
-            set { SetValue(FocusLongitudeProperty, value); }
+            get => (double) GetValue(FocusLongitudeProperty);
+            set => SetValue(FocusLongitudeProperty, value);
         }
 
         public IEnumerable<Location> MapMarker
         {
-            get { return (IEnumerable<Location>) GetValue(MapMarkerProperty); }
-            set { SetValue(MapMarkerProperty, value); }
+            get => (IEnumerable<Location>) GetValue(MapMarkerProperty);
+            set => SetValue(MapMarkerProperty, value);
         }
 
         public ICommand ChooseLocationCommand
         {
-            get { return (ICommand)GetValue(ChooseLocationCommandProperty); }
-            set { SetValue(ChooseLocationCommandProperty, value); }
+            get => (ICommand)GetValue(ChooseLocationCommandProperty);
+            set => SetValue(ChooseLocationCommandProperty, value);
         }
 
         public Map NativeMap { get; }
@@ -70,8 +70,15 @@ namespace OpenGeoDB.Core.Controls
             _appSettings = Mvx.Resolve<IAppSettings>();
             NativeMap = new Map();
 
-            if (Device.RuntimePlatform == Device.iOS)
-                NativeMap.BackColor = Color.White;
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    NativeMap.BackColor = Color.White;
+                    break;
+                case Device.Android:
+                    NativeMap.BackColor = Color.FromArgb(0xFF, 0x11, 0x11, 0x11);
+                    break;
+            }
 
             var mapLayer = OpenStreetMap.CreateTileLayer();
             mapLayer.Attribution = null;
@@ -81,8 +88,7 @@ namespace OpenGeoDB.Core.Controls
 	            {
                     if (e.Feature?["Location"] != null && ChooseLocationCommand != null)
 	                {
-                        Location location = e.Feature?["Location"] as Location;
-                        if (location != null && ChooseLocationCommand.CanExecute(location))
+	                    if (e.Feature?["Location"] is Location location && ChooseLocationCommand.CanExecute(location))
                             ChooseLocationCommand.Execute(location);
 	                }
 	            };
@@ -105,8 +111,7 @@ namespace OpenGeoDB.Core.Controls
 
         private static void OnFocusLocationChanged(BindableObject bindable, object oldvalue, object newvalue)
         {
-            MapsuiMap mapsuiMap = bindable as MapsuiMap;
-            if (mapsuiMap != null)
+            if (bindable is MapsuiMap mapsuiMap)
             {
                 mapsuiMap.NativeMap.NavigateTo(SphericalMercator.FromLonLat(mapsuiMap.FocusLongitude, mapsuiMap.FocusLatitude));
                 mapsuiMap.NativeMap.NavigateTo(100);
@@ -120,8 +125,7 @@ namespace OpenGeoDB.Core.Controls
 
 		private static void OnMapMarkerChanged(BindableObject bindable, object oldValue, object newValue)
 		{
-			MapsuiMap mapsuiMap = bindable as MapsuiMap;
-			if (mapsuiMap != null)
+		    if (bindable is MapsuiMap mapsuiMap)
             {
                 Features features = GetIconFeatures(mapsuiMap.MapMarker);
                 mapsuiMap.AddFeatures(features, "MarkerLayer", MARKER_RESOURCE);

@@ -25,7 +25,7 @@ namespace OpenGeoDB.Core.Services
 
         public int NearbyMarkerCount
         {
-            get { return _settings.GetValueOrDefault(nameof(NearbyMarkerCount), 10); }
+            get { return _settings.GetValueOrDefault(nameof(NearbyMarkerCount), 8); }
             set { _settings.AddOrUpdateValue(nameof(NearbyMarkerCount), value); }
         }
 
