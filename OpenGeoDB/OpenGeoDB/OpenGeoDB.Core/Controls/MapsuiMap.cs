@@ -78,6 +78,9 @@ namespace OpenGeoDB.Core.Controls
                 case Device.Android:
                     NativeMap.BackColor = Color.FromArgb(0xFF, 0x11, 0x11, 0x11);
                     break;
+                case Device.UWP:
+                    NativeMap.BackColor = Color.Black;
+                    break;
             }
 
             var mapLayer = OpenStreetMap.CreateTileLayer();
