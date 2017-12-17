@@ -6,7 +6,13 @@ using Xamarin.Forms;
 
 namespace OpenGeoDB.Droid
 {
-    [Activity(Label = "PLZ Suche", MainLauncher = true, Icon = "@drawable/Icon", Theme = "@style/Theme.Splash", NoHistory = true, ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(
+        Label = "PLZ Suche",
+        Icon = "@drawable/icon",
+        Theme = "@style/AppTheme.Splash",
+        MainLauncher = true,
+        NoHistory = true,
+        ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : MvxSplashScreenActivity
     {
         public SplashScreen()
