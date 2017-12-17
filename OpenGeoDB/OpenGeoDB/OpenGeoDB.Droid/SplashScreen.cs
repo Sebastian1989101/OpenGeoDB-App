@@ -12,7 +12,7 @@ namespace OpenGeoDB.Droid
         Theme = "@style/AppTheme.Splash",
         MainLauncher = true,
         NoHistory = true,
-        ScreenOrientation = ScreenOrientation.Portrait)]
+        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class SplashScreen : MvxSplashScreenActivity
     {
         public SplashScreen()
