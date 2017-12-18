@@ -92,7 +92,7 @@ namespace OpenGeoDB.iOS
             DateTime currentTimeStamp = DateTime.Now;
 
             int count = 0;
-            int.TryParse(usesCount.ToString(), out count);
+            int.TryParse(usesCount?.ToString(), out count);
 
             NSUserDefaults.StandardUserDefaults.SetString($"{bundleShortVersionString} ({bundleVersion})", "AppVersion");
             NSUserDefaults.StandardUserDefaults.SetString($"{currentTimeStamp.ToShortDateString()} {currentTimeStamp.ToShortTimeString()}", "LastUsed");
