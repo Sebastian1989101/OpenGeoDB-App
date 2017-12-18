@@ -11,12 +11,18 @@ using OpenGeoDB.Core.Converters;
 using Acr.UserDialogs;
 using System.Globalization;
 using Xamarin.Forms;
+using MvvmCross.Plugins.Messenger;
+using OpenGeoDB.Core.Model.Messages;
+using System.Diagnostics;
 
 namespace OpenGeoDB.Core.ViewModels
 {
     public class SettingsViewModel : MvxViewModel
 	{
         private readonly IUserDialogs _userDialogs;
+        private readonly IMvxMessenger _messenger;
+
+        private MvxSubscriptionToken _appStatusMessageSubscriptionToken;
 
 		public string Version { get; }
 		public IAppSettings Settings { get; }
@@ -29,9 +35,10 @@ namespace OpenGeoDB.Core.ViewModels
         public MvxCommand ShowPrivacyPolicyCommand { get; }
         public MvxCommand ShowImprintCommand { get; }
 
-        public SettingsViewModel(IVersionService versionService, IAppSettings settings, IUserDialogs userDialogs, IMvxNavigationService navigationService)
+        public SettingsViewModel(IVersionService versionService, IAppSettings settings, IUserDialogs userDialogs, IMvxMessenger messenger, IMvxNavigationService navigationService)
 		{
             _userDialogs = userDialogs;
+            _messenger = messenger;
 
             Version = versionService.GetAppVersion();
             Settings = settings;
@@ -43,6 +50,28 @@ namespace OpenGeoDB.Core.ViewModels
             ShowSourcecodeCommand = new MvxCommand(() => Device.OpenUri(new Uri("https://github.com/Sebastian1989101/OpenGeoDB-App")));
             ShowPrivacyPolicyCommand = new MvxCommand(() => navigationService.Navigate<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_PrivacyPolicy, AppResources.PrivacyPolicy_Content }));
             ShowImprintCommand = new MvxCommand(() => navigationService.Navigate<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_Imprint, AppResources.Imprint_Content }));
+        }
+
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
+            _appStatusMessageSubscriptionToken = _messenger.Subscribe<AppStatus>(status =>
+                {
+                    Debug.WriteLine("App status occured: " + status.Status);
+                    if (status.Status == AppStatus.StatusChange.Resume || status.Status == AppStatus.StatusChange.EnterForeground)
+                        RaisePropertyChanged(nameof(Settings));
+                }, MvxReference.Strong);
+        }
+
+        public override void ViewDisappearing()
+        {
+            if (_appStatusMessageSubscriptionToken != null)
+            {
+                _messenger.Unsubscribe<AppStatus>(_appStatusMessageSubscriptionToken);
+                _appStatusMessageSubscriptionToken = null;
+            }
+
+            base.ViewDisappearing();
         }
 
         private void OnChooseNearbyMarkerCountCommandExecute()

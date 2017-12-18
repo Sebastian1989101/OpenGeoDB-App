@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 using OpenGeoDB.Core.Model.Data;
+using OpenGeoDB.Core.Model.Messages;
 using OpenGeoDB.Core.Repository;
 using OpenGeoDB.Core.Services;
 using Xamarin.Forms;
@@ -14,8 +17,11 @@ namespace OpenGeoDB.Core.ViewModels
         private readonly LocationRepository _locationsRepository;
 
         private readonly IAppSettings _appSettings;
+        private readonly IMvxMessenger _messenger;
         private readonly IProgressDialog _progressDialogs;
         private readonly IDeviceInfoService _deviceInfoService;
+
+        private MvxSubscriptionToken _appStatusMessageSubscriptionToken;
 
         public string Title => $"{Location.ZipCode} {Location.Village}";
 
@@ -33,11 +39,12 @@ namespace OpenGeoDB.Core.ViewModels
 
         public MvxAsyncCommand<Location> ChangeLocationCommand { get; }
 
-        public DetailViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IUserDialogs userDialogs, IDeviceInfoService deviceInfoService)
+        public DetailViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IUserDialogs userDialogs, IMvxMessenger messenger, IDeviceInfoService deviceInfoService)
         {
             _locationsRepository = locationsRepository;
 
             _appSettings = appSettings;
+            _messenger = messenger;
             _deviceInfoService = deviceInfoService;
 
             _progressDialogs = userDialogs.Progress(new ProgressDialogConfig
@@ -53,6 +60,28 @@ namespace OpenGeoDB.Core.ViewModels
                 {
                     RaisePropertyChanged(nameof(SafeAreaMargins));
                 };
+        }
+
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
+            _appStatusMessageSubscriptionToken = _messenger.Subscribe<AppStatus>(status =>
+                {
+                    Debug.WriteLine("App status occured: " + status.Status);
+                    if (status.Status == AppStatus.StatusChange.Resume || status.Status == AppStatus.StatusChange.EnterForeground)
+                        ChangeLocationCommand.Execute(Location);
+                }, MvxReference.Strong);
+        }
+
+        public override void ViewDisappearing()
+        {
+            if (_appStatusMessageSubscriptionToken != null)
+            {
+                _messenger.Unsubscribe<AppStatus>(_appStatusMessageSubscriptionToken);
+                _appStatusMessageSubscriptionToken = null;
+            }
+
+            base.ViewDisappearing();
         }
 
         public override void Prepare(Location parameter)

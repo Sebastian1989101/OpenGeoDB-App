@@ -131,6 +131,7 @@
     <BundleResource Include="Settings.bundle\de.lproj\Root.strings" />
     <BundleResource Include="Settings.bundle\en.lproj\Imprint.strings" />
     <BundleResource Include="Settings.bundle\en.lproj\Root.strings" />
+    <Compile Include="Bootstrap\MessengerPluginBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -232,6 +233,9 @@
     </Reference>
     <Reference Include="MTiRate">
       <HintPath>..\..\packages\Xamarin.iRate.1.11.7\lib\Xamarin.iOS\MTiRate.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugins.Messenger">
+      <HintPath>..\..\packages\MvvmCross.Plugin.Messenger.5.6.2\lib\Xamarin.iOS10\MvvmCross.Plugins.Messenger.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

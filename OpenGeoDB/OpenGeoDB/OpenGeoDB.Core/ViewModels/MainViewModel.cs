@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using MvvmCross.Core.Navigation;
 using MvvmCross.Core.ViewModels;
+using MvvmCross.Plugins.Messenger;
 using OpenGeoDB.Core.Model.Data;
+using OpenGeoDB.Core.Model.Messages;
 using OpenGeoDB.Core.Repository;
 using OpenGeoDB.Core.Services;
 
@@ -13,8 +16,11 @@ namespace OpenGeoDB.Core.ViewModels
 	{
 		private readonly LocationRepository _locationsRepository;
         private readonly IAppSettings _appSettings;
+        private readonly IMvxMessenger _messenger;
 
         private readonly IMvxNavigationService _navigationService;
+
+        private MvxSubscriptionToken _appStatusMessageSubscriptionToken;
 
 	    private Location[] _locations;
         string filter;
@@ -37,11 +43,12 @@ namespace OpenGeoDB.Core.ViewModels
         public MvxCommand FilterLocationsCommand { get; }
         public MvxCommand<string> ShowDetailsCommand { get; }
 
-        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IMvxNavigationService navigationService)
+        public MainViewModel(LocationRepository locationsRepository, IAppSettings appSettings, IMvxMessenger messenger, IMvxNavigationService navigationService)
         {
             // Fields
             _locationsRepository = locationsRepository;
-			_appSettings = appSettings;
+            _appSettings = appSettings;
+            _messenger = messenger;
 
             _navigationService = navigationService;
 
@@ -61,6 +68,28 @@ namespace OpenGeoDB.Core.ViewModels
         {
             FilterLocationsCommand.Execute(null); 
             base.ViewAppearing();
+        }
+
+        public override void ViewAppeared()
+        {
+            base.ViewAppeared();
+            _appStatusMessageSubscriptionToken = _messenger.Subscribe<AppStatus>(status =>
+                {
+                    Debug.WriteLine("App status occured: " + status.Status);
+                    if (status.Status == AppStatus.StatusChange.Resume || status.Status == AppStatus.StatusChange.EnterForeground)
+                        FilterLocationsCommand.Execute(null); 
+                }, MvxReference.Strong);
+        }
+
+        public override void ViewDisappearing()
+        {
+            if (_appStatusMessageSubscriptionToken != null)
+            {
+                _messenger.Unsubscribe<AppStatus>(_appStatusMessageSubscriptionToken);
+                _appStatusMessageSubscriptionToken = null;
+            }
+
+            base.ViewDisappearing();
         }
 
 	    public override async Task Initialize()
