@@ -1,0 +1,19 @@
+﻿"group.Information" = "Informationen";
+"group.Settings" = "App Einstellungen";
+"group.Legal" = "Rechtliches";
+
+"title.Version" = "Version";
+"title.LastTimeUsed" = "Zuletzt genutzt";
+"title.UsesCount" = "Anzahl verwendet";
+"title.OrderByZipCode" = "Nach PLZ sortieren";
+"title.NearbyMarkerCount" = "Anzahl benachbarter Marker";
+"title.ShowZipCodeAboveNearbyMarker" = "Zeige PLZ über Marker";
+"title.DistanceType" = "Längeneinheit";
+"title.PrivacyPolicy" = "Datenschutzerklärung";
+"title.Imprint" = "Impressum";
+
+"default.NotUsedYet" = "Ungenutzt";
+
+"value.Kilometers" = "Kilometer";
+"value.NauticalMiles" = "Seemeilen";
+"value.Miles" = "Meilen";

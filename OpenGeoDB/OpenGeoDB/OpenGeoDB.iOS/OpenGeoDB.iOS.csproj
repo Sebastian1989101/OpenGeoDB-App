@@ -124,6 +124,13 @@
     <Compile Include="Bootstrap\JsonPluginBootstrap.cs" />
     <Compile Include="Renderer\SettingsTextCellRenderer.cs" />
     <Compile Include="Renderer\NavigationTextCellRenderer.cs" />
+    <BundleResource Include="Settings.bundle\Root.plist" />
+    <BundleResource Include="Settings.bundle\Imprint.plist" />
+    <BundleResource Include="Settings.bundle\PrivacyPolicy.plist" />
+    <BundleResource Include="Settings.bundle\de.lproj\Imprint.strings" />
+    <BundleResource Include="Settings.bundle\de.lproj\Root.strings" />
+    <BundleResource Include="Settings.bundle\en.lproj\Imprint.strings" />
+    <BundleResource Include="Settings.bundle\en.lproj\Root.strings" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Acr.Support.iOS, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

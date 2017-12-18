@@ -53,6 +53,7 @@ namespace OpenGeoDB.iOS
                 };
 
             Window.MakeKeyAndVisible();
+            SetSettings();
 
             NSNotificationCenter.DefaultCenter.AddObserver(UIApplication.DidChangeStatusBarOrientationNotification, n =>
                 {
@@ -99,6 +100,20 @@ namespace OpenGeoDB.iOS
         public override void WillTerminate(UIApplication application)
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+        }
+
+        private static void SetSettings()
+        {
+            var bundleShortVersionString = NSBundle.MainBundle.InfoDictionary["CFBundleShortVersionString"].ToString();
+            var bundleVersion = NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
+
+            DateTime currentTimeStamp = DateTime.Now;
+
+            NSUserDefaults.StandardUserDefaults.SetString($"{bundleShortVersionString} ({bundleVersion})", "AppVersion");
+            NSUserDefaults.StandardUserDefaults.SetString($"{currentTimeStamp.ToShortDateString()} {currentTimeStamp.ToShortTimeString()}", "LastUsed");
+            NSUserDefaults.StandardUserDefaults.SetString($"{iRate.SharedInstance.UsesCount}", "UsesCount");
+
+            NSUserDefaults.StandardUserDefaults.Synchronize();
         }
 
         private bool CurrentPageIsOfType<TPageType>()

@@ -1,0 +1,19 @@
+﻿"group.Information" = "Information";
+"group.Settings" = "App Settings";
+"group.Legal" = "Legal";
+
+"title.Version" = "Version";
+"title.LastTimeUsed" = "Last time used";
+"title.UsesCount" = "Uses count";
+"title.OrderByZipCode" = "Order by ZIP Code";
+"title.NearbyMarkerCount" = "Nearby marker count";
+"title.ShowZipCodeAboveNearbyMarker" = "Show ZIP above marker";
+"title.DistanceType" = "Unit of length";
+"title.PrivacyPolicy" = "Privacy Policy";
+"title.Imprint" = "Imprint";
+
+"default.NotUsedYet" = "Not used yet";
+
+"value.Kilometers" = "Kilometers";
+"value.NauticalMiles" = "Nautical Miles";
+"value.Miles" = "Miles";
