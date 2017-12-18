@@ -12,8 +12,6 @@
 "title.PrivacyPolicy" = "Datenschutzerklärung";
 "title.Imprint" = "Impressum";
 
-"default.NotUsedYet" = "Ungenutzt";
-
 "value.Kilometers" = "Kilometer";
 "value.NauticalMiles" = "Seemeilen";
 "value.Miles" = "Meilen";
