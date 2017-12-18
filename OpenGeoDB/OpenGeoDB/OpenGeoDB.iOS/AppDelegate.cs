@@ -106,12 +106,16 @@ namespace OpenGeoDB.iOS
         {
             var bundleShortVersionString = NSBundle.MainBundle.InfoDictionary["CFBundleShortVersionString"].ToString();
             var bundleVersion = NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString();
+            var usesCount = NSUserDefaults.StandardUserDefaults.ValueForKey(new NSString("UsesCount"));
 
             DateTime currentTimeStamp = DateTime.Now;
 
+            int count = 0;
+            int.TryParse(usesCount.ToString(), out count);
+
             NSUserDefaults.StandardUserDefaults.SetString($"{bundleShortVersionString} ({bundleVersion})", "AppVersion");
             NSUserDefaults.StandardUserDefaults.SetString($"{currentTimeStamp.ToShortDateString()} {currentTimeStamp.ToShortTimeString()}", "LastUsed");
-            NSUserDefaults.StandardUserDefaults.SetString($"{iRate.SharedInstance.UsesCount}", "UsesCount");
+            NSUserDefaults.StandardUserDefaults.SetString($"{++count}", "UsesCount");
 
             NSUserDefaults.StandardUserDefaults.Synchronize();
         }
