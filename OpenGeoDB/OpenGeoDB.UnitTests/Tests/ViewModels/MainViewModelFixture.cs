@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Acr.UserDialogs;
 using Moq;
 using MvvmCross.Core.Navigation;
+using MvvmCross.Plugins.Messenger;
 using NUnit.Framework;
 using OpenGeoDB.Core.Model.Data;
 using OpenGeoDB.Core.Repository;
@@ -36,7 +38,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
             Mock<IAppSettings> mockAppSettings = new Mock<IAppSettings>();
             mockAppSettings.Setup(settings => settings.OrderByZipCode).Returns(false);
 
-            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, new Mock<IMvxNavigationService>().Object);
+            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, null, new Mock<IMvxNavigationService>().Object);
 
             // Act
             await viewModel.Initialize();
@@ -89,7 +91,7 @@ namespace OpenGeoDB.UnitTests.Tests.ViewModels
 			Mock<IAppSettings> mockAppSettings = new Mock<IAppSettings>();
 			mockAppSettings.Setup(settings => settings.OrderByZipCode).Returns(false);
 
-            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, new Mock<IMvxNavigationService>().Object);
+            MainViewModel viewModel = new MainViewModel(locationRepository, mockAppSettings.Object, null, new Mock<IMvxNavigationService>().Object);
 
             // Act
             await viewModel.Initialize();
