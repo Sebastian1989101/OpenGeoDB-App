@@ -105,7 +105,7 @@ namespace OpenGeoDB.Core.Controls
                     HorizontalAlignment = HorizontalAlignment.Center,
                     CornerRadius = 4,
                     MarginX = 0,
-                    MarginY = (float)Math.Max(deviceInfoService.GetDeviceMargins().Bottom, 5f),
+                    MarginY = (float)Math.Max(deviceInfoService.GetDeviceMargins().Bottom, 8f),
                     PaddingX = 32,
                     PaddingY = 8,
                     BackColor = new Color(255, 255, 255, 196)

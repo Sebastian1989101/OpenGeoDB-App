@@ -196,5 +196,11 @@ namespace OpenGeoDB.Core.Resources {
                 return ResourceManager.GetString("ProgressDialog_Loading", resourceCulture);
             }
         }
+        
+        internal static string ViewCell_Sourcecode {
+            get {
+                return ResourceManager.GetString("ViewCell_Sourcecode", resourceCulture);
+            }
+        }
     }
 }

@@ -232,7 +232,7 @@
 &lt;body&gt;
   &lt;h2&gt;Privacy Policy&lt;/h2&gt; 
   &lt;p&gt; 
-    Sebastian Kruse built the application PLZ Suche (the "App") with ad support. This App is provided by Sebastian Kruse at no cost and is intended for use as is.
+    Sebastian Kruse built the application PLZ Suche (the "App"). This App is provided by Sebastian Kruse at no cost and is intended for use as is.
   &lt;/p&gt; 
   &lt;p&gt;
   This page is used to inform users regarding my policies with the collection, use, and disclosure of personal information during the use of the App.
@@ -252,14 +252,6 @@
   &lt;p&gt;
     The App does use third party services that may collect information used to identify you.
   &lt;/p&gt; 
-  &lt;div&gt;
-    &lt;p&gt;
-      Third party service providers used by the App: 
-    &lt;/p&gt; 
-    &lt;ul&gt;
-      &lt;li&gt;Google AdSense / Google AdMob (Advertising)&lt;/li&gt; 
-    &lt;/ul&gt;
-  &lt;/div&gt; 
   &lt;p&gt;
     &lt;strong&gt;Log Data&lt;/strong&gt;
   &lt;/p&gt; 
@@ -327,7 +319,10 @@
   <data name="SearchBar_Placeholder" xml:space="preserve">
     <value>Search</value>
   </data>
-	<data name="ProgressDialog_Loading" xml:space="preserve">
-		<value>Loading...</value>
+    <data name="ProgressDialog_Loading" xml:space="preserve">
+        <value>Loading...</value>
+    </data>
+	<data name="ViewCell_Sourcecode" xml:space="preserve">
+		<value>Sourcecode</value>
 	</data>
 </root>

@@ -183,4 +183,7 @@
   <data name="SearchBar_Placeholder" xml:space="preserve">
     <value>Suchen</value>
   </data>
+    <data name="ViewCell_Sourcecode" xml:space="preserve">
+        <value>Quellcode</value>
+    </data>
 </root>

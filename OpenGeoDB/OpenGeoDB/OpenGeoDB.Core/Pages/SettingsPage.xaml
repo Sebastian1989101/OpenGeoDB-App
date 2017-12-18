@@ -45,6 +45,7 @@
 
             <TableSection Title="{res:TranslateExtension TableSection_Legal}">
                 <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_UsedSoftware}" Command="{Binding ShowUsedSoftwareCommand}" />
+                <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_Sourcecode}" Command="{Binding ShowSourcecodeCommand}" />
                 <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_PrivacyPolicy}" Command="{Binding ShowPrivacyPolicyCommand}" />
                 <controls:SettingsTextCell Text="{res:TranslateExtension ViewCell_Imprint}" Command="{Binding ShowImprintCommand}" />
             </TableSection>

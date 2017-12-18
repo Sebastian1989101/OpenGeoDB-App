@@ -10,6 +10,7 @@ using OpenGeoDB.Core.DependencyServices;
 using OpenGeoDB.Core.Converters;
 using Acr.UserDialogs;
 using System.Globalization;
+using Xamarin.Forms;
 
 namespace OpenGeoDB.Core.ViewModels
 {
@@ -24,6 +25,7 @@ namespace OpenGeoDB.Core.ViewModels
         public MvxCommand ChooseDistanceTypeCommand { get; }
 
         public MvxCommand ShowUsedSoftwareCommand { get; }
+        public MvxCommand ShowSourcecodeCommand { get; }
         public MvxCommand ShowPrivacyPolicyCommand { get; }
         public MvxCommand ShowImprintCommand { get; }
 
@@ -38,6 +40,7 @@ namespace OpenGeoDB.Core.ViewModels
             ChooseDistanceTypeCommand = new MvxCommand(OnChooseDistanceTypeCommandExecute);
 
             ShowUsedSoftwareCommand = new MvxCommand(() => navigationService.Navigate<UsedSoftwareViewModel>());
+            ShowSourcecodeCommand = new MvxCommand(() => Device.OpenUri(new Uri("https://github.com/Sebastian1989101/OpenGeoDB-App")));
             ShowPrivacyPolicyCommand = new MvxCommand(() => navigationService.Navigate<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_PrivacyPolicy, AppResources.PrivacyPolicy_Content }));
             ShowImprintCommand = new MvxCommand(() => navigationService.Navigate<LegalContentViewModel, string[]>(new[] { AppResources.ViewCell_Imprint, AppResources.Imprint_Content }));
         }
