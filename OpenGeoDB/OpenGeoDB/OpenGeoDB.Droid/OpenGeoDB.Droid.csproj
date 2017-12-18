@@ -263,6 +263,19 @@
     <AndroidResource Include="Resources\layout\Toolbar.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_background.png" />
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-ldpi\ic_background.png" />
+    <AndroidResource Include="Resources\mipmap-ldpi\ic_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_background.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_background.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_background.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_foreground.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_background.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_foreground.png" />
+    <AndroidResource Include="Resources\drawable\ic_launcher.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\Icon.png" />
