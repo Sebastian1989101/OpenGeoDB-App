@@ -223,6 +223,9 @@
     <Reference Include="Mapsui.UI.iOS">
       <HintPath>..\..\packages\Mapsui.1.2.2\lib\Xamarin.iOS\Mapsui.UI.iOS.dll</HintPath>
     </Reference>
+    <Reference Include="MTiRate">
+      <HintPath>..\..\packages\Xamarin.iRate.1.11.7\lib\Xamarin.iOS\MTiRate.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenGeoDB.Core\OpenGeoDB.Core.csproj">

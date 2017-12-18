@@ -2,11 +2,12 @@
 using System.Diagnostics;
 using System.Linq;
 using Foundation;
+using MTiRate;
 using MvvmCross.Core.ViewModels;
 using MvvmCross.iOS.Platform;
 using MvvmCross.Platform;
-using OpenGeoDB.Core.Pages;
 using OpenGeoDB.Core.Services;
+using StoreKit;
 using UIKit;
 using Xamarin.Forms;
 
@@ -35,6 +36,21 @@ namespace OpenGeoDB.iOS
 
             var startup = Mvx.Resolve<IMvxAppStart>();
             startup.Start();
+
+            iRate.SharedInstance.DaysUntilPrompt = 3;
+            iRate.SharedInstance.UsesUntilPrompt = 5;
+            iRate.SharedInstance.PromptForNewVersionIfUserRated = true;
+
+            iRate.SharedInstance.ShouldPromptForRating = (arg1, arg2) =>
+                {
+                    if (UIDevice.CurrentDevice.CheckSystemVersion(10, 3))
+                    {
+                        SKStoreReviewController.RequestReview();
+                        return false;
+                    }
+
+                    return true;
+                };
 
             Window.MakeKeyAndVisible();
 
