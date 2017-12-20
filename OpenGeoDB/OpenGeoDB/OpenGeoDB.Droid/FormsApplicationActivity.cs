@@ -9,7 +9,7 @@ namespace OpenGeoDB.Droid
 {
     [Activity(
         Label = "PLZ Suche",
-        Icon = "@drawable/ic_launcher",
+        Icon = "@mipmap/ic_launcher",
         Theme = "@style/AppTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class FormsApplicationActivity : MvxFormsAppCompatActivity

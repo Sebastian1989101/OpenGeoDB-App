@@ -8,7 +8,7 @@ namespace OpenGeoDB.Droid
 {
     [Activity(
         Label = "PLZ Suche",
-        Icon = "@drawable/ic_launcher",
+        Icon = "@mipmap/ic_launcher",
         Theme = "@style/AppTheme.Splash",
         MainLauncher = true,
         NoHistory = true,
