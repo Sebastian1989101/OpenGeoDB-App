@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.SoftwareNotion.ZipFinder" android:versionCode="17353" android:versionName="1.1.0" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="15" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.SoftwareNotion.ZipFinder" android:versionCode="17354" android:versionName="1.1.0" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="26" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:label="PLZ Suche" android:icon="@mipmap/ic_launcher" android:roundIcon="@mipmap/ic_launcher_round" android:appCategory="maps">
 		<meta-data android:name="android.max_aspect" android:value="2.1" />
