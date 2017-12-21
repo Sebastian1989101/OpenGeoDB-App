@@ -9,7 +9,8 @@ namespace OpenGeoDB.Droid
     [Activity(
         Label = "PLZ Suche",
         Icon = "@mipmap/ic_launcher",
-        Theme = "@style/AppTheme.Splash",
+	    RoundIcon = "@mipmap/ic_launcher_round",
+		Theme = "@style/AppTheme.Splash",
         MainLauncher = true,
         NoHistory = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
